@@ -1,0 +1,541 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Engineering Calculation Paper
+% LaTeX Template
+% Version 1.0 (20/1/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Dmitry Volynkin (dim_voly@yahoo.com.au)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Modificaciones por Roberto Cerdas
+%
+% Si desea utilizar notas al margen, favor leer los comentarios en las líneas 32 y % 52. Si desea colocar un logo, favor leer comentario en línea 54. El comando     % \marginnote{texto} introduce notas al margen.  
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt,a4paper]{article} % Use A4 paper with a 12pt font size - different paper sizes will require manual recalculation of page margins and border positions
+
+\usepackage[spanish]{babel} % Utilizar reglas de idioma español
+\usepackage[utf8]{inputenc} % Use UTF-8 encoding
+\usepackage{marginnote} % Required for margin notes
+\usepackage{wallpaper} % Required to set each page to have a background
+\usepackage{lastpage} % Required to print the total number of pages
+%\usepackage[left=1.3cm,right=4.6cm,top=1.8cm,bottom=4.0cm,marginparwidth=3.4cm]{geometry} % Comentar la línea abajo y descomentar esta para usar notas al margen
+\usepackage[left=1.3cm,right=1.3cm,top=1.8cm,bottom=4.0cm]{geometry} % Adjust page margins
+\usepackage{amsmath} % Required for equation customization
+\usepackage{amssymb} % Required to include mathematical symbols
+\usepackage{xcolor} % Required to specify colors by name
+\usepackage[square, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
+
+\usepackage{fancyhdr} % Required to customize headers
+\setlength{\headheight}{80pt} % Increase the size of the header to accommodate meta-information
+\pagestyle{fancy}\fancyhf{} % Use the custom header specified below
+\renewcommand{\headrulewidth}{0pt} % Remove the default horizontal rule under the header
+
+\setlength{\parindent}{0cm} % Remove paragraph indentation
+\newcommand{\tab}{\hspace*{2em}} % Defines a new command for some horizontal space
+
+\newcommand\BackgroundStructure{ % Command to specify the background of each page
+\setlength{\unitlength}{1mm} % Set the unit length to millimeters
+
+\setlength\fboxsep{0mm} % Adjusts the distance between the frameboxes and the borderlines
+\setlength\fboxrule{0.5mm} % Increase the thickness of the border line
+\put(10, 10){\fcolorbox{black}{white!10}{\framebox(192,247){}}} % Main content box
+%\put(165, 10){\fcolorbox{black}{blue!10}{\framebox(37,247){}}} % Margin box: Descomentar para utilizar notas al margen.
+\put(10, 262){\fcolorbox{black}{white!10}{\framebox(192, 25){}}} % Header box
+%\put(143, 263){\includegraphics[height=23mm,keepaspectratio]{logo}} % Logo box - maximum height/width: 25x42. Descomentar esta línea para usar logo.
+}
+
+%----------------------------------------------------------------------------------------
+%	HEADER INFORMATION
+%----------------------------------------------------------------------------------------
+
+\fancyhead[L]{\begin{tabular}{l r | l r} % The header is a table with 4 columns
+\textbf{Proyecto} & Controlador de servomotor & \textbf{Página} & \thepage/\pageref{LastPage} \\ % Project name and page count
+\textbf{Trabajo} & Controlador digital y CAS & \textbf{Actualizado en:} & 21/10/2014 \\ % Job number and last updated date
+\textbf{Versión} & 1 & \textbf{Revisado en:} & 12/11/2014 \\ % Version and reviewed date
+\textbf{Diseñador} & López F. - Quirós.J. -Herrera O.  - & \textbf{Revisado por:} & Alfonso Chacón Rodríguez \\ % Designer and reviewer
+\end{tabular}}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\AddToShipoutPicture{\BackgroundStructure} % Set the background of each page to that specified above in the header information section
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT CONTENT
+%----------------------------------------------------------------------------------------
+
+\section{Resumen} 
+
+En este documento se encontrarán los procesos de diseño de los módulos creados en la FPGA para la creación de un control digital con el fin de controlar la posición de un servomotor con respuesta subamortiguada. Este se ha diseñado a partir de conocimiento sobre lenguaje de descripción de hardware (Verilog) y con la información aportada en el instructivo del proyecto para la implementación del regulador IPD.
+
+También se mencionan en este documento el diseño de lo que son, los circuitos acondicionadores de señal para lo que es el acople entre la FPGA y el servomotor ya que como se mencionarán en el documento, se requerirá un cambio de voltajes de unipolar a bipolar y viceversa, además de una etapa de filtrado de señales.
+
+\section{Introducción} 
+
+%\marginnote{All units are \\ \textbf{[kN, mm]}}
+
+Una de las aplicaciones que se le pueden dar a un dispositivo de programación de hardware (FPGA) es lo que el control y acople con dispositivos periféricos como lo será en este proyecto un servomotor de respuesta subamortiguada.
+
+Para este proyecto se plantea resolver dos problemas que posee el servomotor: la respuesta subamortiguada que hace que al moverse, se sobrepasa del valor requerido e intenta estabilizarse; y el error de estado estacionario el cual es cuando el valor de salida de un sistema físico no se logra igualar con la entrada. Estos problemas se resuelven utilizando un regulador IPD el cual sus valores para lograr un control óptimo se nos fue dados en el instructivo del proyecto. 
+
+Ya con esto, para este proyecto, el objetivo es, a partir de las ecuaciones dadas del IPD y las características eléctricas que posee el servomotor, realizar el control digital en una FPGA y las interfaces físicas que debe tener para un acople y control del servotor de forma que no dañe la integridad del motor. Además de una interfaz visual en VGA donde se pueda observar la respuesta eléctrica de los valores de salida del control digital con respecto al tiempo.
+
+El diseño de este control y las interfases en la FPGA se ha logrado con los conocimientos obtenidos en el Laboratorio de Diseño de Sistemas Digitales. Para los CAS (Circuitos Acondicionadores de Señal) se han utilizado conocimientos de cursos anteriores.
+
+
+\section{Especificaciones}
+
+El proyecto consta de realizar cálculos aritméticos, en contraste con el valor actual de posición que se encuentra el servomotor y el valor de referencia el cual el usuario va a cargar en la FPGA. Los cálculo se irán realizando de tal forma que la diferencia entre estos dos valores sea cero, y se pretende resolver la oscilación que pueda presentar por la subamortiguación.
+
+Se presenta en la eq. \ref{eqn:eqIPD}, el regulador I\_PD con el que se va a trabajar en este proyecto, donde I(k) es el factor integral de error, P(k)es el factor proporcional del error y D(k) es el factor derivativo del error.
+
+\begin{equation}\label{eqn:eqIPD}
+pid(k)=\i(k)-p(k)-d(k)
+\end{equation}
+
+\begin{tabular}{c||c||c}
+Señal & Designación & Función\\
+\hline
+\hline
+CLK & input & Señal de reloj. \\
+RST & input & Señal de reset, activa en bajo. \\
+INICIO & input & Señal para carga de valor de referencia.\\
+MISO & input & Dato serial de la posición del POT en el servo.\\
+REF [6:0] & input & Valor de referencia para control del servo.\\
+\hline
+yks & output & Dato en paralelo obtenido del PMOD AD1\\
+nCS & output & Señal de control para el PMOD AD1. \\
+SCLK & output & Señal de reloj para el PMOD AD1. \\
+PWM & output & Señal de PWM con funcionalidad de DAC para control del SERVO \\
+\end{tabular}
+
+\section{Descripción de unidades a diseñar}
+
+Se nos han planteado condiciones sobre la cantidad de bits a utilizar en cada una de las operaciones del I\_PD donde debe llegar a un máximo de 16 bits con signo. Por ello, además de los módulos de operación, debemos conocer cuales operaciones pueden causar overflow o underflow para que sus valores no sobrepasen los límites establecidos. 
+
+Se mostrarán a continuación las operaciones aritméticas que conforman la eq. \ref{eqn:eqIPD} y que se deberán implementar en la FPGA. Las constantes de estas operaciones se nos han sido proporcionadas en el instructivo de este proyecto: 
+
+\begin{equation}\label{eqn:P(k)}
+P(k)=36*y(k)
+\end{equation}
+
+\begin{equation}\label{eqn:I(k)}
+I(k)=14*e(k)+I(k-1)
+\end{equation}
+
+\begin{equation}\label{eqn:D(k)}
+D(k)=300*[y(k)-y(k-1)]
+\end{equation}
+
+Donde $y(k)$ es el valor proveniente de servomotor que indica su posición actual y $e(k)$ que es la diferencia entre el valor de referencia y el valor $y(k)$. Vemos en las eq. \ref{eqn:I(k)} y \ref{eqn:D(k)} que se deberán almacenar valores de estados anteriores por lo que se deberán crear registros para estos datos.
+
+También es necesario tomar en cuenta, la duración de resolución de cada una de la operaciones ya que unas toman más tiempo que otras, para ello se deberá crear una máquina de estados el cual tendrá una duración específica de pulsos para tomar un dato válido del acumulador.
+
+
+\section{Descripción funcional de unidades}
+
+
+\subsection{Circuitos Acondicionadores de Señal}
+
+Antes de entrar con el proceso de diseño de los módulos en la FPGA, se introducirá el concepto de diseño de la parte analógica del circuito para acondicionar sus señales de entrada y salida. Esto se hace por 2 razones:
+
+-Al no tener un dispositivo propio para la conversión digital-analógica en la salida de la FPGA, fue necesario utilizar una señal PWM el cual su flanco positivo variará con respecto al valor binario de salida del regulador I\_PD. Como el servomotor solamente trabaja con valores CD, es necesario filtrar la señal de salida del PWM con el fin de obtener la componente CD de la señal.
+
+-El cambio en las tensiones con la que trabaja los 2 sistemas de unipolar y bipolar (FPGA:[0V - 3.3V];Servomotor [-2V - 2V]). por lo que debe hacer un escalamiento en los valores y agregar un offset CD a cada valor para que correspondan en ambos sentidos.
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.2]{./DiagramaCAS.png}
+    \rule{35em}{0.5pt}
+  \caption[CAS]{Diagrama de bloques de los CAS para la conexión FPGA-Servomotor}
+  \label{fig:CAS}
+\end{figure}
+
+\begin{equation}\label{eqn:CAS1}
+ADC=0.825*POT+1,63
+\end{equation}
+
+\begin{equation}\label{eqn:CAS1mod}
+ADC=1.212*(1.263*POT+1.318)
+\end{equation}
+
+\begin{equation}\label{eqn:CAS2}
+SERVO=1,212*PWM-2
+\end{equation}
+
+Esta etapa de escalamiento y offset se modelaron a partir de la ecuaciones \ref{eqn:CAS1}(Servomotor-FPGA) y \ref{eqn:CAS2} (FPGA-Servomotor). Podemos observar en la eq. \ref{eqn:CAS1} que el escalamiento es menor a 1, así que se le decidió dar una atenuación lineal a esta señal con un divisor de tensión. Esto modifica la ecuación para modelar a la eq.\ref{eqn:CAS1mod} donde se ha añadido la ganancia le las 2 etapas del circuito.
+
+Con esas condiciones se realizó el diagrama de bloques que se muestra en la fig. \ref{fig:CAS} y los circuitos que conforman estos bloques se ven en las fig. \ref{fig:CAS1im} y \ref{fig:CAS2im}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.5]{./CAS1.png}
+    \rule{35em}{0.3pt}
+  \caption[CAS1im]{Diagrama de bloques de los CAS para la conexión FPGA-Servomotor}
+  \label{fig:CAS1im}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.5]{./CAS2.png}
+    \rule{35em}{0.3pt}
+  \caption[CAS2im]{Diagrama de bloques de los CAS para la conexión FPGA-Servomotor}
+  \label{fig:CAS2im}
+\end{figure}
+
+\subsection{Control Digital}
+
+Este módulo tiene como objetivo el unir todos los módulos desarrollados, para lograr el control de un motor a través de un control IPD (fig. \ref{fig:ModGen}). Tiene por señales de entrada una señal de reloj (clk), una señal de reset (rst), INICIO el cual es un pulso de botón el cual carga el valor de referencia deseado a llegar, la señal MISO que es la señal proveniente del ADC, la cual estrega datos en serie, REF(6:0) es la señal que contiene el valor de grado al que se quiere llegar, Signo\_REF el cual porta el signo de la señal REF ; ya sea positivo o negativo, nCS que es la señal que se dirige al PMOD para realizar el chip select de los ADC, la señal de salida PWM, que tiene por salida una señal de 10kHz de frecuencia, que modula el ancho del pulso de la señal, y la señal SCLK, que se dirige hacia el PMOD para proporcionarle una señal de reloj al mismo, que permita el muestreo de valores en el ADC.
+
+Este controlador digital tiene 3 partes principales:
+
+-La captura de datos de la posición actual de Servomotor, el cual es un valor binario en serie que deberá ser decodificado en paralelo para su uso  en los cálculos aritméticos del regulador I\_PD.
+
+-El regulador I\_PD, el cual hará los cálculos aritméticos a partir del error que hay en los valores de referencia y de posición actual del sevomotor para disminuir este hasta cero.
+
+-La señal de PWM de salida del controlador, el cual, hará la función de un DAC para la conversión de la salida binaria del regulador I\_PD en una duración del flanco positivo de esta señal que representa el voltaje de salida analógico.
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.8]{./CTRL_IPD.jpg}
+    \rule{35em}{0.3pt}
+  \caption[CAS2im]{Modulo general del controlador digital diseñado en la FPGA}
+  \label{fig:ModGen}
+\end{figure}
+
+\subsubsection{Interfaz serie paralelo}
+
+El módulo de conversión de serie a paralelo se utiliza para convertir la señal serial proveniente del ADC, que contiene un dato de 12 bits que proporcionan la posición del motor, en una señal en paralelo para poder ser guardada en un registro y utilizada en los módulos que se necesiten del control I\_PD (fig. \ref{fig:ser_par}).
+
+Este módulo tiene como entrada la señal MISO, que es la señal serial que contiene el valor de posición del motor, y la señal START que indica el momento en que se debe iniciar el proceso de conversión de serie a paralelo. Esta señal es en realidad una señal de reloj con una frecuencia de 200Hz, que le indica al módulo que cada 5ms se debe de realizar el proceso de conversión de serie a paralelo (fig. \ref{fig:CLK200}). 
+
+Como salida se tiene la señal nCS, que es la señal de chip select que activa al ADC al enviarle un valor de cero lógico, y que se envía cada 5ms por un periodo de 128ns, tiempo necesario y suficiente para que se muestren los 12 bits de datos provenientes del ADC. La señal SCLK es la señal de reloj que se le administra al ADC, necesaria para que se realice el muestreo de posición del motor. Esta señal de reloj es de 12,5MHz (fig. \ref{fig:CLK12.5}). 
+
+La señal de DATA\_READY es una bandera que indica el momento en que se ha terminado de convertir los datos de serie a paralelo, y que es necesaria para saber en qué momento los demás módulos pueden disponer del dato de posición del motor. Y por último la señal CH1\_DATA(11:0) es  una señal de 12 bits en paralelo, que contiene el valor de posición del motor, muestreado por el ADC.
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.3]{./imagenes/PMOD/Interfaz_Serie_Paralelo.jpg}
+    \rule{35em}{0.3pt}
+  \caption[ser_par]{Modulo interfaz serie-paralelo}
+  \label{fig:ser_par}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./imagenes/PMOD/Interfaz_PMOD.jpg}
+    \rule{35em}{0.3pt}
+  \caption[PMOD]{Modulo control señales PMOD}
+  \label{fig:PMOD}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.4]{./imagenes/PMOD/CLK_12_5MHz.jpg}
+    \rule{35em}{0.3pt}
+  \caption[CLK12.5]{Modulo control señales PMOD}
+  \label{fig:CLK12.5}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.4]{./imagenes/PMOD/CLK_200Hz.jpg}
+    \rule{35em}{0.3pt}
+  \caption[CLK200]{Modulo control señales PMOD}
+  \label{fig:CLK200}
+\end{figure}
+
+\subsubsection{Registro de valor de referencia}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./imagenes/REG_REF.jpg}
+    \rule{35em}{0.3pt}
+  \caption[REF]{Registro de valor de referencia}
+  \label{fig:REF}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./imagenes/antirrebote.jpg}
+    \rule{35em}{0.3pt}
+  \caption[rebot]{Registro de valor de referencia}
+  \label{fig:rebot}
+\end{figure}
+
+\subsubsection{Maquina control I\_PD}
+
+Este módulo se encarga de controlar en que momento y durante cuánto tiempo están activos los demás módulos, y decide cuantas veces se repite el ciclo de cálculo de las operaciones aritméticas. 
+
+Este módulo recibe como señales de entrada las  variables: Dato Listo, que avisa cuando se ha completado la operación serie-paralelo, que se necesita para convertir los datos provenientes del ADC de serie a paralelo. 
+
+La señal FinCiclos que se utiliza para determinar cuántas veces se debe de realizar todo el recorrido a través del diagrama de estados, en este caso se decidió que esa cantidad debía de ser de 300 ciclos, para darle al control IPD tiempo de llegar al valor a la posición en que se desea que el motor este. 
+
+La señal Inicio indica el momento en que se carga el dato de referencia o valor de grado al que se desea que el motor llegue, e indica el inicio del proceso de cálculo del IPD, hasta que llegue  al valor deseado. Las señales Fin4 y Fin8 son señales provenientes de dos contadores; uno de dos bits y otro de 3 bits, los cuales controlan el tiempo que  está activo un módulo y que envían un valor en alto cuando ese tiempo se ha alcanzado. 
+
+Este  módulo tiene 10 señales de salida, las cuales se utilizan para habilitar cada módulo presente en el diseño, en donde enab\_Ciclos (fig.\ref{fig:contn}), enab\_Cont4 (fig. \ref{fig:cont4}), enab\_Cont8 (fig.\ref{fig:cont8}) se utilizan para activar contadores que controlan tiempo de ejecución de los diferentes procesos. Enab\_Error activa el modulo que calcula el error entre el valor deseado y la posición actual del motor. Enab\_I, enab\_P y enab\_D controlan a los módulos que realizan los cálculos de la característica integral, proporcional y derivativa del control. 
+
+Por último, las señales $enab_ik_1$ y $enab_yk_1$ son las encargadas de activar los registros que guardan los valores anteriores de la característica integral y del valor anterior de posición del motor, respectivamente. En las siguientes imágenes se presenta el esquemático de este módulo (fig. \ref{fig:MaqIPD}) con todas sus señales de entrada y salida, además del diagrama de estados utilizado para diseñar la máquina de estados. (fig. \ref{fig:Estados})
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.4]{./Maquina_Control_IPD.jpg}
+    \rule{35em}{0.3pt}
+  \caption[REF]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
+  \label{fig:MaqIPD}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./Cont_4.jpg}
+    \rule{35em}{0.3pt}
+  \caption[cont4]{Registro de valor de referencia}
+  \label{fig:cont4}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./Cont_8.jpg}
+    \rule{35em}{0.3pt}
+  \caption[cont8]{Registro de valor de referencia}
+  \label{fig:cont8}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./Cont_Ciclos.jpg}
+    \rule{35em}{0.3pt}
+  \caption[contn]{Registro de valor de referencia}
+  \label{fig:contn}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./Diagrama_de_Estados_Control_IPD.jpg}
+    \rule{35em}{0.3pt}
+  \caption[estados]{Registro de valor de referencia}
+  \label{fig:Estados}
+\end{figure}
+
+\subsubsection{Módulo I}
+
+En este módulo se realizará el cálculo aritmético de la eq. \ref{eqn:I(k)} el cual evalúa la integral de error. Esta ecuación posee un valor anterior calculado en el ciclo anterior a este (8 ciclos de reloj) el cual es almacenado en el registro mostrado en la fig. \ref{fig:regI}.
+
+En las simulaciones hechas antes el diseño, esta operación se saturaba a valores mayores a los 16 bits por lo que se le agregó un control de overflow para que el valor de este no supere a los 16 bits. (fig \ref{fig:overf})
+
+Este módulo es el único de los tres módulos aritméticos donde se calcula la diferencia entre el valor de referencia y el y(k) el cual se calcula en el modulo de la fig. \ref{fig:error}.
+ 
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./Imagenes/I/Modulo_I.JPG}
+    \rule{35em}{0.3pt}
+  \caption[I]{Registro de valor de referencia}
+  \label{fig:I}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./Imagenes/I/error.JPG}
+    \rule{35em}{0.3pt}
+  \caption[error]{Registro de valor de referencia}
+  \label{fig:error}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./Imagenes/I/REG_ik_1.JPG}
+    \rule{35em}{0.3pt}
+  \caption[reg_i]{Registro de valor de referencia}
+  \label{fig:regI}
+\end{figure}
+
+\subsubsection{Modulo D}
+
+En este módulo se realizará el cálculo aritmético de la eq. \ref{eqn:D(k)} el cual evalúa la derivada de error. Esta ecuación posee un valor de entrada anterior en el ciclo anterior a este (4 ciclos de reloj) el cual es almacenado en el registro mostrado en la fig. \ref{fig:yk1}.
+
+Al igual que con el módulo I, esta operación se saturaba a valores mayores a los 16 bits por lo que se le agregó un control de overflow para que el valor de este no supere a los 16 bits. (fig \ref{fig:overf})
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./Imagenes/D/Modulo_D.JPG}
+    \rule{35em}{0.3pt}
+  \caption[D]{Registro de valor de referencia}
+  \label{fig:D}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./Imagenes/D/REG_yk1.JPG}
+    \rule{35em}{0.3pt}
+  \caption[yk1]{Registro de valor de referencia}
+  \label{fig:yk1}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./Imagenes/D/CTRL_Overflow.JPG}
+    \rule{35em}{0.3pt}
+  \caption[overf]{Registro de valor de referencia}
+  \label{fig:overf}
+\end{figure}
+
+\subsubsection{Módulo P}
+
+En este módulo se realizará el cálculo aritmético de la eq. \ref{eqn:P(k)} el cual evalúa la proporcional de error. Este módulo solamente depende de su valor de entrada actual y al igual que con los módulos I y D. El valor real el cual se usa para calcular es controlado por la máquina de control por la duración de los tiempos de cálculo para cada operación.(\ref{fig:P})
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./Imagenes/P/P.JPG}
+    \rule{35em}{0.3pt}
+  \caption[rebot]{Registro de valor de referencia}
+  \label{fig:P}
+\end{figure}
+
+\subsubsection{Modulo Acumulador (Acc)}
+
+Este módulo (fig. \ref{fig:ACC}) es el que cumple con la ecuación \ref{eqn:eqIPD}. el cual es la suma de los 3 módulos (I,P,D) y que es la salida del regulador. También presenta un controlador de overflow para evitar que se sobrepase de los 16 bits de resolución, saturando el valor.(fig. \ref{fig:CTRLACC})
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.5]{./ACC.jpg}
+    \rule{35em}{0.3pt}
+  \caption[ACC]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
+  \label{fig:ACC}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.5]{./CTRL_OUFLow_ACC.jpg}
+    \rule{35em}{0.3pt}
+  \caption[CTRLACC]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
+  \label{fig:CTRLACC}
+\end{figure}
+
+
+
+
+\subsection{Salida PWM}
+
+Para obtener la señal de salida de señal cuadrada del PWM, primero debemos ajustar a partir del valor obtenido en el acumulador, el cambio de valor en el pulso positivo de la señal PWM. Esto se hace en el delimitador PWM (fig.\ref{fig:DelPWM}) ya que el rango de posiciones q debe tener el servomotor para su correcto uso es [20 -340 grados] y este módulo satura en estos límites en caso de que el ACC calacule valores fuera de este rango.
+
+Para la creación de esta señal se hace una comparación entre la salida del delimitador PWM y un contador para obtener una señal en frecuencia de 10kHz (fig. \ref{fig:10k}) el cual mantendrá un valor positivo mientras que este contador sea menor al valor obtenido en el regulador (fig. \ref{fig:CompPWM}).
+
+Como resultado, la salida de esta señal tendrá una componente CD en los armónicos de la señal, igual al valor requerido a cada posición en el servomotor. El cambio del valor de esta componente irá cambiando con respecto a los cálculos hechos en el regulador I\_PD hasta alcanzar el valor de referencia.
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.4]{./Delimitador_PWM.jpg}
+    \rule{35em}{0.3pt}
+  \caption[DelPWM]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
+  \label{fig:DelPWM}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.4]{./imagenes/PWM/comparador.jpg}
+    \rule{35em}{0.3pt}
+  \caption[CompPWM]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
+  \label{fig:CompPWM}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.4]{./imagenes/PWM/contador_10k.jpg}
+    \rule{35em}{0.3pt}
+  \caption[10k]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
+  \label{fig:10k}
+\end{figure}
+
+\section{Datos y resultados}
+
+Uno de los objetivos en este proyecto, es el lograr una simulación con vectores de prueba y lograr una referencia dorada con un progama de cálculo (se utilizó el programa Matlab) para comprobar que el funcionamiento en la FPGA es el indicado.
+
+Como se puede ver en la fig. \ref{fig:Matlab}, para los primeros valores sacados del modelo en el Modelsim, son valores costantes por el uso de delimitadores de underflow por la cantidad de bits de resolución requeridos. Ya para valores en donde se comienza a disminuir el error, los valores del Modelsim se ajustan a los valores simulados en Matlab, concluyendo en que el modelo diseñado para la FPGA es funcional con los parámetros pedidos en este proyecto.
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.8]{./MatlabvsModelSim.jpg}
+    \rule{35em}{0.3pt}
+  \caption[Matlab]{Simulación con vector de simulacion en Matlab y Modelsim para comportamiento del regulador IPD}
+  \label{fig:Matlab}
+\end{figure}
+
+\subsection{Temporizado}
+
+Para el control de los valores calculados en los módulos de la IPD, se debía conocer la cantidad de pusos de reloj que necesitará la FPGA para realizar las operaciones dadas. En las fig. \ref{fig:SimP}, \ref{fig:SimD} y \ref{fig:SimI} se muestran las simulaciones realizadas en el programa Modelsim en modo Post-síntesis para conocer estos tiempos.
+
+También se realizó una simulación de las señales de control de la PMOD para lo que la captura de datos seriales con una frecuencia de muestreo de 5ms, esto para corroborar la captura de este dato.(fig \ref{fig:SimSer})
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.5]{./SimP.PNG}
+    \rule{35em}{0.3pt}
+  \caption[SimP]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
+  \label{fig:SimP}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.5]{./SimD.PNG}
+    \rule{35em}{0.3pt}
+  \caption[SimD]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
+  \label{fig:SimD}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.5]{./SimI.PNG}
+    \rule{35em}{0.3pt}
+  \caption[SimI]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
+  \label{fig:SimI}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.5]{./Simser.PNG}
+    \rule{35em}{0.3pt}
+  \caption[SimSer]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
+  \label{fig:SimSer}
+\end{figure}
+
+\section{Análisis de datos y resultados}
+
+Este proyecto ha sido un exito en el funcionamiento del controlador digital y en los circuitos acondicionaores de señal gracias a las herramientas proporcionadas, conocimientos adquiridos y metodología de trabajo que se realizaron en este laboratorio.
+
+Los procesos de simulación tanto para los CAS como para el regulador IPD permitieron disminuir los errores que se podrian haber presentado de no haberse hecho. Para los CAS se realizaron ajustes por los valores de tolerancia de los componentes con respecto a la teoría en especial en los filtros ya que se debió ajustar las ganancias por los filtros.
+
+
+
+
+
+
+\section{Conclusiones y recomendaciones}
+
+Aquí van las conclusiones y recomendaciones del Lab.
+
+%----------------------------------------------------------------------------------------
+\begin{thebibliography}{3}
+
+\bibliographystyle{unsrtnat} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+
+\bibitem[Wey(1999)]{Wey1999}
+C.-L.Wey and C.-P.Wang
+\newblock {Design of a fast radix-4 SRT divider and its VLSI implementation}.
+\newblock \emph{IEEE Proc.-Comput. Digit. Tech., IEEE}, July 1999.
+\newblock DOI: 10.1049/ip-cdt:19990524.
+
+\end{thebibliography}
+
+\end{document}
