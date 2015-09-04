@@ -87,7 +87,3 @@ ylabel('Ids(A)')
 axis on
 grid on
 box off
-
-
-
-
