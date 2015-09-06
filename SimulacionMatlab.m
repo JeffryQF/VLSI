@@ -8,82 +8,90 @@
 wn=3.0e-6;
 ln=0.6e-6;
 %Voltaje Umbral N 
-Vthn=0.77;
+Vtn=0.77;
 
 %Voltaje Umbral P
-Vthp=(-0.89);
+Vtp=(-0.89);
 
-%Beta umbral
-Bn=58.4e-6;
-%Bp=-19.0e-6;
+%Tension alimentacion
+Vdd=3.3;
 
 tox=1.41e-8;
 e0=8.854e-12;%Permitividad del vac?o
 Cox=3.6*e0/tox;
 
-
 %Voltaje cr?tico
 vsatn=10e7; %velocidad saturacion electrones
 vsatp=8e6; %velocidad saturacion huecos
+n=1;
 
+r=2;%Proporcion beta PMOS respecto a NMOS
 
-r=0;%proporcion ancho pmos respecto a nmos
-
-%Voltaje Drain saturaci?n PMOS
-m=1;
-for Vgs=abs(Vthp):0.2:2.6
-    n=1;
-    for Vds=0:0.1:3.3
-        %PMOS
-        
-        up=(185)/(1+(abs(Vgs+1.5*Vthp)/(0.338e9 * tox)));%Efectividad de canal
+for Vin=0:0.3:Vdd
+    Vingraf(n)=Vin;
+    m=1;
+    for Vout=0:0.3:Vdd
+        Voutgraf(m)=Vout;
+ 
+        %Par?metros PMOS
+        up=(185)/(1+(abs(Vin+1.5*Vtp)/(0.338e9 * tox)));%Efectividad de canal
         Vcp=ln*(2*vsatp/up);
-        VGTp=Vgs-Vthp;
+        VGTp=Vin+Vtp;
         Vdpsat=(VGTp*Vcp)/(VGTp+Vcp);
-        Vdsgraf(n)=Vds;
-        if(Vgs<Vthp)
-            Idps(n,m)=0;
+
+        %Ecuaciones region PMOS
+        if(Vin>Vtp + Vdd)
+            Idsp(m,n)=0;
+        elseif((Vin<Vtp + Vdd) && (Vout>Vdpsat))
+            Vds=Vdd-Vout;
+            Idsp(m,n)=(up/(1+(Vds/Vcp)))*Cox*r*(wn/ln)*(VGTp-(Vds/2))*Vds;
+        elseif((Vin<Vtp + Vdd) && (Vout<=Vdpsat))
+            Idsp(m,n)=Cox*r*wn*(VGTp-Vdpsat)*vsatp;
         end
-        if(Vds<=Vdpsat)
-            Idps(n,m)=(up/(1+(Vds/Vcp)))*Cox*r*(wn/ln)*(VGTp-(Vds/2))*Vds;
-        end
-        if(Vds>Vdpsat)
-            Idps(n,m)=Cox*r*wn*(VGTp-Vdpsat)*vsatp;
-        end
-        n=n+1;
-    end
-    m=m+1;
-end
-        
-%Voltaje Drain saturaci?n NMOS
-m=1;
-for Vgs=Vthn:0.2:2.6
-    n=1;
-    for Vds=0:0.1:3.3
-        %NMOS
-        un=(540)/(1+((Vgs+Vthn)/(0.54e9 * tox))^1.85);
+%_-------------------------------------------------------------------------        
+        %Parametros NMOS
+        un=(540)/(1+((Vin+Vtn)/(0.54e9 * tox))^1.85);
         Vcn=ln*(2*vsatn/un);
-        VGTn=Vgs-Vthn;
+        VGTn=Vin-Vtn;
         Vdnsat=(VGTn*Vcn)/(VGTn+Vcn);
-        Vdsgraf(n)=Vds;
-        if(Vgs<Vthn)
-            Idns(n,m)=0;
+
+        if(Vin<Vtn)
+            Idsn(m,n)=0;
+        elseif((Vin>Vtn)&&(Vout<Vdpsat))
+            Vds=Vout;
+            Idsn(m,n)=(un/(1+(Vds/Vcn)))*Cox*(wn/ln)*(VGTn-(Vds/2))*Vds;
+        elseif((Vin>Vtn)&&(Vout>=Vdpsat))
+            Idsn(m,n)=Cox*wn*(VGTn-Vdnsat)*vsatn;
         end
-        if(Vds<=Vdnsat)
-            Idns(n,m)=(un/(1+(Vds/Vcn)))*Cox*(wn/ln)*(VGTn-(Vds/2))*Vds;
-        end
-        if(Vds>Vdnsat)
-            Idns(n,m)=Cox*wn*(VGTn-Vdnsat)*vsatn;
-        end
-        n=n+1;
+        m=m+1;
     end
-    m=m+1;
+    n=n+1;
 end
 
-
-plot(Vdsgraf,Idns,'b',Vdsgraf,Idps,'r')
+plot(Vingraf,Idsn,'b',Vingraf,Idsp,'r')
 xlabel('Vds(V)')
 ylabel('Ids(A)')
 axis on
 grid on
 box off
+
+    %Region de corte
+    %Vin<Vtn; NMOS
+    %Vin>Vtp + Vdd; PMOS
+
+    %Region lineal NMOS
+    %Vin>Vtn;
+    %Vout<Vin-Vtn;
+
+    %Region lineal PMOS
+    %Vin<Vtp + Vdd;
+    %Vout>Vin-Vtp;
+
+    %Region saturacion NMOS
+    %Vin>Vtn;
+    %Vout>Vin-Vtn;
+
+    %Region saturacion PMOS
+    %Vin<Vtp + Vdd;
+    %Vout<Vin-Vtp;
+
