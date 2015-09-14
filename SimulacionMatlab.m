@@ -3,14 +3,14 @@
 %Prof. Dr.-Ing. Alfonso Chac?n Rodr?guez
 %Estudiantes: Francis L?pez Montero /Jeffry Quir?s Fallas
 
-%Par?metros NMOST
+%Par?metros NMOS
 
 lambda=0.3*10^-6;
 wn=12*lambda;
 ln=2*lambda;
 
-%Parámetros PMOS
-x=1;
+%Par?metros PMOS
+x=2.418;
 lp=ln;
 wp=x*wn;
 %Voltaje Umbral N 
@@ -22,31 +22,24 @@ Vtp=(-0.89);
 %Tension alimentacion
 Vdd=3.3;
 
-tox=1.41;
-e0=8.854e-12;%Permitividad del vac?o
-Cox=3.6*e0/(tox*10^-9);
+%tox=1.41;
+%e0=8.854e-12;%Permitividad del vac?o
+%Cox=3.6*e0/(tox*10^-9);
 
-%Voltaje cr?tico
-vsatn=10^7; %velocidad saturacion electrones
-vsatp=8e6; %velocidad saturacion huecos
+betan=58.4*10^-6;
+betap=(-19.0*10^-6);
+
+r=(-betap*(wp/lp))/(betan*(wn/ln));%relaci?n betas
+
+Vinv=(Vdd+Vtp+Vtn*sqrt(1/r))/(1+sqrt(1/r));
+
 n=1;
-
-r=3;%Proporcion beta PMOS respecto a NMOS
 
 for Vin=0:0.5:Vdd
     Vingraf(n)=Vin;
     m=1;
-    %Par?metros PMOS
-    up=(185)/(1+(abs(Vin-1.5*Vtp)/(0.338 * tox)));%Efectividad de canal
-    Vcp=lp*(2*vsatp/up);
-    VGTp=Vin + Vtp;
-    Vdpsat=(VGTp*Vcp)/(VGTp+Vcp);
-    
-    %Parametros NMOS
-    un=(540)/(1+((Vin+Vtn)/(0.54 * tox))^1.85);
-    Vcn=ln*(2*vsatn/un);
+    VGTp=abs(Vin-Vdd) + Vtp;    
     VGTn=Vin-Vtn;
-    Vdnsat=(VGTn*Vcn)/(VGTn+Vcn);
     
     for Vout=0:0.3:Vdd
         Voutgraf(m)=Vout;
@@ -55,22 +48,22 @@ for Vin=0:0.5:Vdd
         %Ecuaciones region PMOS
         if(Vin>Vdd + Vtp)
             Idp=0;
-        elseif((Vin<Vdd + Vtp) && (Vout>Vdpsat))
-            Vds=Vdd-Vout;
-            Idp=(up/(1+(Vds/Vcp)))*Cox*r*(wp/lp)*(VGTp-(Vds/2))*Vds;
-        elseif((Vin<Vdd + Vtp) && (Vout<=Vdpsat))
-            Idp=Cox*r*wp*(VGTp-Vdpsat)*vsatp;
+        elseif((Vin<Vdd + Vtp) && (Vout>Vin - Vtp))
+            Vdsp=abs(Vout-Vdd);
+            Idp=betap*(wp/lp)*(2*VGTp-Vdsp)*Vdsp;
+        elseif((Vin<Vdd + Vtp) && (Vout<Vin - Vtp))
+            Idp=betap*(wp/lp)*(VGTp)^2;
         end
         Idsp(m,n)=abs(Idp);
 %_-------------------------------------------------------------------------        
         %Ecuaciones region NMOS
         if(Vin<Vtn)
             Idsn(m,n)=0;
-        elseif((Vin>Vtn)&&(Vout<Vdnsat))
-            Vds=Vout;
-            Idsn(m,n)=(un/(1+(Vds/Vcn)))*Cox*(wn/ln)*(VGTn-(Vds/2))*Vds;
-        elseif((Vin>Vtn)&&(Vout>=Vdnsat))
-            Idsn(m,n)=Cox*wn*(VGTn-Vdnsat)*vsatn;
+        elseif((Vin>Vtn)&&(Vout<Vin - Vtn))
+            Vdsn=Vout;
+            Idsn(m,n)=betan*(wn/ln)*((2*VGTn)-Vdsn)*Vdsn;
+        elseif((Vin>Vtn)&&(Vout>Vin - Vtn))
+            Idsn(m,n)=betan*(wn/ln)*(VGTn)^2;
         end
         m=m+1;
     end
@@ -83,24 +76,4 @@ ylabel('Ids(A)')
 axis on
 grid on
 box off
-
-    %Region de corte
-    %Vin<Vtn; NMOS
-    %Vin>Vtp + Vdd; PMOS
-
-    %Region lineal NMOS
-    %Vin>Vtn;
-    %Vout<Vin-Vtn;
-
-    %Region lineal PMOS
-    %Vin<Vtp + Vdd;
-    %Vout>Vin-Vtp;
-
-    %Region saturacion NMOS
-    %Vin>Vtn;
-    %Vout>Vin-Vtn;
-
-    %Region saturacion PMOS
-    %Vin<Vtp + Vdd;
-    %Vout<Vin-Vtp;
-
+        
