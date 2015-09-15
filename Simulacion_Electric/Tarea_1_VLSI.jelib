@@ -1,0 +1,66 @@
+# header information:
+HTarea_1_VLSI|9.06
+
+# Views:
+Vschematic|sch
+
+# Technologies:
+Tmocmos|ScaleFORmocmos()D300.0|mocmosAnalog()BT|mocmosNumberOfMetalLayers()I3
+
+# Cell Inversor_dinamico;1{sch}
+CInversor_dinamico;1{sch}||schematic|1441171046710|1442070475711|
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NCapacitor|cap@0||8|-2|||||SCHEM_capacitance(D5G1;)S100m
+NOff-Page|conn@0||-8.5|2||||
+NOff-Page|conn@1||12|2||||
+NGround|gnd@0||3|-12.5||||
+NGround|gnd@1||8|-8.5||||
+NTransistor|nmos@0||1|-4.5|||R||ATTR_length(D5G0.5;X-0.5;Y-1;)S2|ATTR_width(D5G1;X0.5;Y-1;)S2
+NWire_Pin|pin@0||3|6||||
+NWire_Pin|pin@1||0|-4.5||||
+NWire_Pin|pin@2||0|2||||
+NWire_Pin|pin@3||3|2||||
+NWire_Pin|pin@4||8|2||||
+Ngeneric:Invisible-Pin|pin@5||26|-10|||||SIM_spice_card(D5G1;)Stext
+NTransistor|pmos@0||1|8|||R|2|ATTR_length(D5G0.5;X-0.5;Y-1;)S2|ATTR_width(D5G1;X0.5;Y-1;)S2
+NPower|pwr@0||3|15||||
+Awire|net@0|||2700|pmos@0|d|3|10|pwr@0||3|15
+Awire|net@1|||0|pmos@0|s|3|6|pin@0||3|6
+Awire|net@3|||900|nmos@0|s|3|-6.5|gnd@0||3|-10.5
+Awire|net@5|||1800|nmos@0|g|0|-4.5|pin@1||0|-4.5
+Awire|net@6|||900|pmos@0|g|0|8|pin@2||0|2
+Awire|net@7|||900|pin@2||0|2|pin@1||0|-4.5
+Awire|net@8|||1800|conn@0|y|-6.5|2|pin@2||0|2
+Awire|net@10|||2700|pin@3||3|2|pin@0||3|6
+Awire|net@12|||900|pin@3||3|2|nmos@0|d|3|-2.5
+Awire|net@13|||900|cap@0|b|8|-4|gnd@1||8|-6.5
+Awire|net@14|||0|conn@1|a|10|2|pin@4||8|2
+Awire|net@15|||0|pin@4||8|2|pin@3||3|2
+Awire|net@16|||2700|cap@0|a|8|0|pin@4||8|2
+EVin||D5G2;X1;Y2.5;|conn@0|a|U
+EVout||D5G2;X1.5;Y2.5;|conn@1|a|U
+X
+
+# Cell Inversor_estatico;1{sch}
+CInversor_estatico;1{sch}||schematic|1441171046710|1442082169990|
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NOff-Page|conn@0||-8.5|2||||
+NOff-Page|conn@1||12|2||||
+NGround|gnd@0||3|-12.5||||
+NTransistor|nmos@0||1|-4.5|||R||ATTR_length(D5G0.5;X-0.5;Y-1;)D2.0|ATTR_width(D5G1;X0.5;Y-1;)D12.0|SIM_spice_model(D5G1;Y-3.5;)SNMOS
+NWire_Pin|pin@2||0|2||||
+NWire_Pin|pin@3||3|2||||
+Ngeneric:Invisible-Pin|pin@4||25|-5|||||SIM_spice_card(D5G1;)S[vdd vdd 0 DC 3.3,vin in 0 DC 0,.dc vin 0 3.3 1m,".include C:\\Users\\Francis\\Documents\\GitHub\\VLSI\\Simulacion Electric\\Mosis_5.txt"]
+NTransistor|pmos@0||1|8|||R|2|ATTR_length(D5G0.5;X-0.5;Y-1;)D2.0|ATTR_width(D5G1;X0.5;Y-1;)D29.0|SIM_spice_model(D5G1;Y-3;)SPMOS
+NPower|pwr@0||3|15||||
+Awire|net@0|||2700|pmos@0|d|3|10|pwr@0||3|15
+Awire|net@3|||900|nmos@0|s|3|-6.5|gnd@0||3|-10.5
+Awire|net@6|||900|pmos@0|g|0|8|pin@2||0|2
+Awire|net@8|||1800|conn@0|y|-6.5|2|pin@2||0|2
+Awire|net@11|||0|conn@1|a|10|2|pin@3||3|2
+Awire|net@12|||900|pin@3||3|2|nmos@0|d|3|-2.5
+Awire|net@13|||900|pmos@0|s|3|6|pin@3||3|2
+Awire|net@14|||2700|nmos@0|g|0|-4.5|pin@2||0|2
+Ein||D5G2;|conn@0|a|U
+Eout||D5G2;|conn@1|y|U
+X

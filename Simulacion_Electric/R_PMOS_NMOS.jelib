@@ -1,0 +1,56 @@
+# header information:
+HR_PMOS_NMOS|9.06
+
+# Views:
+Vschematic|sch
+
+# Technologies:
+Tmocmos|ScaleFORmocmos()D300.0|mocmosAnalog()BT|mocmosNumberOfMetalLayers()I3
+
+# Cell NMOS;1{sch}
+CNMOS;1{sch}||schematic|1442284673103|1442349756566|
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NCapacitor|cap@0||13|-1|||||SCHEM_capacitance(D5G1;)S1m
+NGround|gnd@0||6|-3||||
+N4-Port-Transistor|nmos-4@0||0|0|||R||ATTR_length(D5G0.5;X-0.5;Y-1;)S2|ATTR_width(D5G1;X0.5;Y-1;)S12|SIM_spice_model(D5G1;X1;Y2;)SNMOS
+NWire_Pin|pin@0||2|4||||
+NWire_Pin|pin@1||-4|0||||
+NWire_Pin|pin@2||2|-4||||
+Ngeneric:Invisible-Pin|pin@3||5|9|||||SIM_spice_card(D5G1;)S[vs s 0 DC 0,vg g 0 DC 3.3,vd d 0 PULSE(0 3.3 0 10u 5 8 13 1),.tran 0.01 11 7.5,.include /home/jeffryqf/Mosis_5.txt]
+NWire_Pin|pin@4||2|1||||
+NWire_Pin|pin@5||13|-4||||
+Awire|net@0|||2700|nmos-4@0|d|2|2|pin@0||2|4
+Awire|net@1|||0|nmos-4@0|g|-1|0|pin@1||-4|0
+Awire|net@2|||900|nmos-4@0|s|2|-2|pin@2||2|-4
+Awire|net@3|||1800|nmos-4@0|b|2|-1|gnd@0||6|-1
+Awire|net@4|||0|cap@0|a|13|1|pin@4||2|1
+Awire|net@5|||900|pin@0||2|4|pin@4||2|1
+Awire|net@6|||900|cap@0|b|13|-3|pin@5||13|-4
+Awire|net@7|||1800|pin@2||2|-4|pin@5||13|-4
+Ed||D5G2;|pin@0||U
+Eg||D5G2;|pin@1||U
+Es||D5G2;|pin@2||U
+X
+
+# Cell PMOS;1{sch}
+CPMOS;1{sch}||schematic|1442284235228|1442353264224|
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NCapacitor|cap@1||2|-5|||||SCHEM_capacitance(D5G1;)S1m
+NGround|gnd@2||2|-10||||
+NWire_Pin|pin@0||2|4||||
+NWire_Pin|pin@1||-3|0||||
+Ngeneric:Invisible-Pin|pin@3||-10|4|||||SIM_spice_card(D5G1;)S[vs s 0 DC 3.3,vg g 0 DC 0,vd d 0 DC 0,vw w 0 DC 3.3,.dc vd 3.3 1.65 -1m,.include /home/jeffryqf/Mosis_5.txt]
+NWire_Pin|pin@4||6|-1||||
+NWire_Pin|pin@7||2|2||||
+N4-Port-Transistor|pmos-4@0||0|0|||R|2|ATTR_length(D5G0.5;X-0.5;Y-1;)D2.0|ATTR_width(D5G1;X0.5;Y-1;)S12|SIM_spice_model(D5G1;Y-3;)SPMOS
+Awire|net@0|||2700|pmos-4@0|d|2|2|pin@0||2|4
+Awire|net@1|||0|pmos-4@0|g|-1|0|pin@1||-3|0
+Awire|net@3|||1800|pmos-4@0|b|2|-1|pin@4||6|-1
+Awire|net@8|||900|pin@0||2|4|pin@7||2|2
+Awire|net@11|||900|pmos-4@0|s|2|-2|cap@1|a|2|-3
+Awire|net@12|||900|cap@1|b|2|-7|gnd@2||2|-8
+Ed||D5G2;|cap@1|a|U
+Eg||D5G2;|pin@1||U
+Es||D5G2;|pin@0||U
+Ew||D5G2;|pin@4||U
+X

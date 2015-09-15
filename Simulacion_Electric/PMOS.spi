@@ -1,0 +1,22 @@
+*** SPICE deck for cell PMOS{sch} from library R_PMOS_NMOS
+*** Created on Mon Sep 14, 2015 20:30:35
+*** Last revised on Tue Sep 15, 2015 15:41:04
+*** Written on Tue Sep 15, 2015 15:53:29 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+
+.global gnd
+*** WARNING: no power connection for P-transistor wells in cell 'PMOS{sch}'
+
+*** TOP LEVEL CELL: PMOS{sch}
+Ccap@1 gnd d 1m
+Mpmos-4@0 s g d w PMOS L=0.6U W=3.6U
+
+* Spice Code nodes in cell cell 'PMOS{sch}'
+vs s 0 DC 3.3
+vg g 0 DC 0
+vd d 0 DC 0
+vw w 0 DC 3.3
+.dc vd 3.3 1.65 -1m
+.include /home/jeffryqf/Mosis_5.txt
+.END

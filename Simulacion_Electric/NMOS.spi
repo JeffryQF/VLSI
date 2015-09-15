@@ -1,0 +1,20 @@
+*** SPICE deck for cell NMOS{sch} from library R_PMOS_NMOS
+*** Created on Mon Sep 14, 2015 20:37:53
+*** Last revised on Tue Sep 15, 2015 14:42:36
+*** Written on Tue Sep 15, 2015 15:55:37 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+
+.global gnd
+
+*** TOP LEVEL CELL: NMOS{sch}
+Ccap@0 s d 1m
+Mnmos-4@0 d g s gnd NMOS L=0.6U W=3.6U
+
+* Spice Code nodes in cell cell 'NMOS{sch}'
+vs s 0 DC 0
+vg g 0 DC 3.3
+vd d 0 PULSE(0 3.3 0 10u 5 8 13 1)
+.tran 0.01 11 7.5
+.include /home/jeffryqf/Mosis_5.txt
+.END
