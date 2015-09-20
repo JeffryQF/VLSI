@@ -2,56 +2,27 @@
 HTarea_1_VLSI|9.06
 
 # Views:
+Vicon|ic
 Vschematic|sch
+
+# External Libraries:
+
+Ltutorial_3|tutorial_3
 
 # Technologies:
 Tmocmos|ScaleFORmocmos()D300.0|mocmosAnalog()BT|mocmosNumberOfMetalLayers()I3
 
-# Cell Inversor_dinamico;1{sch}
-CInversor_dinamico;1{sch}||schematic|1441171046710|1442070475711|
-Ngeneric:Facet-Center|art@0||0|0||||AV
-NCapacitor|cap@0||8|-2|||||SCHEM_capacitance(D5G1;)S100m
-NOff-Page|conn@0||-8.5|2||||
-NOff-Page|conn@1||12|2||||
-NGround|gnd@0||3|-12.5||||
-NGround|gnd@1||8|-8.5||||
-NTransistor|nmos@0||1|-4.5|||R||ATTR_length(D5G0.5;X-0.5;Y-1;)S2|ATTR_width(D5G1;X0.5;Y-1;)S2
-NWire_Pin|pin@0||3|6||||
-NWire_Pin|pin@1||0|-4.5||||
-NWire_Pin|pin@2||0|2||||
-NWire_Pin|pin@3||3|2||||
-NWire_Pin|pin@4||8|2||||
-Ngeneric:Invisible-Pin|pin@5||26|-10|||||SIM_spice_card(D5G1;)Stext
-NTransistor|pmos@0||1|8|||R|2|ATTR_length(D5G0.5;X-0.5;Y-1;)S2|ATTR_width(D5G1;X0.5;Y-1;)S2
-NPower|pwr@0||3|15||||
-Awire|net@0|||2700|pmos@0|d|3|10|pwr@0||3|15
-Awire|net@1|||0|pmos@0|s|3|6|pin@0||3|6
-Awire|net@3|||900|nmos@0|s|3|-6.5|gnd@0||3|-10.5
-Awire|net@5|||1800|nmos@0|g|0|-4.5|pin@1||0|-4.5
-Awire|net@6|||900|pmos@0|g|0|8|pin@2||0|2
-Awire|net@7|||900|pin@2||0|2|pin@1||0|-4.5
-Awire|net@8|||1800|conn@0|y|-6.5|2|pin@2||0|2
-Awire|net@10|||2700|pin@3||3|2|pin@0||3|6
-Awire|net@12|||900|pin@3||3|2|nmos@0|d|3|-2.5
-Awire|net@13|||900|cap@0|b|8|-4|gnd@1||8|-6.5
-Awire|net@14|||0|conn@1|a|10|2|pin@4||8|2
-Awire|net@15|||0|pin@4||8|2|pin@3||3|2
-Awire|net@16|||2700|cap@0|a|8|0|pin@4||8|2
-EVin||D5G2;X1;Y2.5;|conn@0|a|U
-EVout||D5G2;X1.5;Y2.5;|conn@1|a|U
-X
-
-# Cell Inversor_estatico;1{sch}
-CInversor_estatico;1{sch}||schematic|1441171046710|1442082169990|
+# Cell Inversor_Dinamico;1{sch}
+CInversor_Dinamico;1{sch}||schematic|1441171046710|1442677015159|
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NOff-Page|conn@0||-8.5|2||||
 NOff-Page|conn@1||12|2||||
 NGround|gnd@0||3|-12.5||||
-NTransistor|nmos@0||1|-4.5|||R||ATTR_length(D5G0.5;X-0.5;Y-1;)D2.0|ATTR_width(D5G1;X0.5;Y-1;)D12.0|SIM_spice_model(D5G1;Y-3.5;)SNMOS
+NTransistor|nmos@0||1|-4.5|||R||ATTR_length(D5G0.5;X-0.5;Y-1;)D2.0|ATTR_width(D5G1;X0.5;Y-1;)S4|SIM_spice_model(D5G1;Y-3.5;)SNMOS
 NWire_Pin|pin@2||0|2||||
 NWire_Pin|pin@3||3|2||||
 Ngeneric:Invisible-Pin|pin@4||25|-5|||||SIM_spice_card(D5G1;)S[vdd vdd 0 DC 3.3,vin in 0 DC 0,.dc vin 0 3.3 1m,".include C:\\Users\\Francis\\Documents\\GitHub\\VLSI\\Simulacion Electric\\Mosis_5.txt"]
-NTransistor|pmos@0||1|8|||R|2|ATTR_length(D5G0.5;X-0.5;Y-1;)D2.0|ATTR_width(D5G1;X0.5;Y-1;)D29.0|SIM_spice_model(D5G1;Y-3;)SPMOS
+NTransistor|pmos@0||1|8|||R|2|ATTR_length(D5G0.5;X-0.5;Y-1;)D2.0|ATTR_width(D5G1;X0.5;Y-1;)S6|SIM_spice_model(D5G1;Y-3;)SPMOS
 NPower|pwr@0||3|15||||
 Awire|net@0|||2700|pmos@0|d|3|10|pwr@0||3|15
 Awire|net@3|||900|nmos@0|s|3|-6.5|gnd@0||3|-10.5
@@ -63,4 +34,90 @@ Awire|net@13|||900|pmos@0|s|3|6|pin@3||3|2
 Awire|net@14|||2700|nmos@0|g|0|-4.5|pin@2||0|2
 Ein||D5G2;|conn@0|a|U
 Eout||D5G2;|conn@1|y|U
+X
+
+# Cell Inversor_estatico;1{sch}
+CInversor_estatico;1{sch}||schematic|1441171046710|1442677015159|
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NOff-Page|conn@0||-8.5|2||||
+NOff-Page|conn@1||12|2||||
+NGround|gnd@0||3|-12.5||||
+NTransistor|nmos@0||1|-4.5|||R||ATTR_length(D5G0.5;X-0.5;Y-1;)D2.0|ATTR_width(D5G1;X0.5;Y-1;)S4|SIM_spice_model(D5G1;Y-3.5;)SNMOS
+NWire_Pin|pin@2||0|2||||
+NWire_Pin|pin@3||3|2||||
+Ngeneric:Invisible-Pin|pin@4||25|-5|||||SIM_spice_card(D5G1;)S[vdd vdd 0 DC 3.3,vin in 0 DC 0,.dc vin 0 3.3 1m,".include C:\\Users\\Francis\\Documents\\GitHub\\VLSI\\Simulacion Electric\\Mosis_5.txt"]
+NTransistor|pmos@0||1|8|||R|2|ATTR_length(D5G0.5;X-0.5;Y-1;)D2.0|ATTR_width(D5G1;X0.5;Y-1;)S6|SIM_spice_model(D5G1;Y-3;)SPMOS
+NPower|pwr@0||3|15||||
+Awire|net@0|||2700|pmos@0|d|3|10|pwr@0||3|15
+Awire|net@3|||900|nmos@0|s|3|-6.5|gnd@0||3|-10.5
+Awire|net@6|||900|pmos@0|g|0|8|pin@2||0|2
+Awire|net@8|||1800|conn@0|y|-6.5|2|pin@2||0|2
+Awire|net@11|||0|conn@1|a|10|2|pin@3||3|2
+Awire|net@12|||900|pin@3||3|2|nmos@0|d|3|-2.5
+Awire|net@13|||900|pmos@0|s|3|6|pin@3||3|2
+Awire|net@14|||2700|nmos@0|g|0|-4.5|pin@2||0|2
+Ein||D5G2;|conn@0|a|U
+Eout||D5G2;|conn@1|y|U
+X
+
+# Cell inv_20_10;1{ic}
+Cinv_20_10;1{ic}||artwork|1438323486024|1438323878294|E
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NTriangle|art@2||-0.5|1.5|6|6|RRR|
+NCircle|art@3||3|1.5|1|1||
+Nschematic:Bus_Pin|pin@0||-6|1.5||||
+Nschematic:Wire_Pin|pin@1||-3.5|1.5||||
+Nschematic:Bus_Pin|pin@2||5.5|1.5|||RR|
+Nschematic:Wire_Pin|pin@3||3.5|1.5|||RR|
+Aschematic:wire|net@0|||0|pin@1||-3.5|1.5|pin@0||-6|1.5
+Aschematic:wire|net@1|||1800|pin@3||3.5|1.5|pin@2||5.5|1.5
+Ein||D5G2;X1.5;Y1.5;|pin@0||U
+Eout||D5G2;X1.5;Y-1.5;|pin@2||U
+X
+
+# Cell inv_20_10;1{sch}
+Cinv_20_10;1{sch}||schematic|1438322909103|1442687404814|
+Ngeneric:Facet-Center|art@0||0|0||||AV
+NOff-Page|conn@0||-7|3.5||||
+NOff-Page|conn@1||8|3.5||||
+NGround|gnd@0||1.5|-5.5|-1|-1||
+Iinv_20_10;1{ic}|inv_20_1@0||14.5|18.5|||D5G4;
+NTransistor|nmos@0||-0.5|0|||R||ATTR_length(D5G0.5;X-0.5;Y-1;)D2.0|ATTR_width(D5G1;X0.5;Y-1;)S4|SIM_spice_model(D5G1;X-3;)SNMOS
+NWire_Pin|pin@0||1.25|9||||
+NWire_Pin|pin@1||-1.5|3.5||||
+NWire_Pin|pin@2||1.5|3.5||||
+NTransistor|pmos@0||-0.5|7|||YR|2|ATTR_length(D5G0.5;X-0.5;Y-1;)D2.0|ATTR_width(D5G1;X0.5;Y-1;)S12|SIM_spice_model(D5G1;X-3;)SPMOS
+NPower|pwr@0||1.25|12.25|-0.5|-0.5||
+Awire|net@1|||900|nmos@0|s|1.5|-2|gnd@0||1.5|-4
+Awire|net@2|||0|pmos@0|s|1.5|9|pin@0||1.25|9
+Awire|net@3|||900|pwr@0||1.25|12.25|pin@0||1.25|9
+Awire|net@5|||900|pmos@0|g|-1.5|7|pin@1||-1.5|3.5
+Awire|net@6|||900|pin@1||-1.5|3.5|nmos@0|g|-1.5|0
+Awire|net@7|||1800|conn@0|y|-5|3.5|pin@1||-1.5|3.5
+Awire|net@8|||2700|nmos@0|d|1.5|2|pin@2||1.5|3.5
+Awire|net@9|||2700|pin@2||1.5|3.5|pmos@0|d|1.5|5
+Awire|net@10|||0|conn@1|a|6|3.5|pin@2||1.5|3.5
+Ein||D5G2;X-1.5;|conn@0|a|U
+Eout||D5G2;X1.5;|conn@1|y|U
+X
+
+# Cell inverter_sim;1{sch}
+Cinverter_sim;1{sch}||schematic|1438323831217|1442688965698|
+Ngeneric:Facet-Center|art@0||0|0||||AV
+Itutorial_3:inv_20_10;1{ic}|inv_20_1@0||0|-1.5|||D5G4;
+Itutorial_3:inv_20_10;1{ic}|inv_20_1@6||13.5|-1.5|||D5G4;
+Itutorial_3:inv_20_10;1{ic}|inv_20_1@7||27|-1.5|||D5G4;
+Itutorial_3:inv_20_10;1{ic}|inv_20_1@8||40.5|-1.5|||D5G4;
+Itutorial_3:inv_20_10;1{ic}|inv_20_1@9||54|-1.5|||D5G4;
+Ngeneric:Invisible-Pin|pin@2||-0.5|-6.5|||||SIM_spice_card(D5G1;)S[vdd vdd 0 DC 3.3,vin in 0 DC 0,.tran 0 2 1,".include C:\\Users\\Francis\\Desktop\\Electric (VLSI)\\Mosis_5.txt"]
+NWire_Pin|pin@8||-13|0||||
+NWire_Pin|pin@10||66.5|0||||
+Awire|net@13|||1800|inv_20_1@0|out|5.5|0|inv_20_1@6|in|7.5|0
+Awire|net@14|||1800|inv_20_1@6|out|19|0|inv_20_1@7|in|21|0
+Awire|net@15|||1800|inv_20_1@7|out|32.5|0|inv_20_1@8|in|34.5|0
+Awire|net@16|||1800|inv_20_1@8|out|46|0|inv_20_1@9|in|48|0
+Awire|net@17|||0|inv_20_1@0|in|-6|0|pin@8||-13|0
+Awire|net@19|||1800|inv_20_1@9|out|59.5|0|pin@10||66.5|0
+Ein||D5G2;|pin@8||U
+Eout||D5G2;|pin@10||U
 X

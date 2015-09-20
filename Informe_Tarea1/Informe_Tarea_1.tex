@@ -60,10 +60,10 @@
 %----------------------------------------------------------------------------------------
 
 \fancyhead[L]{\begin{tabular}{l r | l r} % The header is a table with 4 columns
-\textbf{Proyecto} & Controlador de servomotor & \textbf{Página} & \thepage/\pageref{LastPage} \\ % Project name and page count
-\textbf{Trabajo} & Controlador digital y CAS & \textbf{Actualizado en:} & 21/10/2014 \\ % Job number and last updated date
-\textbf{Versión} & 1 & \textbf{Revisado en:} & 12/11/2014 \\ % Version and reviewed date
-\textbf{Diseñador} & López F. - Quirós.J. -Herrera O.  - & \textbf{Revisado por:} & Alfonso Chacón Rodríguez \\ % Designer and reviewer
+\textbf{Proyecto} & Diseño inversor CMOS & \textbf{Página} & \thepage/\pageref{LastPage} \\ % Project name and page count
+\textbf{Trabajo} & Análisis estático y dinámico & \textbf{Actualizado en:} & 18/09/2015 \\ % Job number and last updated date
+\textbf{Versión} & 1 & \textbf{Revisado en:} & 18/09/2015 \\ % Version and reviewed date
+\textbf{Diseñador} & López F. - Quirós.J.& \textbf{Revisado por:} & Alfonso Chacón Rodríguez \\ % Designer and reviewer
 \end{tabular}}
 
 %----------------------------------------------------------------------------------------
@@ -78,9 +78,7 @@
 
 \section{Resumen} 
 
-En este documento se encontrarán los procesos de diseño de los módulos creados en la FPGA para la creación de un control digital con el fin de controlar la posición de un servomotor con respuesta subamortiguada. Este se ha diseñado a partir de conocimiento sobre lenguaje de descripción de hardware (Verilog) y con la información aportada en el instructivo del proyecto para la implementación del regulador IPD.
-
-También se mencionan en este documento el diseño de lo que son, los circuitos acondicionadores de señal para lo que es el acople entre la FPGA y el servomotor ya que como se mencionarán en el documento, se requerirá un cambio de voltajes de unipolar a bipolar y viceversa, además de una etapa de filtrado de señales.
+En este documento se encontrará lo que es el proceso de diseño de un inversor de tamaño mínimo en la tecnología ON-semiconductor 0.5 en el cual se dimensionará el PMOS de acuerdo a un análisis estático(misma corriente en los transistores con tensión de inversion igual a la mitad de la alimentación) y a un análisis dinámico (menor tiempo de retardo en los tiempos de levantamiento y caída).
 
 \section{Introducción} 
 
@@ -95,11 +93,13 @@ Ya con esto, para este proyecto, el objetivo es, a partir de las ecuaciones dada
 El diseño de este control y las interfases en la FPGA se ha logrado con los conocimientos obtenidos en el Laboratorio de Diseño de Sistemas Digitales. Para los CAS (Circuitos Acondicionadores de Señal) se han utilizado conocimientos de cursos anteriores.
 
 
-\section{Especificaciones}
+\section{Diseño PMOS para un inversor}
 
-El proyecto consta de realizar cálculos aritméticos, en contraste con el valor actual de posición que se encuentra el servomotor y el valor de referencia el cual el usuario va a cargar en la FPGA. Los cálculo se irán realizando de tal forma que la diferencia entre estos dos valores sea cero, y se pretende resolver la oscilación que pueda presentar por la subamortiguación.
+Para el diseño del PMOS del inversor, se considera el diseño del NMOS según los parametros mínimos del ancho y largo de canal (4λ/2λ) en una tecnología ON-semiconductor 0.5. Para encontrar la relación que debe tener el ancho de canal PMOS con respecto al NMOS, se tomarán en cuenta dos diferentes tipos de análisis:
 
-Se presenta en la eq. \ref{eqn:eqIPD}, el regulador I\_PD con el que se va a trabajar en este proyecto, donde I(k) es el factor integral de error, P(k)es el factor proporcional del error y D(k) es el factor derivativo del error.
+El análisis estático el cual se busca que la corriente de NMOS y el PMOS sea simétrica. Esto se observa en que la tensión de umbral del inversor sea la mitad de la tensión de alimentación del mismo.
+
+El análisis dinámico, en donde el tiempo que le toma al inversor pasar de un estado lógico a otro sea el menor posible, para ello el PMOS deberá tener una resistencia equivalente la menor posible mientras que los flancos de levantamiento y caída sea simétricos.
 
 \begin{equation}\label{eqn:eqIPD}
 pid(k)=\i(k)-p(k)-d(k)
@@ -121,27 +121,7 @@ SCLK & output & Señal de reloj para el PMOD AD1. \\
 PWM & output & Señal de PWM con funcionalidad de DAC para control del SERVO \\
 \end{tabular}
 
-\section{Descripción de unidades a diseñar}
 
-Se nos han planteado condiciones sobre la cantidad de bits a utilizar en cada una de las operaciones del I\_PD donde debe llegar a un máximo de 16 bits con signo. Por ello, además de los módulos de operación, debemos conocer cuales operaciones pueden causar overflow o underflow para que sus valores no sobrepasen los límites establecidos. 
-
-Se mostrarán a continuación las operaciones aritméticas que conforman la eq. \ref{eqn:eqIPD} y que se deberán implementar en la FPGA. Las constantes de estas operaciones se nos han sido proporcionadas en el instructivo de este proyecto: 
-
-\begin{equation}\label{eqn:P(k)}
-P(k)=36*y(k)
-\end{equation}
-
-\begin{equation}\label{eqn:I(k)}
-I(k)=14*e(k)+I(k-1)
-\end{equation}
-
-\begin{equation}\label{eqn:D(k)}
-D(k)=300*[y(k)-y(k-1)]
-\end{equation}
-
-Donde $y(k)$ es el valor proveniente de servomotor que indica su posición actual y $e(k)$ que es la diferencia entre el valor de referencia y el valor $y(k)$. Vemos en las eq. \ref{eqn:I(k)} y \ref{eqn:D(k)} que se deberán almacenar valores de estados anteriores por lo que se deberán crear registros para estos datos.
-
-También es necesario tomar en cuenta, la duración de resolución de cada una de la operaciones ya que unas toman más tiempo que otras, para ello se deberá crear una máquina de estados el cual tendrá una duración específica de pulsos para tomar un dato válido del acumulador.
 
 
 \section{Descripción funcional de unidades}
@@ -157,7 +137,7 @@ Antes de entrar con el proceso de diseño de los módulos en la FPGA, se introdu
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.2]{./DiagramaCAS.png}
+%    \includegraphics[scale=0.2]{./DiagramaCAS.png}
     \rule{35em}{0.5pt}
   \caption[CAS]{Diagrama de bloques de los CAS para la conexión FPGA-Servomotor}
   \label{fig:CAS}
@@ -181,7 +161,7 @@ Con esas condiciones se realizó el diagrama de bloques que se muestra en la fig
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.5]{./CAS1.png}
+%    \includegraphics[scale=0.5]{./CAS1.png}
     \rule{35em}{0.3pt}
   \caption[CAS1im]{Diagrama de bloques de los CAS para la conexión FPGA-Servomotor}
   \label{fig:CAS1im}
@@ -189,7 +169,7 @@ Con esas condiciones se realizó el diagrama de bloques que se muestra en la fig
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.5]{./CAS2.png}
+%    \includegraphics[scale=0.5]{./CAS2.png}
     \rule{35em}{0.3pt}
   \caption[CAS2im]{Diagrama de bloques de los CAS para la conexión FPGA-Servomotor}
   \label{fig:CAS2im}
@@ -209,7 +189,7 @@ Este controlador digital tiene 3 partes principales:
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.8]{./CTRL_IPD.jpg}
+%    \includegraphics[scale=0.8]{./CTRL_IPD.jpg}
     \rule{35em}{0.3pt}
   \caption[CAS2im]{Modulo general del controlador digital diseñado en la FPGA}
   \label{fig:ModGen}
@@ -227,7 +207,7 @@ La señal de DATA\_READY es una bandera que indica el momento en que se ha termi
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.3]{./imagenes/PMOD/Interfaz_Serie_Paralelo.jpg}
+%    \includegraphics[scale=0.3]{./imagenes/PMOD/Interfaz_Serie_Paralelo.jpg}
     \rule{35em}{0.3pt}
   \caption[ser_par]{Modulo interfaz serie-paralelo}
   \label{fig:ser_par}
@@ -235,7 +215,7 @@ La señal de DATA\_READY es una bandera que indica el momento en que se ha termi
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.6]{./imagenes/PMOD/Interfaz_PMOD.jpg}
+%    \includegraphics[scale=0.6]{./imagenes/PMOD/Interfaz_PMOD.jpg}
     \rule{35em}{0.3pt}
   \caption[PMOD]{Modulo control señales PMOD}
   \label{fig:PMOD}
@@ -243,7 +223,6 @@ La señal de DATA\_READY es una bandera que indica el momento en que se ha termi
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.4]{./imagenes/PMOD/CLK_12_5MHz.jpg}
     \rule{35em}{0.3pt}
   \caption[CLK12.5]{Modulo control señales PMOD}
   \label{fig:CLK12.5}
@@ -251,8 +230,8 @@ La señal de DATA\_READY es una bandera que indica el momento en que se ha termi
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.4]{./imagenes/PMOD/CLK_200Hz.jpg}
-    \rule{35em}{0.3pt}
+%    \includegraphics[scale=0.4]{./imagenes/PMOD/CLK_200Hz.jpg}
+%   \rule{35em}{0.3pt}
   \caption[CLK200]{Modulo control señales PMOD}
   \label{fig:CLK200}
 \end{figure}
@@ -261,7 +240,7 @@ La señal de DATA\_READY es una bandera que indica el momento en que se ha termi
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.6]{./imagenes/REG_REF.jpg}
+%    \includegraphics[scale=0.6]{./imagenes/REG_REF.jpg}
     \rule{35em}{0.3pt}
   \caption[REF]{Registro de valor de referencia}
   \label{fig:REF}
@@ -269,7 +248,7 @@ La señal de DATA\_READY es una bandera que indica el momento en que se ha termi
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.6]{./imagenes/antirrebote.jpg}
+%    \includegraphics[scale=0.6]{./imagenes/antirrebote.jpg}
     \rule{35em}{0.3pt}
   \caption[rebot]{Registro de valor de referencia}
   \label{fig:rebot}
@@ -291,7 +270,7 @@ Por último, las señales $enab_ik_1$ y $enab_yk_1$ son las encargadas de activa
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.4]{./Maquina_Control_IPD.jpg}
+%    \includegraphics[scale=0.4]{./Maquina_Control_IPD.jpg}
     \rule{35em}{0.3pt}
   \caption[REF]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
   \label{fig:MaqIPD}
@@ -299,7 +278,7 @@ Por último, las señales $enab_ik_1$ y $enab_yk_1$ son las encargadas de activa
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.6]{./Cont_4.jpg}
+    %\includegraphics[scale=0.6]{./Cont_4.jpg}
     \rule{35em}{0.3pt}
   \caption[cont4]{Registro de valor de referencia}
   \label{fig:cont4}
@@ -307,7 +286,7 @@ Por último, las señales $enab_ik_1$ y $enab_yk_1$ son las encargadas de activa
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.6]{./Cont_8.jpg}
+%    \includegraphics[scale=0.6]{./Cont_8.jpg}
     \rule{35em}{0.3pt}
   \caption[cont8]{Registro de valor de referencia}
   \label{fig:cont8}
@@ -315,7 +294,7 @@ Por último, las señales $enab_ik_1$ y $enab_yk_1$ son las encargadas de activa
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.6]{./Cont_Ciclos.jpg}
+%    \includegraphics[scale=0.6]{./Cont_Ciclos.jpg}
     \rule{35em}{0.3pt}
   \caption[contn]{Registro de valor de referencia}
   \label{fig:contn}
@@ -323,7 +302,7 @@ Por último, las señales $enab_ik_1$ y $enab_yk_1$ son las encargadas de activa
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.6]{./Diagrama_de_Estados_Control_IPD.jpg}
+%    \includegraphics[scale=0.6]{./Diagrama_de_Estados_Control_IPD.jpg}
     \rule{35em}{0.3pt}
   \caption[estados]{Registro de valor de referencia}
   \label{fig:Estados}
@@ -339,7 +318,7 @@ Este módulo es el único de los tres módulos aritméticos donde se calcula la 
  
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.6]{./Imagenes/I/Modulo_I.JPG}
+%    \includegraphics[scale=0.6]{./Imagenes/I/Modulo_I.JPG}
     \rule{35em}{0.3pt}
   \caption[I]{Registro de valor de referencia}
   \label{fig:I}
@@ -347,7 +326,7 @@ Este módulo es el único de los tres módulos aritméticos donde se calcula la 
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.6]{./Imagenes/I/error.JPG}
+%    \includegraphics[scale=0.6]{./Imagenes/I/error.JPG}
     \rule{35em}{0.3pt}
   \caption[error]{Registro de valor de referencia}
   \label{fig:error}
@@ -355,7 +334,7 @@ Este módulo es el único de los tres módulos aritméticos donde se calcula la 
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.6]{./Imagenes/I/REG_ik_1.JPG}
+%    \includegraphics[scale=0.6]{./Imagenes/I/REG_ik_1.JPG}
     \rule{35em}{0.3pt}
   \caption[reg_i]{Registro de valor de referencia}
   \label{fig:regI}
@@ -369,7 +348,7 @@ Al igual que con el módulo I, esta operación se saturaba a valores mayores a l
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.6]{./Imagenes/D/Modulo_D.JPG}
+%    \includegraphics[scale=0.6]{./Imagenes/D/Modulo_D.JPG}
     \rule{35em}{0.3pt}
   \caption[D]{Registro de valor de referencia}
   \label{fig:D}
@@ -377,7 +356,7 @@ Al igual que con el módulo I, esta operación se saturaba a valores mayores a l
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.6]{./Imagenes/D/REG_yk1.JPG}
+%    \includegraphics[scale=0.6]{./Imagenes/D/REG_yk1.JPG}
     \rule{35em}{0.3pt}
   \caption[yk1]{Registro de valor de referencia}
   \label{fig:yk1}
@@ -385,7 +364,7 @@ Al igual que con el módulo I, esta operación se saturaba a valores mayores a l
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.6]{./Imagenes/D/CTRL_Overflow.JPG}
+%    \includegraphics[scale=0.6]{./Imagenes/D/CTRL_Overflow.JPG}
     \rule{35em}{0.3pt}
   \caption[overf]{Registro de valor de referencia}
   \label{fig:overf}
@@ -397,7 +376,7 @@ En este módulo se realizará el cálculo aritmético de la eq. \ref{eqn:P(k)} e
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.6]{./Imagenes/P/P.JPG}
+%    \includegraphics[scale=0.6]{./Imagenes/P/P.JPG}
     \rule{35em}{0.3pt}
   \caption[rebot]{Registro de valor de referencia}
   \label{fig:P}
@@ -409,7 +388,7 @@ Este módulo (fig. \ref{fig:ACC}) es el que cumple con la ecuación \ref{eqn:eqI
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.5]{./ACC.jpg}
+%    \includegraphics[scale=0.5]{./ACC.jpg}
     \rule{35em}{0.3pt}
   \caption[ACC]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
   \label{fig:ACC}
@@ -417,7 +396,7 @@ Este módulo (fig. \ref{fig:ACC}) es el que cumple con la ecuación \ref{eqn:eqI
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.5]{./CTRL_OUFLow_ACC.jpg}
+%    \includegraphics[scale=0.5]{./CTRL_OUFLow_ACC.jpg}
     \rule{35em}{0.3pt}
   \caption[CTRLACC]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
   \label{fig:CTRLACC}
@@ -436,7 +415,7 @@ Como resultado, la salida de esta señal tendrá una componente CD en los armón
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.4]{./Delimitador_PWM.jpg}
+%    \includegraphics[scale=0.4]{./Delimitador_PWM.jpg}
     \rule{35em}{0.3pt}
   \caption[DelPWM]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
   \label{fig:DelPWM}
@@ -444,7 +423,7 @@ Como resultado, la salida de esta señal tendrá una componente CD en los armón
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.4]{./imagenes/PWM/comparador.jpg}
+%    \includegraphics[scale=0.4]{./imagenes/PWM/comparador.jpg}
     \rule{35em}{0.3pt}
   \caption[CompPWM]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
   \label{fig:CompPWM}
@@ -452,7 +431,7 @@ Como resultado, la salida de esta señal tendrá una componente CD en los armón
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.4]{./imagenes/PWM/contador_10k.jpg}
+%    \includegraphics[scale=0.4]{./imagenes/PWM/contador_10k.jpg}
     \rule{35em}{0.3pt}
   \caption[10k]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
   \label{fig:10k}
@@ -466,7 +445,7 @@ Como se puede ver en la fig. \ref{fig:Matlab}, para los primeros valores sacados
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.8]{./MatlabvsModelSim.jpg}
+%    \includegraphics[scale=0.8]{./MatlabvsModelSim.jpg}
     \rule{35em}{0.3pt}
   \caption[Matlab]{Simulación con vector de simulacion en Matlab y Modelsim para comportamiento del regulador IPD}
   \label{fig:Matlab}
@@ -480,7 +459,7 @@ También se realizó una simulación de las señales de control de la PMOD para 
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.5]{./SimP.PNG}
+%    \includegraphics[scale=0.5]{./SimP.PNG}
     \rule{35em}{0.3pt}
   \caption[SimP]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
   \label{fig:SimP}
@@ -488,7 +467,7 @@ También se realizó una simulación de las señales de control de la PMOD para 
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.5]{./SimD.PNG}
+%    \includegraphics[scale=0.5]{./SimD.PNG}
     \rule{35em}{0.3pt}
   \caption[SimD]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
   \label{fig:SimD}
@@ -496,7 +475,7 @@ También se realizó una simulación de las señales de control de la PMOD para 
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.5]{./SimI.PNG}
+%    \includegraphics[scale=0.5]{./SimI.PNG}
     \rule{35em}{0.3pt}
   \caption[SimI]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
   \label{fig:SimI}
@@ -504,7 +483,7 @@ También se realizó una simulación de las señales de control de la PMOD para 
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.5]{./Simser.PNG}
+%    \includegraphics[scale=0.5]{./Simser.PNG}
     \rule{35em}{0.3pt}
   \caption[SimSer]{Modulo de control de los procesos aritméticos en el regulador I\_PD}
   \label{fig:SimSer}
