@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.17)  24 SEP 2015 17:20
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.17)  24 SEP 2015 17:44
 entering extended mode
 **Informe_Tarea_1.tex
 (C:\Users\Francis\Documents\GitHub\VLSI\Informe_Tarea1\Informe_Tarea_1.tex
@@ -564,6 +564,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 120--122
 [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 156--158
+
+ []
+
 <./CircuitoFO2.png, id=11, 669.50125pt x 443.6575pt>
 File: ./CircuitoFO2.png Graphic file (type png)
  <use ./CircuitoFO2.png>
@@ -573,43 +577,48 @@ Package pdftex.def Info: ./CircuitoFO2.png used on input line 170.
 <./FO2.png, id=13, 1347.0325pt x 259.97125pt>
 File: ./FO2.png Graphic file (type png)
  <use ./FO2.png>
-Package pdftex.def Info: ./FO2.png used on input line 178.
+Package pdftex.def Info: ./FO2.png used on input line 179.
 (pdftex.def)             Requested size: 538.80347pt x 103.98665pt.
 
-Overfull \hbox (15.27292pt too wide) in paragraph at lines 178--180
+Overfull \hbox (15.27292pt too wide) in paragraph at lines 179--181
  [][] 
  []
 
-File: ./CircuitoFO2.png Graphic file (type png)
-<use ./CircuitoFO2.png>
-Package pdftex.def Info: ./CircuitoFO2.png used on input line 186.
-(pdftex.def)             Requested size: 334.7498pt x 221.8282pt.
- <./FO3.png, id=14, 1347.0325pt x 259.97125pt>
-File: ./FO3.png Graphic file (type png)
+<./CircuitoFO3.png, id=14, 670.505pt x 459.7175pt>
+File: ./CircuitoFO3.png Graphic file (type png)
+ <use ./CircuitoFO3.png>
+Package pdftex.def Info: ./CircuitoFO3.png used on input line 187.
+(pdftex.def)             Requested size: 335.25168pt x 229.85818pt.
 
-<use ./FO3.png>
-Package pdftex.def Info: ./FO3.png used on input line 194.
+<./FO3.png, id=15, 1347.0325pt x 259.97125pt>
+File: ./FO3.png Graphic file (type png)
+ <use ./FO3.png>
+Package pdftex.def Info: ./FO3.png used on input line 197.
 (pdftex.def)             Requested size: 538.80347pt x 103.98665pt.
 
-Overfull \hbox (15.27292pt too wide) in paragraph at lines 194--196
- [][] 
+Overfull \hbox (15.27292pt too wide) in paragraph at lines 197--199
+ [] 
  []
 
 [2] [3 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/CircuitoFO2.png> 
 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/FO2.png>] [4 <C:/Users/F
-rancis/Documents/GitHub/VLSI/Informe_Tarea1/FO3.png>]
+rancis/Documents/GitHub/VLSI/Informe_Tarea1/CircuitoFO3.png> <C:/Users/Francis/
+Documents/GitHub/VLSI/Informe_Tarea1/FO3.png>]
 
 AED: lastpage setting LastPage
 [5] (C:\Users\Francis\Documents\GitHub\VLSI\Informe_Tarea1\Informe_Tarea_1.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 4685 strings out of 493921
- 59066 string characters out of 3147276
- 146361 words of memory out of 3000000
- 7898 multiletter control sequences out of 15000+200000
+ 4691 strings out of 493921
+ 59188 string characters out of 3147276
+ 146373 words of memory out of 3000000
+ 7903 multiletter control sequences out of 15000+200000
  10150 words of font info for 38 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 37i,18n,43p,773b,331s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,18n,43p,773b,329s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTe
@@ -617,9 +626,9 @@ X 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
 sfonts/cm/cmti12.pfb>
-Output written on Informe_Tarea_1.pdf (5 pages, 141570 bytes).
+Output written on Informe_Tarea_1.pdf (5 pages, 168537 bytes).
 PDF statistics:
- 53 PDF objects out of 1000 (max. 8388607)
+ 55 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

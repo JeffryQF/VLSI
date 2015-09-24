@@ -133,7 +133,7 @@ Numero & Rango entrada & Región PMOS & Región NMOS\\
 5 & $V_{in}>V_{dd}+V_{tp}$ & Corte & Lineal\\
 \hline
 \end{tabular}
-\caption{Graficas octate ideal vs simulacion electric}
+\caption{Regiones inversor CMOS Vin vs Vout}
 \end{center}
 \end{table}
 
@@ -153,8 +153,8 @@ Para la simulación experimental, se usó el programa Electric. En esta simulaci
 
 \subsubsection{Método de Fanout}
 
-El método de Fanout plantea encontrar la resistencia equivalente de un transistor CMOS con los valores de la capacitancia parásita en el gate y el diferencial de tiempos de caída y levantamiento que le toma al mismo pasar de un nivel lógico a otro, con 2 valores de fanout distintos. Las ecuaciones para calcular las resistencias equivalentes para PMOS y NMOS son las \ref{eqn:Req_p} y \ref{eqn:Req_n} respectivamente.
-
+El método de Fanout plantea encontrar la resistencia equivalente de un transistor CMOS con los valores de la capacitancia parásita en el gate y el diferencial de tiempos de caída y levantamiento que le toma al mismo pasar de un nivel lógico a otro, con 2 valores de fanout distintos. Las ecuaciones para calcular las resistencias equivalentes para PMOS y NMOS son las \ref{eqn:Req_p} y \ref{eqn:Req_n} respectivamente.\\*
+\\*
 \begin{equation}\label{eqn:Req_p}
 R_{eqp}=(2/3)*( \Delta t_{r}/C_{g})
 \end{equation}
@@ -163,42 +163,46 @@ R_{eqp}=(2/3)*( \Delta t_{r}/C_{g})
 R_{eqn}= \Delta t_{f}/(3*C_{g})
 \end{equation}
 
-Se realizó la simulación del circuito propuesto encontrado en la referencia [], para valores de h=2 (fig. \ref{fig:CircuitoFO2}) y h=3 (fig. \ref{fig:CircuitoFO3} con los cuales se encontraron las graficas de los retardos de la salida con respecto a la entrada (fig. \ref{fig:FO2} y fig. \ref{fig:FO3})
-
+Se realizó la simulación del circuito propuesto encontrado en la referencia [], para valores de h=2 (fig. \ref{fig:CircuitoFO2}) y h=3 (fig. \ref{fig:CircuitoFO3} con los cuales se encontraron las graficas de los retardos de la salida con respecto a la entrada (fig. \ref{fig:FO2} y fig. \ref{fig:FO3})\\*
+\\*
 \begin{figure}[htbp]
-  \centering
+\begin{center}
     \includegraphics[scale=0.5]{./CircuitoFO2.png}
     \rule{35em}{0.5pt}
-  \caption[Captura]{Graficas octate ideal vs simulacion electric}
+  \caption[Captura]{Circuito para calculo de $R_{eq}$ con h=2}
   \label{fig:CircuitoFO2}
+  \end{center}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
     \includegraphics[scale=0.4]{./FO2.png}
     \rule{35em}{1pt}
-  \caption[Captura]{Graficas octate ideal vs simulacion electric}
+  \caption[Captura]{Gráfica tiempo $V_{in}$ vs $V_{out}$ h=2}
   \label{fig:FO2}
 \end{figure}
 
 \begin{figure}[htbp]
-  \centering
-    \includegraphics[scale=0.5]{./CircuitoFO2.png}
+\begin{center}
+    \includegraphics[scale=0.5]{./CircuitoFO3.png}
     \rule{35em}{0.5pt}
-  \caption[Captura]{Graficas octate ideal vs simulacion electric}
+  \caption[Captura]{Circuito para calculo de $R_{eq}$ con h=3}
   \label{fig:CircuitoFO3}
+  
+\end{center}
 \end{figure}
 
 \begin{figure}[htbp]
-  \centering
+  \begin{center}
     \includegraphics[scale=0.4]{./FO3.png}
     \rule{35em}{0.5pt}
-  \caption[Captura]{Graficas octate ideal vs simulacion electric}
+  \caption[Captura]{Gráfica tiempo $V_{in}$ vs $V_{out}$ h=3}
   \label{fig:FO3}
+  \end{center}
 \end{figure}
 
-Luego de encontrar las gráficas (fig. \ref{fig:FO2} y fig. \ref{fig:FO3}), se realizó la medición de los tiempos ya mencionados anteriormente. Aunque en la referencia [] se habla que la medición debe hacerse entre los valores de $0.8V_{dd}$ a $0.2V_{dd}$, se encontró que las pendientes de ambas graficas son aproximadamente iguales y no se encontraría la variación de la resistencia equivalente entre los CMOS por lo que se decidió medir de $0.9V_{dd}$ a $0.1V_{dd}$. Se encontraron los valores mencionados en el cuadro \ref{table:tiempos}. 
-
+Luego de encontrar las gráficas (fig. \ref{fig:FO2} y fig. \ref{fig:FO3}), se realizó la medición de los tiempos ya mencionados anteriormente. Aunque en la referencia [] se habla que la medición debe hacerse entre los valores de $0.8V_{dd}$ a $0.2V_{dd}$, se encontró que las pendientes de ambas graficas son aproximadamente iguales y no se encontraría la variación de la resistencia equivalente entre los CMOS por lo que se decidió medir de $0.9V_{dd}$ a $0.1V_{dd}$. Se encontraron los valores mencionados en el cuadro \ref{table:tiempos}. \\*
+\\*
 \begin{table}\label{table:tiempos}
 \begin{center}
 \begin{tabular}{c||c||c}
@@ -210,11 +214,26 @@ n & tr(ps) & tf(ps)\\
 $\Delta$ & 20.44 & 23.76\\
 \hline
 \end{tabular}
-\caption{Graficas octate ideal vs simulacion electric}
+\caption{Tiempos de levantamiento y caida de tensión para un inversor CMOS para diferentes Fanouts}
 \end{center}
 \end{table}
 
 
+Ya con los diferenciales de tiempos medidos, se sustituyen en \ref{eqn:Req_p} y \ref{eqn:Req_n} para encontrar la resistencia equivalente de cada transistor. Para $C_{g}=1.48 fF/\mu m$  dependiente del ancho de canal de gate, se encuentra que los valores de resistencia son los del cuadro (\ref{table:resistencias}). \\*
+\\*
+\begin{table}\label{table:resistencias}
+\begin{center}
+\begin{tabular}{c||c}
+Resistencia & k$\Omega$\\
+\hline
+\hline
+$R_{eqp}$ & 15.375 \\
+$R_{eqn}$ & 9.000 \\
+\hline
+\end{tabular}
+\caption{Resistencias equivalentes encontradas por Método de Fanout}
+\end{center}
+\end{table}
 
 \section{Análisis de datos y resultados}
 
