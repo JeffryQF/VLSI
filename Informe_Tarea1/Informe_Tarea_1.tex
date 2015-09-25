@@ -76,15 +76,16 @@
 %	DOCUMENT CONTENT
 %----------------------------------------------------------------------------------------
 
+
 \section{Resumen} 
 
-En este documento se encontrará lo que es el proceso de diseño de un inversor CMOS de tamaño mínimo en la tecnología ON-semiconductor 0.5, en el cual se dimensionará el PMOS de acuerdo a un análisis estático(misma corriente en los transistores con tensión de inversion igual a la mitad de la alimentación) y a un análisis dinámico (menor tiempo de retardo en los tiempos de levantamiento y caída). También se harán los cálculos para encontrar la resistencia equivalente de los transistores NMOS y PMOS para la misma tecnología.
+En este documento se encontrará el proceso de diseño de un inversor CMOS de tamaño mínimo en la tecnología \textit{ON-semiconductor 0.5}, en el cual se dimensionará el \textit{PMOS} de acuerdo a un análisis estático(misma corriente en los transistores con tensión de inversion igual a la mitad de la alimentación) y a un análisis dinámico (menor tiempo de retardo en los tiempos de levantamiento y caída). También se harán los cálculos para encontrar la resistencia equivalente de los transistores \textit{NMOS} y \textit{PMOS} para la misma tecnología.
 
 \section{Introducción} 
 
-Para el diseño del PMOS del inversor, se considera el diseño del NMOS segun los parametros minimos del ancho y largo de canal (4$\lambda$/2$\lambda$) en una tecnología ON-semiconductor 0.5. Para encontrar la relación que debe tener el ancho de canal PMOS con respecto al NMOS, se tomarán en cuenta dos diferentes tipos de análisis:\\*
-\\*El análisis estático el cual se busca que la corriente de NMOS y el PMOS sea simétrica. Esto se observa en que la tensión de umbral del inversor sea la mitad de la tensión de alimentación del mismo.\\*
-\\*Para este análisis se plantean usar las ecuaciones de Shockley para la corriente de un transistor CMOS. Esto con el fin de graficar el comportamiento ideal de un transmisor y encontrar la relación de ancho de canal entre los transitores PMOS y NMOS.
+Para el diseño del \textit{PMOS} del inversor, se considera el diseño del \textit{NMOS} segun los parametros minimos del ancho y largo de canal (4$\lambda$/2$\lambda$) en una tecnología \textit{ON-semiconductor 0.5}. Para encontrar la relación que debe tener el ancho de canal \textit{PMOS} con respecto al \textit{NMOS}, se tomarán en cuenta dos diferentes tipos de análisis:\\*
+\\*El análisis estático el cual se busca que la corriente de \textit{NMOS} y el \textit{PMOS} sea simétrica. Esto se observa en que la tensión de umbral del inversor sea la mitad de la tensión de alimentación del mismo.\\*
+\\*Para este análisis se plantean usar las ecuaciones de \textit{Shockley} para la corriente de un transistor \textit{CMOS}. Esto con el fin de graficar el comportamiento ideal de un transmisor y encontrar la relación de ancho de canal entre los transitores \textit{PMOS} y \textit{NMOS}.
 
 \begin{equation}\label{eqn:NMOS_corte}
 I_{dsn}=0
@@ -98,8 +99,7 @@ I_{dsn}=\beta_{n}*(w_{n}/l_{n})*((2*V_{GTn})-V_{dsn})*V_{dsn}
 I_{dsn}=\beta_{n}*(w_{n}/l_{n})*(V_{GTn})^2
 \end{equation}
 
-El análisis dinámico, se dimensionará el ancho de canal del PMOS de tal forma que el tiempo que le toma al inversor pasar de un estado lógico a otro sea el menor posible, siempre y cuando el tiempo que toma de subida y bajada de nivel lógico sean simétricos.
-
+El análisis dinámico, se dimensionará el ancho de canal del \textit{PMOS} de tal forma que el tiempo que le toma al inversor pasar de un estado lógico a otro sea el menor posible, siempre y cuando el tiempo que toma de subida y bajada de nivel lógico sean simétricos.
 
 \section{Resultados experimentales}
 
@@ -109,15 +109,7 @@ El análisis dinámico, se dimensionará el ancho de canal del PMOS de tal forma
 \subsubsection{Análisis estático}
 
 
-\begin{figure}[htbp]
-  \centering
-%    \includegraphics[scale=0.2]{./Captura.png}
-    \rule{35em}{0.5pt}
-  \caption[Captura]{Graficas octate ideal vs simulacion electric}
-  \label{fig:inv_est}
-\end{figure}
-
-Para este análisis, primero se realizó una simulación en la plataforma de programación para cálculos matemáticos Octave, esto con el fin de tener una aproximación de la relación que debe tener el ancho de canal del PMOS con el NMOS para que la tensión de umbral del inversor $V_{inv}=V_{dd}/2$. Se utilizaron las ecuaciones en región de corte (Ec.[\ref{eqn:NMOS_corte}]), lineal (Ec.[\ref{eqn:NMOS_lineal}]) y saturación (Ec.[\ref{eqn:NMOS_sat}] y conociendo que para ciertos rangos de valores de tensión de entrada, los transistores se encontraban en regiones de polarización específicas y la tensión de salida tenia un comportamiento particular como se muestra en la tabla \ref{table:Tabla_polarizacion}.\\*
+Para este análisis, primero se realizó una simulación en la plataforma de programación para cálculos matemáticos \textit{Octave}, esto con el fin de tener una aproximación de la relación que debe tener el ancho de canal del \textit{PMOS} con el \textit{NMOS} para que la tensión de umbral del inversor $V_{inv}=V_{dd}/2$. Se utilizaron las ecuaciones en región de corte (Ec.[\ref{eqn:NMOS_corte}]), lineal (Ec.[\ref{eqn:NMOS_lineal}]) y saturación (Ec.[\ref{eqn:NMOS_sat}]) y conociendo que para ciertos rangos de valores de tensión de entrada, los transistores se encontraban en regiones de polarización específicas y la tensión de salida tenia un comportamiento particular como se muestra en la tabla \ref{table:Tabla_polarizacion}.\\*
 \\*
 
 \begin{table}\label{table:Tabla_polarizacion}
@@ -137,23 +129,189 @@ Numero & Rango entrada & Región PMOS & Región NMOS\\
 \end{center}
 \end{table}
 
-Se logró la grafica [] la cual se logró encontrar que r=4 lo cual significa que el transistor PMOS debe de 4 veces más ancho que el NMOS para que las regiones sean simétricas.\\*
-\\*
-Para la simulación experimental, se usó el programa Electric. En esta simulación se utilizó el archivo [] para las constantes de la tecnología MOSIS 0.5, ya realizada la simulación del inversor (fig. []) con la relación de ancho de canal calculado anteriormente encontramos que la proporción de regiones en el inversor no es la esperada, por lo que se decidió volver a dimensionar el ancho de los canales con respecto a las simulaciones y encontramos que de manera experimental r=[]; 
+El análisis que se realizo con el software \textit{Octave} arrojo la gráfica que se muestra en la fig.\ref{fig:inv_est}, la cual dio como resultado que la relación de $\beta$ es de r=4, lo cual significa que el transistor \textit{PMOS} debe de ser 4 veces más ancho que el \textit{NMOS} para que las regiones sean simétricas.\\*
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.2]{./Inv_16lam.png}
+    \rule{35em}{0.5pt}
+  \caption[IdealvsSim]{Graficas \textit{Octate} Ideal vs Simulacion \textit{Electric}}
+  \label{fig:inv_est}
+\end{figure}
+
+Para la simulación experimental, se usó el programa \textit{Electric}. En esta simulación se utilizó el archivo \textit{Mosis\_5} para las constantes de la tecnología MOSIS 0.5. Ya realizada la simulación del inversor (fig.\ref{fig:inv_est2}) con la relación de ancho de canal calculado anteriormente encontramos que la proporción de regiones en el inversor no es la esperada, por lo que se decidió volver a dimensionar el ancho de los canales con respecto a las simulaciones y encontramos que de manera experimental la relación correcta es \textit{r=1.575}. 
 
 
-\subsubsection{Análisis dinámico}
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.2]{./Inv_63lam.png}
+    \rule{35em}{0.5pt}
+  \caption[IdealvsSim]{Graficas \textit{Octate} Ideal vs Simulación Ajustada \textit{Electric}}
+  \label{fig:inv_est2}
+\end{figure}
 
 
+\subsubsection{Análisis Dinámico.}
 
-\subsection{Resistencia equivalente}
+En este método se determina  el valor del ancho de canal del transistor \textit{PMOS}, de manera que el tiempo de propagación sea mínimo, y que los tiempos de propagación de la señal de alto a bajo y viceversa sean simétricos, suponiendo que el inversor tiene una carga conectada igual así mismo. Se debe tener en consideración que aumentar el ancho del canal en el transistor \textit{PMOS} mejora el parámetro $\textit{t}_\textit{plh}$, pero también degrada el $\textit{t}_\textit{phl}$, esto debido a que aumenta la corriente de carga en el carga en el transitor, pero tambień aumenta el valor de las capacitancias parásitas del dispositivo.\\
+
+Para obtener una relacion óptima de tamaños entre el \textit{PMOS} y el \textit{NMOS} que permita mejorar el retardo de propagación de subida y bajada, se utiliza la siguiente formula:
+
+\begin{equation}\label{eqn:Beta}
+\beta= \sqrt{r} 
+\end{equation}
+
+\begin{equation}\label{eqn:r}
+r= \frac{Req_P}{Req_N}
+\end{equation}
+ 
+Los valores de resistencia utilizados para calcular $\beta$, son los calculados en el apartado 2 de esta tarea, específicamente del método de variación del \textit{fanout}, esto debido a que con este método se obtienen valores más cercanos a los esperados. De la ecuación  se obtiene que:
+
+\begin{equation}\label{eqn:Beta2}
+\beta= \sqrt{\frac{15.375k\Omega}{9.0k\Omega}} = 1.3070
+\end{equation}
+
+Y sabiedo que:
+
+\begin{equation}\label{eqn:Beta3}
+\beta= \frac{(\frac{W}{l})_P}{(\frac{W}{l})_N} 
+\end{equation}
+
+\begin{equation}\label{eqn:Beta4}
+\beta= \frac{W_P}{W_N} 
+\end{equation}
+
+\begin{equation}\label{eqn:Beta5}
+W_P= 1.3070*W_N = 5\lambda  
+\end{equation}\\
+
+Tambień se calculan los tiempos teóricos de de propagación del inversor, mediante el modelo de \textit{delay RC} aplicado al inversor.
+
+\begin{equation}\label{eqn:DelayRC2}
+t_{plh} = 0.69*Req_P*C_L = 15.38ps
+\end{equation}
+
+\begin{equation}\label{eqn:DelayRC}
+t_{phl} = 0.69*Req_N*C_L = 9.00ps
+\end{equation}\\
+
+Con el tamaño del ancho del canal del \textit{PMOS} calculado, se procede a simular el circuito que se muestra en la fig.\ref{fig:Inversor_1b} haciendo uso de los software \textit{ELectric} y \textit{LTSpice}, para poder encontrar los tiempos de propagación.\\
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.25]{./Inversor_estatico_1b.png}
+    \rule{35em}{0.3pt}
+  \caption[INV]{Inversor con una carga igual a si mismo.}
+  \label{fig:Inversor_1b}
+\end{figure}
+
+A partir de la simulación del circuito, se puede observar en la fig.\ref{fig:tLH_tHL}, las gráficas obtenidas en \textit{LTSpice} de los tiempos de propagación de la señal.\\
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.35]{./tLH_tHL.png}
+    \rule{35em}{0.3pt}
+  \caption[INV2]{Simulación de tiempos de retardo en un inversor.}
+  \label{fig:tLH_tHL}
+\end{figure}
+
+A partir de esta simulación, y ajustando los valores en \textit{LTSpice}, se obtiene que el ancho apropiado del canal del transistor \textit{PMOS} es de 6$\lambda$, obtiendo con este ajuste los siguientes valores de tiempos de propagación:
+
+\begin{equation}\label{eqn:t_plh}
+t_{phl} = 60,8725ps
+\end{equation}
+
+\begin{equation}\label{eqn:t_phl}
+t_{phl} = 66,273ps
+\end{equation}\\
+
+Con estos valores se observa que los tiempos son bastantes cercanos, con una diferencia de \textit{5.4005ps}, dando como resultado que los tiempos de propagación sean bastante simétricos.\\
+
+En contraposición con los valores calculados, los valores experimentales presentan un tiempo de propagacion mayor, pero con un porcentaje de diferencia de apenas un \textit{8\%}, mientras que los valores calculados presentan un porcentaje de diferencia de \textit{70\%}, por lo que los resultados experimentales demuestran ser más simétricos que los teóricos.\\
+
+
+Con ayuda del software matemático \textit{Octave}, se procede ahora a comparar las curvas de trasferencia que se obtuvieron en este punto, con la obtenida en el punto anterior. Los resultados se observan en la fig.\ref{fig:DC_Comp}.\\
+
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.25]{./DC_1a_1b.png}
+    \rule{35em}{0.3pt}
+  \caption[DCim]{Curvas de transferencia DC obtenidas en el punto 1.a y 1b.}
+  \label{fig:DC_Comp}
+\end{figure}
+
+En la fig.\ref{fig:DC_Comp} se puede observar que la nueva curva de trasnferencia, de color azul, no tiene una tensión de umbral exactamente en \textit{1.65V}, pero no se aleja demasiado de ese valor, por lo que es una aproximación aceptable. \\
+
+A continuación se procede a comparar las mediciones de las corriente de corto circuito obtenidas en el punto \textit{1.a} y \textit{1.b}, graficando dichas mediciones en \textit{Octave}. En la fig.\ref{fig:CC} se observan las 2 curvas obtenidas transpuestas.
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.4]{./Comp_Corriente_ICC.png}
+    \rule{35em}{0.3pt}
+  \caption[CC]{Corriente de Corto Circuito de los puntos \textit{1.a} y \textit{1.b}}
+  \label{fig:CC}
+\end{figure}
+
+
+\section{Cálculo de Resistencias de Canal}
+
+El cálculo de la resistencia de canal para un transistor \textit{PMOS} y \textit{NMOS} se realizará utilizando dos métodos diferentes.\\
+
+En el primer método se coloca una capacitancia de descarga en paralelo con el transistor \textit{NMOS}, y una de carga en serie con el transistor \textit{PMOS}, con el objetivo de obtener las curvas de comportamiento de la corriente $\textit{I}_{\textit{d}}$, mientras se descarga o carga un capacitor, respectivamente. En el caso de descarga la tensión del \textit{drain} del transistor \textit{NMOS} debera moverse de $\textit{V}_{\textit{DD}}$ $\longrightarrow$ $\textit{V}_{\textit{DD}}/2$. En el caso de carga la tensión del \textit{drain} del transistor \textit{PMOS} debera moverse de $\textit{0}$ $\longrightarrow$ $\textit{V}_{\textit{DD}}/2$.\\
+
+El tamaño de dicha capacitancia debe ser lo suficientemente grande como para despreciar el efecto de las capacitancias parásitas del transistor. Una vez obtenidas las curvas de la corriente, se calcula el promedio de valores de resistencia, mientras la tension se mueve de $\textit{V}_{\textit{DD}}$ $\longrightarrow$ $\textit{V}_{\textit{DD}}/2$ o de $\textit{0}$ $\longrightarrow$ $\textit{V}_{\textit{DD}}/2$, dependiendo del caso.\\
+
 
 \subsubsection{Carga y descarga de un capacitor}
 
+Para el cálculo de las resistencias de canal de cada transistor, se utilizo una capacitancia de carga y descarga de \textit{1pF}, se montaron los circuitos de las figuras \ref{fig:R_PMOS} y \ref{fig:R_NMOS} en el software \textit{Electric} y se simularon los resultados en  \textit{LTSpice}, obteniendo las curvas que se observan en las figuras \ref{fig:Grafica_R_PMOS} y \ref{fig:Grafica_R_NMOS}, para el caso de carga y descarga, respectivamente.\\
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.3]{./R_PMOS.png}
+    \rule{35em}{0.3pt}
+  \caption[C_Carga]{Circuito de Carga de Capacitor.}
+  \label{fig:R_PMOS}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  	\includegraphics[scale=0.3]{./R_NMOS.png}
+    \rule{35em}{0.3pt}
+  \caption[C_Descarga]{Circuito de Descarga de Capacitor.}
+  \label{fig:R_NMOS}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.3]{./Grafica_R_PMOS.png}
+   \rule{35em}{0.3pt}
+  \caption[G_Carga]{Grafica de comportamiento de $\textit{I}_{\textit{d}}$ durante la carga del Capacitor.}
+  \label{fig:Grafica_R_PMOS}
+\end{figure}
+
+\begin{figure}[htbp]
+ \centering
+    \includegraphics[scale=0.3]{./Grafica_R_NMOS.png}
+    \rule{35em}{0.3pt}
+  \caption[G_Descarga]{Grafica de comportamiento de $\textit{I}_{\textit{d}}$ durante la descarga del Capacitor.}
+  \label{fig:Grafica_R_NMOS}
+\end{figure}
+
+Utilizando un pequeño script en \textit{Octave}, se procesan los puntos obtenidos en estas graficas y se calculan la resistencias de canal promedio de cada transistor, obteniendo los siguientes resultados:
+
+\begin{equation}\label{eqn:R_PMOS}
+Req_P = 8.7860k\Omega
+\end{equation}
+
+\begin{equation}\label{eqn:R_NMOS}
+Req_N = 2.6919k\Omega
+\end{equation}
 
 \subsubsection{Método de Fanout}
 
-El método de Fanout plantea encontrar la resistencia equivalente de un transistor CMOS con los valores de la capacitancia parásita en el gate y el diferencial de tiempos de caída y levantamiento que le toma al mismo pasar de un nivel lógico a otro, con 2 valores de fanout distintos. Las ecuaciones para calcular las resistencias equivalentes para PMOS y NMOS son las \ref{eqn:Req_p} y \ref{eqn:Req_n} respectivamente.\\*
+El método de Fanout plantea encontrar la resistencia equivalente de un transistor \textit{CMOS} con los valores de la capacitancia parásita en el gate y el diferencial de tiempos de caída y levantamiento que le toma al mismo pasar de un nivel lógico a otro, con 2 valores de \textit{fanout} distintos. Las ecuaciones para calcular las resistencias equivalentes para \textit{PMOS} y \textit{NMOS} son las \ref{eqn:Req_p} y \ref{eqn:Req_n} respectivamente.\\*
 \\*
 \begin{equation}\label{eqn:Req_p}
 R_{eqp}=(2/3)*( \Delta t_{r}/C_{g})
@@ -163,7 +321,7 @@ R_{eqp}=(2/3)*( \Delta t_{r}/C_{g})
 R_{eqn}= \Delta t_{f}/(3*C_{g})
 \end{equation}
 
-Se realizó la simulación del circuito propuesto encontrado en la referencia [], para valores de h=2 (fig. \ref{fig:CircuitoFO2}) y h=3 (fig. \ref{fig:CircuitoFO3} con los cuales se encontraron las graficas de los retardos de la salida con respecto a la entrada (fig. \ref{fig:FO2} y fig. \ref{fig:FO3})\\*
+Se realizó la simulación del circuito propuesto encontrado en la referencia [], para valores de \textit{h=2} (fig. \ref{fig:CircuitoFO2}) y \textit{h=3} (fig. \ref{fig:CircuitoFO3} con los cuales se encontraron las graficas de los retardos de la salida con respecto a la entrada (fig. \ref{fig:FO2} y fig. \ref{fig:FO3})\\*
 \\*
 \begin{figure}[htbp]
 \begin{center}
@@ -235,20 +393,15 @@ $R_{eqn}$ & 9.000 \\
 \end{center}
 \end{table}
 
-\section{Análisis de datos y resultados}
-
-Este proyecto ha sido un exito en el funcionamiento del controlador digital y en los circuitos acondicionaores de señal gracias a las herramientas proporcionadas, conocimientos adquiridos y metodología de trabajo que se realizaron en este laboratorio.
-
-Los procesos de simulación tanto para los CAS como para el regulador IPD permitieron disminuir los errores que se podrian haber presentado de no haberse hecho. Para los CAS se realizaron ajustes por los valores de tolerancia de los componentes con respecto a la teoría en especial en los filtros ya que se debió ajustar las ganancias por los filtros.
 
 
 
+\section{Análisis de datos y resultados.}
 
+Los resultados obtenidos en la sección \textit{3.1.2}, muestran un a
 
+\section{Conclusiones.}
 
-\section{Conclusiones y recomendaciones}
-
-Aquí van las conclusiones y recomendaciones del Lab.
 
 %----------------------------------------------------------------------------------------
 \begin{thebibliography}{3}
