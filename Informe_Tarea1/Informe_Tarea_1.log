@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.17)  24 SEP 2015 17:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.17)  25 SEP 2015 01:21
 entering extended mode
 **Informe_Tarea_1.tex
 (C:\Users\Francis\Documents\GitHub\VLSI\Informe_Tarea1\Informe_Tarea_1.tex
@@ -479,7 +479,14 @@ LaTeX Info: Redefining \cite on input line 694.
 \f@ncyO@olf=\skip66
 \f@ncyO@orf=\skip67
 )
-(C:\Users\Francis\Documents\GitHub\VLSI\Informe_Tarea1\Informe_Tarea_1.aux)
+(C:\Users\Francis\Documents\GitHub\VLSI\Informe_Tarea1\Informe_Tarea_1.aux
+
+Package natbib Warning: Citation `Wey1999' multiply defined.
+
+
+Package natbib Warning: Citation `Wey1999' multiply defined.
+
+)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
 LaTeX Font Info:    ... okay on input line 71.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
@@ -495,8 +502,7 @@ LaTeX Font Info:    ... okay on input line 71.
 Package marginnote Info: \pdfoutput not 0 and \pdflastxpos available.
 (marginnote)             Extended position detection mode activated.
 \AtBeginShipoutBox=\box28
-
-("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+ ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count111
 \scratchdimen=\dimen125
@@ -548,87 +554,251 @@ Package lastpage Info: Please have a look at the pageslts package at
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 85.
+LaTeX Font Info:    Try loading font information for U+msa on input line 86.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 85.
+LaTeX Font Info:    Try loading font information for U+msb on input line 86.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 120--122
+Underfull \hbox (badness 10000) in paragraph at lines 112--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 132--133
 
  []
 
 [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 156--158
+<./Inv_16lam.png, id=12, 1371.2028pt x 706.8006pt>
+File: ./Inv_16lam.png Graphic file (type png)
+ <use ./Inv_16lam.png>
+Package pdftex.def Info: ./Inv_16lam.png used on input line 136.
+(pdftex.def)             Requested size: 274.2357pt x 141.3576pt.
+
+<./Inv_63lam.png, id=13, 1371.2028pt x 706.8006pt>
+File: ./Inv_63lam.png Graphic file (type png)
+ <use ./Inv_63lam.png>
+Package pdftex.def Info: ./Inv_63lam.png used on input line 147.
+(pdftex.def)             Requested size: 274.2357pt x 141.3576pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
 
-<./CircuitoFO2.png, id=11, 669.50125pt x 443.6575pt>
-File: ./CircuitoFO2.png Graphic file (type png)
- <use ./CircuitoFO2.png>
-Package pdftex.def Info: ./CircuitoFO2.png used on input line 170.
-(pdftex.def)             Requested size: 334.7498pt x 221.8282pt.
+[2 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/Inv_16lam.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
 
-<./FO2.png, id=13, 1347.0325pt x 259.97125pt>
-File: ./FO2.png Graphic file (type png)
- <use ./FO2.png>
-Package pdftex.def Info: ./FO2.png used on input line 179.
-(pdftex.def)             Requested size: 538.80347pt x 103.98665pt.
+ []
 
-Overfull \hbox (15.27292pt too wide) in paragraph at lines 179--181
+
+Underfull \hbox (badness 10000) in paragraph at lines 196--197
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 198--199
+
+ []
+
+<./Inversor_estatico_1b.png, id=18, 1300.86pt x 939.51pt>
+File: ./Inversor_estatico_1b.png Graphic file (type png)
+
+<use ./Inversor_estatico_1b.png>
+Package pdftex.def Info: ./Inversor_estatico_1b.png used on input line 202.
+(pdftex.def)             Requested size: 325.2142pt x 234.87692pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
+
+ []
+
+[3 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/Inv_63lam.png>]
+<./tLH_tHL.png, id=23, 1367.1075pt x 649.42625pt>
+File: ./tLH_tHL.png Graphic file (type png)
+ <use ./tLH_tHL.png>
+Package pdftex.def Info: ./tLH_tHL.png used on input line 212.
+(pdftex.def)             Requested size: 478.4948pt x 227.3026pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--231
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 233--234
+
+ []
+
+<./DC_1a_1b.png, id=24, 1371.2028pt x 706.8006pt>
+File: ./DC_1a_1b.png Graphic file (type png)
+ <use ./DC_1a_1b.png>
+Package pdftex.def Info: ./DC_1a_1b.png used on input line 238.
+(pdftex.def)             Requested size: 342.79987pt x 176.6997pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--245
+
+ []
+
+[4 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/Inversor_estatico_1b.
+png (PNG copy)>] [5 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/tLH_
+tHL.png> <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/DC_1a_1b.png>]
+<./Comp_Corriente_ICC.png, id=31, 1371.2028pt x 706.8006pt>
+File: ./Comp_Corriente_ICC.png Graphic file (type png)
+
+<use ./Comp_Corriente_ICC.png>
+Package pdftex.def Info: ./Comp_Corriente_ICC.png used on input line 250.
+(pdftex.def)             Requested size: 548.47142pt x 282.71523pt.
+
+Overfull \hbox (24.94087pt too wide) in paragraph at lines 250--252
  [][] 
  []
 
-<./CircuitoFO3.png, id=14, 670.505pt x 459.7175pt>
-File: ./CircuitoFO3.png Graphic file (type png)
- <use ./CircuitoFO3.png>
-Package pdftex.def Info: ./CircuitoFO3.png used on input line 187.
-(pdftex.def)             Requested size: 335.25168pt x 229.85818pt.
 
-<./FO3.png, id=15, 1347.0325pt x 259.97125pt>
-File: ./FO3.png Graphic file (type png)
- <use ./FO3.png>
-Package pdftex.def Info: ./FO3.png used on input line 197.
+Underfull \hbox (badness 10000) in paragraph at lines 259--260
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 261--262
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 263--264
+
+ []
+
+[6 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/Comp_Corriente_ICC.pn
+g>]
+Underfull \hbox (badness 10000) in paragraph at lines 269--270
+
+ []
+
+<./R_PMOS.png, id=35, 1300.86pt x 939.51pt>
+File: ./R_PMOS.png Graphic file (type png)
+ <use ./R_PMOS.png>
+Package pdftex.def Info: ./R_PMOS.png used on input line 273.
+(pdftex.def)             Requested size: 390.26102pt x 281.85518pt.
+
+<./R_NMOS.png, id=36, 1300.86pt x 939.51pt>
+File: ./R_NMOS.png Graphic file (type png)
+ <use ./R_NMOS.png>
+Package pdftex.def Info: ./R_NMOS.png used on input line 281.
+(pdftex.def)             Requested size: 390.26102pt x 281.85518pt.
+
+<./Grafica_R_PMOS.png, id=37, 1368.11125pt x 650.43pt>
+File: ./Grafica_R_PMOS.png Graphic file (type png)
+
+<use ./Grafica_R_PMOS.png>
+Package pdftex.def Info: ./Grafica_R_PMOS.png used on input line 289.
+(pdftex.def)             Requested size: 410.43654pt x 195.1305pt.
+
+<./Grafica_R_NMOS.png, id=38, 1369.115pt x 648.4225pt>
+File: ./Grafica_R_NMOS.png Graphic file (type png)
+
+<use ./Grafica_R_NMOS.png>
+Package pdftex.def Info: ./Grafica_R_NMOS.png used on input line 297.
+(pdftex.def)             Requested size: 410.73767pt x 194.52824pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 315--317
+
+ []
+
+[7 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/R_PMOS.png (PNG copy)
+>] [8 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/R_NMOS.png (PNG co
+py)> <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/Grafica_R_PMOS.png>
+] <./CircuitoFO2.png, id=46, 669.50125pt x 443.6575pt>
+File: ./CircuitoFO2.png Graphic file (type png)
+ <use ./CircuitoFO2.png>
+Package pdftex.def Info: ./CircuitoFO2.png used on input line 329.
+(pdftex.def)             Requested size: 334.7498pt x 221.8282pt.
+
+<./FO2.png, id=48, 1347.0325pt x 259.97125pt>
+File: ./FO2.png Graphic file (type png)
+ <use ./FO2.png>
+Package pdftex.def Info: ./FO2.png used on input line 338.
 (pdftex.def)             Requested size: 538.80347pt x 103.98665pt.
 
-Overfull \hbox (15.27292pt too wide) in paragraph at lines 197--199
+Overfull \hbox (15.27292pt too wide) in paragraph at lines 338--340
+ [][] 
+ []
+
+<./CircuitoFO3.png, id=49, 670.505pt x 459.7175pt>
+File: ./CircuitoFO3.png Graphic file (type png)
+ <use ./CircuitoFO3.png>
+Package pdftex.def Info: ./CircuitoFO3.png used on input line 346.
+(pdftex.def)             Requested size: 335.25168pt x 229.85818pt.
+
+<./FO3.png, id=50, 1347.0325pt x 259.97125pt>
+File: ./FO3.png Graphic file (type png)
+ <use ./FO3.png>
+Package pdftex.def Info: ./FO3.png used on input line 356.
+(pdftex.def)             Requested size: 538.80347pt x 103.98665pt.
+
+Overfull \hbox (15.27292pt too wide) in paragraph at lines 356--358
  [] 
  []
 
-[2] [3 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/CircuitoFO2.png> 
-<C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/FO2.png>] [4 <C:/Users/F
-rancis/Documents/GitHub/VLSI/Informe_Tarea1/CircuitoFO3.png> <C:/Users/Francis/
-Documents/GitHub/VLSI/Informe_Tarea1/FO3.png>]
+[9 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/Grafica_R_NMOS.png>]
+[10 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/CircuitoFO2.png> <C:
+/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/FO2.png>] [11 <C:/Users/Fra
+ncis/Documents/GitHub/VLSI/Informe_Tarea1/CircuitoFO3.png> <C:/Users/Francis/Do
+cuments/GitHub/VLSI/Informe_Tarea1/FO3.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 402--405
 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 406--407
+
+ []
+
+[12] 
 AED: lastpage setting LastPage
-[5] (C:\Users\Francis\Documents\GitHub\VLSI\Informe_Tarea1\Informe_Tarea_1.aux)
+[13]
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+Package natbib Warning: There were multiply defined citations.
 
- ) 
+(C:\Users\Francis\Documents\GitHub\VLSI\Informe_Tarea1\Informe_Tarea_1.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+) ) 
 Here is how much of TeX's memory you used:
- 4691 strings out of 493921
- 59188 string characters out of 3147276
- 146373 words of memory out of 3000000
- 7903 multiletter control sequences out of 15000+200000
- 10150 words of font info for 38 fonts, out of 3000000 for 9000
+ 4769 strings out of 493921
+ 60545 string characters out of 3147276
+ 145611 words of memory out of 3000000
+ 7969 multiletter control sequences out of 15000+200000
+ 10851 words of font info for 40 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 37i,18n,43p,773b,329s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmti12.pfb>
-Output written on Informe_Tarea_1.pdf (5 pages, 168537 bytes).
+ 37i,19n,43p,932b,391s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmti12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8
+.pfb>
+Output written on Informe_Tarea_1.pdf (13 pages, 586667 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
+ 100 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 71 words of extra memory for PDF output out of 10000 (max. 10000000)
 

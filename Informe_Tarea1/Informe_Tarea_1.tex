@@ -61,8 +61,8 @@
 
 \fancyhead[L]{\begin{tabular}{l r | l r} % The header is a table with 4 columns
 \textbf{Proyecto} & Diseño inversor CMOS & \textbf{Página} & \thepage/\pageref{LastPage} \\ % Project name and page count
-\textbf{Trabajo} & Análisis estático y dinámico & \textbf{Actualizado en:} & 18/09/2015 \\ % Job number and last updated date
-\textbf{Versión} & 1 & \textbf{Revisado en:} & 18/09/2015 \\ % Version and reviewed date
+\textbf{Trabajo} & Análisis estático y dinámico & \textbf{Actualizado en:} & 25/09/2015 \\ % Job number and last updated date
+\textbf{Curso} & VLSI & \textbf{Revisado en:} & 18/09/2015 \\ % Version and reviewed date
 \textbf{Diseñador} & López F. - Quirós.J.& \textbf{Revisado por:} & Alfonso Chacón Rodríguez \\ % Designer and reviewer
 \end{tabular}}
 
@@ -254,7 +254,7 @@ A continuación se procede a comparar las mediciones de las corriente de corto c
 \end{figure}
 
 
-\section{Cálculo de Resistencias de Canal}
+\subsection{Cálculo de Resistencias de Canal}
 
 El cálculo de la resistencia de canal para un transistor \textit{PMOS} y \textit{NMOS} se realizará utilizando dos métodos diferentes.\\
 
@@ -262,6 +262,7 @@ En el primer método se coloca una capacitancia de descarga en paralelo con el t
 
 El tamaño de dicha capacitancia debe ser lo suficientemente grande como para despreciar el efecto de las capacitancias parásitas del transistor. Una vez obtenidas las curvas de la corriente, se calcula el promedio de valores de resistencia, mientras la tension se mueve de $\textit{V}_{\textit{DD}}$ $\longrightarrow$ $\textit{V}_{\textit{DD}}/2$ o de $\textit{0}$ $\longrightarrow$ $\textit{V}_{\textit{DD}}/2$, dependiendo del caso.\\
 
+En el segundo método se buscarán los tiempos de levantamiento y caída de los transistores NMOS y PMOS para 2 valores distintos de Fanouts, esto con el objetivo de eliminar de los cálculos las capacitancias parásita que posee en el drain y el cálculo de la resistencia dependa solamente de los diferenciales de tiempos entre los Fanouts y la capacitancia de Gate.
 
 \subsubsection{Carga y descarga de un capacitor}
 
@@ -321,7 +322,7 @@ R_{eqp}=(2/3)*( \Delta t_{r}/C_{g})
 R_{eqn}= \Delta t_{f}/(3*C_{g})
 \end{equation}
 
-Se realizó la simulación del circuito propuesto encontrado en la referencia [], para valores de \textit{h=2} (fig. \ref{fig:CircuitoFO2}) y \textit{h=3} (fig. \ref{fig:CircuitoFO3} con los cuales se encontraron las graficas de los retardos de la salida con respecto a la entrada (fig. \ref{fig:FO2} y fig. \ref{fig:FO3})\\*
+Se realizó la simulación del circuito propuesto encontrado en la referencia [1] sección 8.4.5. , para valores de \textit{h=2} (fig. \ref{fig:CircuitoFO2}) y \textit{h=3} (fig. \ref{fig:CircuitoFO3} con los cuales se encontraron las graficas de los retardos de la salida con respecto a la entrada (fig. \ref{fig:FO2} y fig. \ref{fig:FO3})\\*
 \\*
 \begin{figure}[htbp]
 \begin{center}
@@ -398,10 +399,24 @@ $R_{eqn}$ & 9.000 \\
 
 \section{Análisis de datos y resultados.}
 
-Los resultados obtenidos en la sección \textit{3.1.2}, muestran un a
+Los resultados obtenidos en la sección \textit{3.1.2}, muestran el diseño del ancho del canal de un transistor \textit{PMOS}, para conseguir que los tiempos de propagación sean simétricos. Los resultados obtenidos de la Ec.\ref{eqn:Beta2}, muestra un valor de relación de tamaño de ancho de canal de los transistores en un inversor de \textit{1.3070}, lo que equivale a decir que el ancho del canal del tansistor \textit{PMOS} es de 5$\lambda$, pero a la hora de simular se ajusto este valor hasta conseguir que la relación sea \textit{1.5}, esto con el fin no solo de lograr que los valores de propagación de la señal fueran simétricos, si no también para conseguir una tensión de umbral del inversor cercana a \textit{1.65V}, como se observa en la fig.\ref{fig:DC_Comp}, siendo asi entonces que el nuevo tamaño del ancho de canal del transistor \textit{PMOS} es de 6$\lambda$.\\*
+\\*Uno de los resultados relevantes que pudimos encontrar del dimensionamiento del transistor \textit{PMOS} es en el hecho que las corrientes de corto circuito de la fig. \ref{fig:CC} son aproximadamente iguales, los cual nos dice que la potencia de los transistores en ambos procesos es igual. Podemos deducir que mediante un análisis dinámico para el dimensionamiento de los transistores es el método que deber usarse para el diseños de las compuertas, esto porque la símetría de las transiciones se puede obviar con respecto a tener un mínimo del tiempo de retardo para las mismas, dando como resultado, que los circuitos puedan conmutar a una mejor velocidad con la misma potencia que si se hiciese de forma simétrica las compuertas.\\*
+\\*En la sección 3.2 se procede a calcular el valor de las resistencias de canal para un trasistror \textit{PMOS} y un transistor \textit{NMOS}, mediante dos métodos diferentes. \\
+
+En la sección 3.2.1 se calculó la resistencia de canal por un método grafico, simulando la carga y descarga de un capacitor y obteniendo la curva de comportamiento de la corriente de \textit{drain} de un transistor \textit{PMOS} y \textit{NMOS}, respectivamente, y con esto obteniendo los valores de resistencia que se muestran en la Ec.\ref{eqn:R_PMOS} y Ec.\ref{eqn:R_NMOS}. Se considera que este método no es muy preciso al tratarse del cálculo de un valor a partir de una aproximación, que dependerá de la cantidad de valores muestrados y de la precisión de dichos valores, lo que dio como resultado obteniendo por ende un valor promedio de resistencia.\\*
+
+En cambio, para la sección 3.2.2, encontramos que los valores de las resistencias equivalentes son mas precisos, por el método que se emplea y que no realiza tantas aproximaciones y suposiciones para encontrar el valor de los mismos.
+
 
 \section{Conclusiones.}
-
+\begin{itemize}
+\item La ecuaciones de Shockley no da un comportamiento real de los transistores PMOS y NMOS, si no un comportamiento muy aproximado.
+\item El uso de diversas herramientas de simulación nos permiten encontrar proporciones de diseño bastante precisas
+\item El diseño de un inversor apropiado debe de procurar un balance entre el mejoramiento de los tiempos de propagación, asi como la obtención de una tension de umbral lo más cercana a $\textit{V}_\textit{DD}/2$.
+\item El análisis de tiempos de propagación provee un mejor punto de arranque para la obtención del tamaño de un transistor \textit{PMOS}, permitiendo realizar ajustes en simulación que permitan llegar a un valor concreto de manera más rapida.
+\item El método grafico para la obtención de los valores de resistencia de canal no es el mas apropiado, aunque provee una forma rapida de encontrar un valor de resistencia aproximado aceptable.
+\item Se recomienda para encontrar la resistencia equivalente de los transistores el método de Fanout
+\end{itemize}
 
 %----------------------------------------------------------------------------------------
 \begin{thebibliography}{3}
@@ -409,10 +424,18 @@ Los resultados obtenidos en la sección \textit{3.1.2}, muestran un a
 \bibliographystyle{unsrtnat} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
 
 \bibitem[Wey(1999)]{Wey1999}
-C.-L.Wey and C.-P.Wang
-\newblock {Design of a fast radix-4 SRT divider and its VLSI implementation}.
-\newblock \emph{IEEE Proc.-Comput. Digit. Tech., IEEE}, July 1999.
-\newblock DOI: 10.1049/ip-cdt:19990524.
+[1] N. Weste, D. Harris. 
+\newblock {CMOS VLSI Design: A Circuits and Systems Perspective , 4 edition.}.
+\newblock \emph{Boston: Addison-Wesley}, 2010.
+
+\bibitem[Wey(1999)]{Wey1999}
+[2] J. Rabaey, A. Chandrakasan y B. Nikolic. 
+\newblock { Digital Integrated Circuits: A Design Perspective.}.
+\newblock \emph{Prentice Hall}, 2005.
+
+\bibitem[Wey(1999)]{Wey1999}
+[3]Test Data .On SemiconductorC5.Mosis. Recompilado de:
+\newblock \emph{http://www.ie.itcr.ac.cr/achacon/ \\* Intro$\_$Diseno$\_$CI/Modelos$\_$Spice$\_$MOSIS/v03m-params.txt}, el 07/09/2015
 
 \end{thebibliography}
 
