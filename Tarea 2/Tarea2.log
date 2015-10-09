@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.12)  8 OCT 2015 23:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.12)  9 OCT 2015 00:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -475,6 +475,9 @@ LaTeX Info: Redefining \cite on input line 694.
 \f@ncyO@orf=\skip67
 ) (./Tarea2.aux
 
+LaTeX Warning: Label `fig:Comp_Transistores' multiply defined.
+
+
 Package natbib Warning: Citation `Wey1999' multiply defined.
 
 
@@ -769,26 +772,65 @@ l.256 ...\frac{C_{out}_{i}*g_{i}}{F^{\frac{1}{N}}}
 I treat `x_1_2' essentially like `x_1{}_2'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 257--258
+Underfull \hbox (badness 10000) in paragraph at lines 261--262
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 263--264
 
  []
 
 [4 <./Comp_Transistores.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 266--267
+Underfull \hbox (badness 10000) in paragraph at lines 275--276
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
+
+ []
+
+File: ./Comp_Transistores.png Graphic file (type png)
+<use ./Comp_Transistores.png>
+Package pdftex.def Info: ./Comp_Transistores.png used on input line 281.
+(pdftex.def)             Requested size: 120.95157pt x 186.19516pt.
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.286 
+      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 294--295
 
  []
 
 
 LaTeX Warning: Reference `fig:ModeloRC_Completo' on page 5 undefined on input l
-ine 269.
+ine 297.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--273
+Underfull \hbox (badness 10000) in paragraph at lines 297--298
 
  []
 
 
-LaTeX Warning: File `./R_PMOS.png' not found on input line 276.
+Underfull \hbox (badness 10000) in paragraph at lines 307--308
+
+ []
+
+[5]
+
+LaTeX Warning: File `./R_PMOS.png' not found on input line 311.
 
 
 ! Package pdftex.def Error: File `./R_PMOS.png' not found.
@@ -797,14 +839,14 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.276 ...\includegraphics[scale=0.3]{./R_PMOS.png}
+l.311 ...\includegraphics[scale=0.3]{./R_PMOS.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: File `./R_NMOS.png' not found on input line 284.
+LaTeX Warning: File `./R_NMOS.png' not found on input line 319.
 
 
 ! Package pdftex.def Error: File `./R_NMOS.png' not found.
@@ -813,14 +855,14 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.284   	\includegraphics[scale=0.3]{./R_NMOS.png}
+l.319   	\includegraphics[scale=0.3]{./R_NMOS.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: File `./Grafica_R_PMOS.png' not found on input line 292.
+LaTeX Warning: File `./Grafica_R_PMOS.png' not found on input line 328.
 
 
 ! Package pdftex.def Error: File `./Grafica_R_PMOS.png' not found.
@@ -829,14 +871,14 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.292 ...graphics[scale=0.3]{./Grafica_R_PMOS.png}
+l.328 ...graphics[scale=0.3]{./Grafica_R_PMOS.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: File `./Grafica_R_NMOS.png' not found on input line 300.
+LaTeX Warning: File `./Grafica_R_NMOS.png' not found on input line 336.
 
 
 ! Package pdftex.def Error: File `./Grafica_R_NMOS.png' not found.
@@ -845,19 +887,19 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.300 ...graphics[scale=0.3]{./Grafica_R_NMOS.png}
+l.336 ...graphics[scale=0.3]{./Grafica_R_NMOS.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 318--320
+Underfull \hbox (badness 10000) in paragraph at lines 354--356
 
  []
 
 
-LaTeX Warning: File `./CircuitoFO2.png' not found on input line 332.
+LaTeX Warning: File `./CircuitoFO2.png' not found on input line 368.
 
 
 ! Package pdftex.def Error: File `./CircuitoFO2.png' not found.
@@ -866,15 +908,14 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.332 ...udegraphics[scale=0.5]{./CircuitoFO2.png}
+l.368 ...udegraphics[scale=0.5]{./CircuitoFO2.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[5]
 
-LaTeX Warning: File `./FO2.png' not found on input line 341.
+LaTeX Warning: File `./FO2.png' not found on input line 377.
 
 
 ! Package pdftex.def Error: File `./FO2.png' not found.
@@ -883,14 +924,14 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.341     \includegraphics[scale=0.4]{./FO2.png}
+l.377     \includegraphics[scale=0.4]{./FO2.png}
                                                 
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: File `./CircuitoFO3.png' not found on input line 349.
+LaTeX Warning: File `./CircuitoFO3.png' not found on input line 385.
 
 
 ! Package pdftex.def Error: File `./CircuitoFO3.png' not found.
@@ -899,14 +940,14 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.349 ...udegraphics[scale=0.5]{./CircuitoFO3.png}
+l.385 ...udegraphics[scale=0.5]{./CircuitoFO3.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: File `./FO3.png' not found on input line 359.
+LaTeX Warning: File `./FO3.png' not found on input line 395.
 
 
 ! Package pdftex.def Error: File `./FO3.png' not found.
@@ -915,39 +956,40 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.359     \includegraphics[scale=0.4]{./FO3.png}
+l.395     \includegraphics[scale=0.4]{./FO3.png}
                                                 
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-
-LaTeX Warning: Reference `eqn:Beta2' on page 6 undefined on input line 405.
-
-
-LaTeX Warning: Reference `fig:DC_Comp' on page 6 undefined on input line 405.
-
-
-LaTeX Warning: Reference `fig:CC' on page 6 undefined on input line 406.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 405--408
-
- []
-
 [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 409--410
+
+LaTeX Warning: Reference `eqn:Beta2' on page 8 undefined on input line 441.
+
+
+LaTeX Warning: Reference `fig:DC_Comp' on page 8 undefined on input line 441.
+
+
+LaTeX Warning: Reference `fig:CC' on page 8 undefined on input line 442.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 441--444
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 416.
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 445--446
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 452.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 416.
- [8]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 452.
+
 
 AED: lastpage setting LastPage
 [9]
@@ -963,15 +1005,18 @@ Package natbib Warning: Citation(s) may have changed.
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 4572 strings out of 494985
- 59628 string characters out of 6180356
- 141716 words of memory out of 5000000
- 7672 multiletter control sequences out of 15000+600000
+ 4576 strings out of 494985
+ 59664 string characters out of 6180356
+ 140792 words of memory out of 5000000
+ 7676 multiletter control sequences out of 15000+600000
  11020 words of font info for 41 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 38i,19n,45p,923b,408s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,19n,43p,923b,323s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texl
@@ -984,7 +1029,7 @@ msfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 ti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pf
 b>
-Output written on Tarea2.pdf (9 pages, 167649 bytes).
+Output written on Tarea2.pdf (9 pages, 169187 bytes).
 PDF statistics:
  84 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream

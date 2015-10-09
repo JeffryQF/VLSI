@@ -254,19 +254,87 @@ Utilizando la ec.\ref{eqn:k_Inv}, se puede encontrar la capacitancia de entrada 
 
 \begin{equation}\label{eqn:k_Inv}
 {C_{in}}_{i}= \frac{C_{out}_{i}*g_{i}}{F^{\frac{1}{N}}}
+\end{equation}
+
+\begin{equation}\label{eqn:k_Inv2}
+{C_{in}}_{i}= \frac{500\lambda*1}{5.777} = 86.6\lambda \cong 87\lambda
 \end{equation}\\
+
+Y sabiendo que el ancho del transistor \textit{PMOS} es el doble del de un transistor \textit{NMOS} en un inversor se obtiene que:\\
+
+\begin{equation}\label{eqn:k4}
+k_p + k_n = 87\lambda
+\end{equation}
+
+\begin{equation}\label{eqn:k5}
+3k_n = 87\lambda
+\end{equation}
+
+\begin{equation}\label{eqn:k6}
+k_n = 29\lambda ; k_p = 58\lambda
+\end{equation}\\
+
+En la fig. se muestra la compuerta a nivel de transistores, cada uno con su respectivo valor de ancho de canal correspondiente.\\
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.5]{./Comp_Transistores.png}
+    \rule{35em}{0.5pt}
+  \caption[IdealvsSim]{Compuerta \textit{OAI-21} con carga.}
+  \label{fig:Comp_Transistores}
+\end{figure}\\
 
 
 \subsubsection{Método de Aproximación de Elmore}
 
-Ahora se calcula el delay de propagación y el delay de contaminación de la compuerta \textit{F=(A+B)(C+D)} mediante el método de \textit{Aproximación de Elmore}, el cuál se hace valer del modelo RC del transistor, para calcular los delays de una compuerta. El modelo de delay de \textit{Elmore} estima el restraso desde una fuente conmutando a uno de los nodos hoja cambiantes como la suma sobre cada nodo \textit{i} de la capacitancia \textit{$C_{i}$} en el nodo, multiplicado por la resistencia efectiva \textit{$R_{is}$} en el camino compartido desde la fuente hasta el nodo y la hoja, dando como resultado la ec.\ref{eqn:Elmore}:
+Ahora se calcula el delay de propagación y el delay de contaminación de la compuerta \textit{F=(A+B)(C+D)} mediante el método de \textit{Aproximación de Elmore}, el cuál parte del modelo RC del transistor, para calcular los delays de una compuerta. El modelo de delay de \textit{Elmore} estima el restraso desde una fuente conmutando a uno de los nodos hoja cambiantes como la suma sobre cada nodo \textit{i} de la capacitancia \textit{$C_{i}$} en el nodo, multiplicado por la resistencia efectiva \textit{$R_{is}$} en el camino compartido desde la fuente hasta el nodo y la hoja, dando como resultado la ec.\ref{eqn:Elmore}:
 
 \begin{equation}\label{eqn:Elmore}
 t_{pd} = \sum_{i} R_{is}C_{i}
 \end{equation}\\
 
 
-En la fig.\ref{fig:ModeloRC_Completo} se muestra el modelo RC completo de la compuerta,
+En la fig.\ref{fig:ModeloRC_Completo} se muestra el modelo RC completo de la compuerta, con sus capacitancias y resistencias, para la compuerta \textit{OAI-21} y para el inversor en la salida.\\
+
+%IMAGEN DE MODELO RC
+
+Para este modelo se calculan el mejor y el peor caso para el delay, por lo que en las siguientes secciones se presentaran los cálculos y los circuitos \textit{RC} de cada caso.\\
+
+\subsubsection{Red de Pull-Up}
+
+Antes de calcular el mejor y el pesor caso de subida, primero se calcula el retraso provocado por el inversor a la salida, ya que este sera el mismo para el mejor y el peor caso de subida y de bajada. En la fig. se muestra el modelo RC del inversor de este problema.\\
+
+%IMAGEN RC INVERSOR
+
+Con este circuito se calcula el delay utilizando la ec.\ref{eqn:Elmore}, obteniendo como resultado que el delay del inversor para el caso de subida y bajada es:\\
+
+\begin{equation}\label{eqn:Elmore_Inv}
+t_{pd} = \frac{R}{29}(500 + 87)C = \frac{587RC}{29} = 20.24RC
+\end{equation}\\
+
+Con el delay del inversor calculado en la \textit{Ec.\ref{eqn:Elmore_Inv}}, se procede a realizar los calculos para el mejor y peor caso de delay de subida.\\
+
+En la \textit{Fig.} se observa que el mejor caso ocurre cuando todos los transistores de la red de \textit{pull-up} se encuentran encendidos, o dos transistores están encendidos en la red de \textit{pull-up}, A y B, y los dos transistores mas interiores de la red de \textit{pull-down}, A y B, están apagados, con lo que la red de \textit{pull-down} no contribuye al delay en ambos casos. En la \textit{Ec.\ref{eqn:Elmore_tpdr_Mejor}} se muestra el cálculo del delay para el mejor caso de levantamiento:\\
+
+%Imagen mejor caso rise
+
+\begin{equation}\label{eqn:Elmore_tpdr_Mejor}
+t_{pdr} = \frac{20RC}{10} + \frac{147*2RC}{10} + t_{pdInv}= 31.4RC + 20.24RC = 51.64RC = 17.213\tau
+\end{equation}\\
+
+En la \textit{Fig.} se observa que el peor caso ocurre cuando solo dos transistores se encendidos, C y D, y uno o los dos transistores mas interiores de la red de \textit{pull-down} están también encendidos, por lo que la red de \textit{pull-down} contribuye al delay. En la \textit{Ec.\ref{eqn:Elmore_tpdr_Peor}} se muestra el cálculo del delay para el peor caso de levantamiento:\\
+
+\begin{equation}\label{eqn:Elmore_tpdr_Peor}
+t_{pdr} = \frac{20RC}{10}+\frac{20RC}{5}+\frac{147RC}{5}+t_{pdInv}= 35.4RC + 20.24RC = 55.64RC = 18.546\tau
+\end{equation}\\
+
+
+
+
+
+
+
+
 \subsubsection{Carga y descarga de un capacitor}
 
 Para el cálculo de las resistencias de canal de cada transistor, se utilizo una capacitancia de carga y descarga de \textit{1pF}, se montaron los circuitos de las figuras \ref{fig:R_PMOS} y \ref{fig:R_NMOS} en el software \textit{Electric} y se simularon los resultados en  \textit{LTSpice}, obteniendo las curvas que se observan en las figuras \ref{fig:Grafica_R_PMOS} y \ref{fig:Grafica_R_NMOS}, para el caso de carga y descarga, respectivamente.\\
@@ -286,6 +354,7 @@ Para el cálculo de las resistencias de canal de cada transistor, se utilizo una
   \caption[C_Descarga]{Circuito de Descarga de Capacitor.}
   \label{fig:R_NMOS}
 \end{figure}
+
 
 \begin{figure}[htbp]
   \centering
