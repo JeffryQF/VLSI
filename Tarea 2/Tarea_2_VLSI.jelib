@@ -8,7 +8,7 @@ Vschematic|sch
 Tmocmos|ScaleFORmocmos()D300.0|mocmosAnalog()BT|mocmosNumberOfMetalLayers()I3
 
 # Cell Or-Or-And-Inv;1{sch}
-COr-Or-And-Inv;1{sch}||schematic|1444075601855|1444321515404|
+COr-Or-And-Inv;1{sch}||schematic|1444075601855|1444368983847|
 Ngeneric:Facet-Center|art@0||0|0||||AV
 NOff-Page|conn@0||-39|-8.5||||
 NOff-Page|conn@4||38|-3||||
@@ -45,6 +45,10 @@ Ngeneric:Invisible-Pin|pin@27||1|-38.5|||||SIM_spice_card(D5G2.5;)S[Vdd vdd 0 DC
 NWire_Pin|pin@28||-25|-23||||
 NWire_Pin|pin@29||-25|-18.5||||
 NWire_Pin|pin@30||-31|-14.5||||
+Ngeneric:Invisible-Pin|pin@31||10|-7|||||ART_message(D5G2;)SB
+Ngeneric:Invisible-Pin|pin@32||-7|-7|||||ART_message(D5G2;)SA
+Ngeneric:Invisible-Pin|pin@33||-7|-17|||||ART_message(D5G2;)SC
+Ngeneric:Invisible-Pin|pin@34||10.5|-17|||||ART_message(D5G2;)SD
 NTransistor|pmos@0||-7|15|||R|2|ATTR_length(D5G0.5;X-0.5;Y-1;)S2|ATTR_width(D5G1.5;Y-3.5;)D18.88|SIM_spice_model(D5G1;X-1.5;Y-3.5;)SPMOS
 NTransistor|pmos@1||10|15|||XR|2|ATTR_length(D5G0.5;X-0.5;Y-1;)S2|ATTR_width(D5G1.5;Y-3.5;)D18.88|SIM_spice_model(D5G1;X-1.5;Y-3.5;)SPMOS
 NTransistor|pmos@2||-7|6.5|||R|2|ATTR_length(D5G0.5;X-0.5;Y-1;)S2|ATTR_width(D5G1.5;Y-3.5;)D18.88|SIM_spice_model(D5G1;X1.5;Y-3.5;)SPMOS
