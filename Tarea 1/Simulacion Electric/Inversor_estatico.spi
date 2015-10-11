@@ -1,19 +1,19 @@
 *** SPICE deck for cell Inversor_estatico{sch} from library Tarea_1_VLSI
 *** Created on mar sep 01, 2015 23:17:26
-*** Last revised on sáb sep 19, 2015 09:36:55
-*** Written on sáb sep 19, 2015 09:37:00 by Electric VLSI Design System, version 9.06
+*** Last revised on sáb oct 10, 2015 19:10:56
+*** Written on sáb oct 10, 2015 19:11:00 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 
 .global gnd vdd
 
 *** TOP LEVEL CELL: Inversor_estatico{sch}
-Mnmos@0 out in gnd gnd NMOS L=0.6U W=1.2U
-Mpmos@0 vdd in out vdd PMOS L=0.6U W=1.8U
+Mnmos@0 out in gnd gnd NMOS L=0.6U W=3.333U
+Mpmos@0 vdd in out vdd PMOS L=0.6U W=5.664U
 
 * Spice Code nodes in cell cell 'Inversor_estatico{sch}'
-vdd vdd 0 DC 3.3
-vin in 0 DC 0
-.dc vin 0 3.3 1m
-.include C:\Users\Francis\Documents\GitHub\VLSI\Simulacion Electric\Mosis_5.txt
+Vdd vdd 0 DC 3.3
+Vin in 0 PULSE(0 3.3 0 0 0 1n 2n 2)
+.tran 1n 4n
+.include C:\Users\Francis\Desktop\Electric (VLSI)\Mosis_5.txt
 .END

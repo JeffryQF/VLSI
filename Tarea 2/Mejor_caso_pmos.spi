@@ -1,0 +1,27 @@
+*** SPICE deck for cell Mejor_caso_pmos{sch} from library Tarea_2_VLSI
+*** Created on lun oct 05, 2015 14:06:41
+*** Last revised on dom oct 11, 2015 11:10:07
+*** Written on dom oct 11, 2015 11:10:14 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+
+.global gnd vdd
+
+*** TOP LEVEL CELL: Mejor_caso_pmos{sch}
+Mnmos@0 _F A net@13 gnd NMOS L=0.6U W=6.666U
+Mnmos@1 _F gnd net@13 gnd NMOS L=0.6U W=6.666U
+Mnmos@2 net@13 vdd gnd gnd NMOS L=0.6U W=6.666U
+Mnmos@3 net@13 vdd gnd gnd NMOS L=0.6U W=6.666U
+Mnmos@4 F _F gnd gnd NMOS L=0.6U W=9.666U
+Mpmos@0 vdd gnd net@3 vdd PMOS L=0.6U W=11.328U
+Mpmos@1 vdd vdd net@67 vdd PMOS L=0.6U W=11.328U
+Mpmos@2 net@3 A _F vdd PMOS L=0.6U W=11.328U
+Mpmos@3 net@67 vdd _F vdd PMOS L=0.6U W=11.328U
+Mpmos@4 vdd _F F vdd PMOS L=0.6U W=16.431U
+
+* Spice Code nodes in cell cell 'Mejor_caso_pmos{sch}'
+Vdd vdd 0 DC 3.3
+Vin A 0 PULSE(0 3.3 0 0 0 1n 2n 2)
+.tran 1n 4n
+.include C:\Users\Francis\Desktop\Electric (VLSI)\Mosis_5.txt
+.END

@@ -79,14 +79,13 @@
 
 \section{Resumen.} 
 
-En este documento se presentan los cálculos de los tiempos de propagación y contaminación de la compuerta compuesta
-\textit{F=(A+B)(C+D)}, obteniendo estos tiempos de manera analítica, mediante la teoría de esfuerzo lógico y la aproximación de Elmore, así como mediante simulación, utilizando los software \textit{Electric} y \textit{LTSpice}, y por último contrastando los resultados de ambos métodos. Tambien se muestra el diseño de un trazado que usa una única tira de difusión en ambos pozos, construyendo los \textit{caminos de Euler}, y dibujando el diagrama de palitos que muestra el orden de entradas, poly, las difusiones \textit{n} y \textit{p}, el pozo y las líneas de metal.
+En este documento se presentan los resultados del diseño del esquemático y trazado de una compuerta OAI-22 + INV. Este diseño incluye la dimensión de los transistores a partir de la teoría de esfuerzo lógico y se comparará con la aproximación de Elmore para comprobar su veracidad en los cálculos.
 
 \section{Introducción.} 
 
 Para el diseño de una compuerta de lógica CMOS o un conjunto de las mismas, es necesario tomar varias consideraciones para los anchos de canal de los transistores, ya sean para una optimización en potencia o para una rápida conmutación entre los niveles lógicos. En estos se debe incluir la carga que debe soportar  para que los tiempos de retardo no afecten el comportamiento ideal del circuito.
 
-Para la demostración de los pasos de diseño de una función lógica, se nos ha pedido diseñar el esquemático y el layout de la función lógica del problema 9.4 de [1] que es \textit{F=(A+B)(C+D)}. El esquemático deberá realizarse con lógica CMOS estática.
+Para la demostración de los pasos de diseño de una función lógica, se nos ha pedido diseñar el esquemático y el layout de la función lógica del problema 9.4 de [1] que es \textit{F=(A+B)*(C+D)}. El esquemático deberá realizarse con lógica CMOS estática.
 
 Luego se procederá a calcular el retardo de propagación y contaminación que presenta la función, tanto de manera analítica con la aproximación de Elmore como con la teoría de esfuerzo lógico, que se evaluará con una simulación en los software \textit{Electric} y \textit{LTSpice} para saber si con este método se puede llegar a una aproximación bastante certera de los tiempos de retardo.
 
@@ -97,38 +96,29 @@ Por último, se realizada el layout del circuito y se volverá a realizar la sim
 
 \subsection{Diseño del trazado de una Compuerta y Diagrama de Palitos.}
 
+
 \subsubsection{Parte 1}
 
+Se tiene la función lógica \ref{eqn:logica} que deberá crearse el esquemático y el trazado. Esta función lógica es conocida como OAI-22 + INV. Para el diseño de la compuerta se utilizó algebra booleana y se obtuvo la ecuación \ref{eqn:logica inversa}.
+
+\begin{equation}\label{eqn:logica}
+F=(A+B)*(C+D)
+\end{equation}
+
+\begin{equation}\label{eqn:logica inversa}
+~F=~(A+B)+~(C+D)
+\end{equation}
 
 
-
-\begin{table}\label{table:Tabla_polarizacion}
-\begin{center}
-\begin{tabular}{c||c||c||c}
-Numero & Rango entrada & Región PMOS & Región NMOS\\
-\hline
-\hline
-1 & $V_{in}<V_{tn}$ & Lineal & Corte \\
-2 & $V_{tn}<=V_{in}<V_{inv}$ & Lineal & Saturación \\
-3 & $V_{in}=V_{inv}$ & Saturación & Saturación\\
-4 & $V_{inv}<V_{in}<=V_{dd}+V_{tp}$ & Saturación & Lineal\\
-5 & $V_{in}>V_{dd}+V_{tp}$ & Corte & Lineal\\
-\hline
-\end{tabular}
-\caption{Regiones inversor CMOS Vin vs Vout}
-\end{center}
-\end{table}
-
+Para lo cual se hizo el esquemático mostrado en la figura \ref{fig:OAI21_Cargas} y se hizo el diagrama de palitos mostrado en la figura \ref{fig:palitos). En este diagrama se tiene dibujado tanto la compuerta OAI22 como el inversor para cambiar el nivel lógico a la salida.
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.2]{./Inv_16lam.png}
+    \includegraphics[scale=0.2]{./Palitos.png}
     \rule{35em}{0.5pt}
-  \caption[IdealvsSim]{Graficas \textit{Octate} Ideal vs Simulacion \textit{Electric}}
+  \caption[IdealvsSim]{Diagrama de palitos de la función OAI22 + INV}
   \label{fig:inv_est}
 \end{figure}
-
-Para la simulación experimental, se usó el programa \textit{Electric}. En esta simulación se utilizó el archivo \textit{Mosis\_5} para las constantes de la tecnología MOSIS 0.5. Ya realizada la simulación del inversor (fig.\ref{fig:inv_est2}) con la relación de ancho de canal calculado anteriormente encontramos que la proporción de regiones en el inversor no es la esperada, por lo que se decidió volver a dimensionar el ancho de los canales con respecto a las simulaciones y encontramos que de manera experimental la relación correcta es \textit{r=1.575}. 
 
 
 
@@ -273,51 +263,84 @@ t_{pd} = \sum_{i} R_{is}C_{i}
 
 
 En la fig.\ref{fig:ModeloRC_Completo} se muestra el modelo RC completo de la compuerta,
-\subsubsection{Carga y descarga de un capacitor}
+\subsubsection{Simulación retardos de propagación}
 
-Para el cálculo de las resistencias de canal de cada transistor, se utilizo una capacitancia de carga y descarga de \textit{1pF}, se montaron los circuitos de las figuras \ref{fig:R_PMOS} y \ref{fig:R_NMOS} en el software \textit{Electric} y se simularon los resultados en  \textit{LTSpice}, obteniendo las curvas que se observan en las figuras \ref{fig:Grafica_R_PMOS} y \ref{fig:Grafica_R_NMOS}, para el caso de carga y descarga, respectivamente.\\
+A partir de la ecuación \ref{eqn:logica} y de las constantes calculadas y encontradas en el informe anterior para el dimensionamiento de los transistores para tiempos de retardo y levantamiento simétrico de los niveles lógicos encontramos que para una carga de entrada de $30\lambda$ y una carga de salida de $500\lambda$ se encontró que el ancho de canal de los transistores equivalentes son los mostrados el la tabla \ref{table:ancho canal} y el circuito es el mostrado en la figura \ref{fig:circuito_E}.
+
+
+\begin{table}\label{table:ancho canal}
+\begin{center}
+\begin{tabular}{c||c||c}
+  & Ancho nmos ($\lambda$) & Ancho pmos ($\lambda$)\\
+\hline
+\hline
+OAI22 & 11.11 & 18.88 \\
+Inv & 32.22 & 58.17 \\
+\hline
+\end{tabular}
+\caption{Anchos de canal dimensionados para el OAI22+inv}
+\end{center}
+\end{table}
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.3]{./R_PMOS.png}
-    \rule{35em}{0.3pt}
-  \caption[C_Carga]{Circuito de Carga de Capacitor.}
-  \label{fig:R_PMOS}
+    \includegraphics[scale=0.5]{./Circuito electric.png}
+    \rule{35em}{0.5pt}
+  \caption[IdealvsSim]{Compuerta \textit{Circuito simulado en el eléctric}
+  \label{fig:circuito_E}
+\end{figure}\\
+
+\begin{figure}[htbp]
+\begin{center}
+    \includegraphics[scale=0.5]{./mejor caso red nmos.png}
+    \rule{35em}{0.5pt}
+  \caption[Captura]{Gráfica para mejor caso del NMOS}
+  \label{fig:CircuitoFO2}
+  \end{center}
 \end{figure}
 
 \begin{figure}[htbp]
-  \centering
-  	\includegraphics[scale=0.3]{./R_NMOS.png}
-    \rule{35em}{0.3pt}
-  \caption[C_Descarga]{Circuito de Descarga de Capacitor.}
-  \label{fig:R_NMOS}
+\begin{center}
+    \includegraphics[scale=0.5]{./peor caso red nmos.png}
+    \rule{35em}{0.5pt}
+  \caption[Captura]{Gráfica para peor caso del NMOS}
+  \label{fig:CircuitoFO2}
+  \end{center}
 \end{figure}
 
 \begin{figure}[htbp]
-  \centering
-    \includegraphics[scale=0.3]{./Grafica_R_PMOS.png}
-   \rule{35em}{0.3pt}
-  \caption[G_Carga]{Grafica de comportamiento de $\textit{I}_{\textit{d}}$ durante la carga del Capacitor.}
-  \label{fig:Grafica_R_PMOS}
+\begin{center}
+    \includegraphics[scale=0.5]{./mejor caso red pmos.png}
+    \rule{35em}{0.5pt}
+  \caption[Captura]{Gráfica para mejor caso del PMOS}
+  \label{fig:CircuitoFO2}
+  \end{center}
 \end{figure}
+
 
 \begin{figure}[htbp]
- \centering
-    \includegraphics[scale=0.3]{./Grafica_R_NMOS.png}
-    \rule{35em}{0.3pt}
-  \caption[G_Descarga]{Grafica de comportamiento de $\textit{I}_{\textit{d}}$ durante la descarga del Capacitor.}
-  \label{fig:Grafica_R_NMOS}
+\begin{center}
+    \includegraphics[scale=0.5]{./peor caso red nmos.png}
+    \rule{35em}{0.5pt}
+  \caption[Captura]{Gráfica para peor caso del PMOS}
+  \label{fig:CircuitoFO2}
+  \end{center}
 \end{figure}
 
-Utilizando un pequeño script en \textit{Octave}, se procesan los puntos obtenidos en estas graficas y se calculan la resistencias de canal promedio de cada transistor, obteniendo los siguientes resultados:
+\begin{table}\label{table:Tabla_propagación}
+\begin{center}
+\begin{tabular}{c||c||c}
+  & Mejor tiempo (ps) & Peor tiempo (ps)\\
+\hline
+\hline
+tr & 79.4 & 147.4 \\
+tf & 58.6 & 129.5 \\
+\hline
+\end{tabular}
+\caption{Tiempos de retardo de propagación simulados en Electric}
+\end{center}
+\end{table}
 
-\begin{equation}\label{eqn:R_PMOS}
-Req_P = 8.7860k\Omega
-\end{equation}
-
-\begin{equation}\label{eqn:R_NMOS}
-Req_N = 2.6919k\Omega
-\end{equation}
 
 \subsubsection{Método de Fanout}
 
