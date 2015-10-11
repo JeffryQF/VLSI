@@ -79,48 +79,45 @@
 
 \section{Resumen.} 
 
-En este documento se presentan los resultados del diseño del esquemático y trazado de una compuerta OAI-22 + INV. Este diseño incluye la dimensión de los transistores a partir de la teoría de esfuerzo lógico y se comparará con la aproximación de Elmore para comprobar su veracidad en los cálculos.
+En este documento se presentan los cálculos de los tiempos de propagación y contaminación de la compuerta compuesta
+\textit{F=(A+B)(C+D)}, obteniendo estos tiempos de manera analítica, mediante la teoría de esfuerzo lógico y la aproximación de Elmore, así como mediante simulación, utilizando los software \textit{Electric} y \textit{LTSpice}, y por último contrastando los resultados de ambos métodos. Tambien se muestra el diseño de un trazado que usa una única tira de difusión en ambos pozos, construyendo los \textit{caminos de Euler}, y dibujando el diagrama de palitos que muestra el orden de entradas, poly, las difusiones \textit{n} y \textit{p}, el pozo y las líneas de metal.\\
 
 \section{Introducción.} 
 
-Para el diseño de una compuerta de lógica CMOS o un conjunto de las mismas, es necesario tomar varias consideraciones para los anchos de canal de los transistores, ya sean para una optimización en potencia o para una rápida conmutación entre los niveles lógicos. En estos se debe incluir la carga que debe soportar  para que los tiempos de retardo no afecten el comportamiento ideal del circuito.
+Para el diseño de una compuerta de lógica CMOS o un conjunto de las mismas, es necesario tomar varias consideraciones para los anchos de canal de los transistores, ya sean para una optimización en potencia o para una rápida conmutación entre los niveles lógicos. En estos se debe incluir la carga que debe soportar  para que los tiempos de retardo no afecten el comportamiento ideal del circuito.\\
 
-Para la demostración de los pasos de diseño de una función lógica, se nos ha pedido diseñar el esquemático y el layout de la función lógica del problema 9.4 de [1] que es \textit{F=(A+B)*(C+D)}. El esquemático deberá realizarse con lógica CMOS estática.
+Para la demostración de los pasos de diseño de una función lógica, se nos ha pedido diseñar el esquemático y el layout de la función lógica del problema 9.4 de [1] que es \textit{F=(A+B)(C+D)}. El esquemático deberá realizarse con lógica CMOS estática.\\
 
-Luego se procederá a calcular el retardo de propagación y contaminación que presenta la función, tanto de manera analítica con la aproximación de Elmore como con la teoría de esfuerzo lógico, que se evaluará con una simulación en los software \textit{Electric} y \textit{LTSpice} para saber si con este método se puede llegar a una aproximación bastante certera de los tiempos de retardo.
+Luego se procederá a calcular el retardo de propagación y contaminación que presenta la función, tanto de manera analítica con la aproximación de Elmore como con la teoría de esfuerzo lógico, que se evaluará con una simulación en los software \textit{Electric} y \textit{LTSpice} para saber si con este método se puede llegar a una aproximación bastante certera de los tiempos de retardo.\\
 
-Por último, se realizada el layout del circuito y se volverá a realizar la simulación para definir los pitch que se usarán en la proxima tarea.
+Por último, se realizada el layout del circuito y se volverá a realizar la simulación para definir los \textit{pitch} que se usarán en la proxima tarea.\\
 
 \section{Resultados Experimentales.}
 
 
-\subsection{Diseño del trazado de una Compuerta y Diagrama de Palitos.}
+\subsection{Diseño del Trazado de una Compuerta y Diagrama de Palitos.}
 
 
-\subsubsection{Parte 1}
-
-Se tiene la función lógica \ref{eqn:logica} que deberá crearse el esquemático y el trazado. Esta función lógica es conocida como OAI-22 + INV. Para el diseño de la compuerta se utilizó algebra booleana y se obtuvo la ecuación \ref{eqn:logica inversa}.
+La función lógica a la que se le realizara el trazado y el \texti{Diagrama de Palitos} es la mostrada en la \textit{Ec.\ref{eqn:logica}}. Esta función lógica es conocida como OAI-22 + INV. Para el diseño de la compuerta se utilizó algebra booleana y se obtuvo la \textit{Ec.\ref{eqn:logica inversa}}.\\
 
 \begin{equation}\label{eqn:logica}
 F=(A+B)*(C+D)
 \end{equation}
 
 \begin{equation}\label{eqn:logica inversa}
-~F=~(A+B)+~(C+D)
-\end{equation}
+\overline{F}=\overline{(A+B)}+\overline{(C+D)}
+\end{equation}\\
 
 
-Para lo cual se hizo el esquemático mostrado en la figura \ref{fig:OAI21_Cargas} y se hizo el diagrama de palitos mostrado en la figura \ref{fig:palitos). En este diagrama se tiene dibujado tanto la compuerta OAI22 como el inversor para cambiar el nivel lógico a la salida.
+Para lo cual se hizo el esquemático mostrado en la \textit{Fig.\ref{fig:Comp_Transistores}} y se hizo el \textit{Diagrama de Palitos} mostrado en la \textit{Fig.\ref{fig:inv_est}}. En este diagrama se dibujaron tanto la compuerta \textit{OAI22} como el \textit{Inversor} para cambiar el nivel lógico a la salida, por lo que se observa mas de una tira de difusión en la parte inferior, resultado de la inclusión del \textit{Inversor} en el diagrama.\\
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.2]{./Palitos.png}
+    \includegraphics[scale=0.4]{./Palitos.png}
     \rule{35em}{0.5pt}
   \caption[IdealvsSim]{Diagrama de palitos de la función OAI22 + INV}
   \label{fig:inv_est}
 \end{figure}
-
-
 
 
 \subsection{Delay de Propagación y de Contaminación.}
@@ -133,7 +130,7 @@ El cálculo de los tiempos de propagación y de contaminación se realiza hacien
 
 El esfuerzo lógico se define como \textit{"la razón de la capacitancia del gate a la capacitancia de entrada de un inversor que puede entregar la misma corriente de salida."}, e indica que tan mala es una compuerta produciendo una corriente de salida comparada con un inversor.\\
 
-Para el cálculo del delay por medio de la teoría de esfuerzo lógico, se utilizan las formulas del calculo del delay en redes lógicas multi-etapa, \textit{Multistage Logical Network}, que utiliza las siguientes formulas pára el cálculo del delay:\\
+Para el cálculo del delay por medio de la teoría de esfuerzo lógico, se utilizan las formulas del cálculo del delay en redes lógicas con multiples etapas, \textit{Multistage Logical Network}, que utiliza las siguientes formulas para el cálculo del delay:\\
 
 \begin{equation}\label{eqn:esfuerzo_logico}
 G= \prod g_{i}
@@ -161,7 +158,7 @@ D = NF^{\frac{1}{N}} + P
 
 En donde \textit{G} es el esfuerzo lógico, \textit{H} es el esfuerzo eléctrico, \textit{B} el esfuerzo de enramado, \textit{F} es el esfuerzo total, \textit{P} es el delay parasítico del camino, \textit{N} es la cantidad de estapas del camino y \textit{D} es el delay total del camino.\\
 
-La función \textit{F=(A+B)(C+D)} se puede representar a nivel de compuerta como se muestra en la fig.\ref{fig:OAI21} , donde se observa que la compuerta es del tipo OR-OR-AND-INV + INVERSOR, \textit{OAI-21 + inverter}, y a partir de aqui se calcula el esfuerzo lógico de camino.\\
+La función \textit{F=(A+B)(C+D)} se puede representar a nivel de compuerta como se muestra en la \textit{Fig.\ref{fig:OAI21}} , donde se observa que la compuerta es del tipo OR-OR-AND-INV + INVERSOR, \textit{OAI-21 + inverter}, y a partir de aqui se calcula el esfuerzo lógico de camino.\\
 
 \begin{figure}[htbp]
   \centering
@@ -169,17 +166,17 @@ La función \textit{F=(A+B)(C+D)} se puede representar a nivel de compuerta como
     \rule{35em}{0.5pt}
   \caption[IdealvsSim]{Compuerta \textit{OAI-21}.}
   \label{fig:OAI21}
-\end{figure}\\
+\end{figure}
 
-Para realizar los cálculos del esfuerzo de camino de esta función, se debe tomar en cuenta que cada entrada presenta como maximo 30$\lambda$ de ancho de transistor, y que la salida debe de manejar una carga equivalente de 500$\lambda$ de ancho de transistor, como se muestra en la fig.\ref{fig:OAI21_Cargas}. Se puede observar que en este caso el número de etapas, \textit{N}, es igual a 2, por lo que haciendo uso de las ecuaciones \ref{eqn:esfuerzo_logico}, \ref{eqn:esfuerzo_electrico}, \ref{eqn:esfuerzo_enramado}, \ref{eqn:esfuerzo}, \ref{eqn:delay_parasitico}, \ref{eqn:delay}, se puede encontrar el delay mediante la teoría de esfuerzo lógico de cada entrada bajo estas condiciones de carga.\\
+Para realizar los cálculos del esfuerzo de camino de esta función, se debe tomar en cuenta que cada entrada presenta como maximo 30$\lambda$ de ancho de transistor, y que la salida debe de manejar una carga equivalente de 500$\lambda$ de ancho de transistor, como se muestra en la \textit{Fig.\ref{fig:OAI21_Cargas}}. Se puede observar que en este caso el número de etapas, \textit{N}, es igual a 2, por lo que haciendo uso de las ecuaciones \textit{\ref{eqn:esfuerzo_logico}, \ref{eqn:esfuerzo_electrico}, \ref{eqn:esfuerzo_enramado}, \ref{eqn:esfuerzo}, \ref{eqn:delay_parasitico}, \ref{eqn:delay}}, se puede encontrar el delay mediante la teoría de esfuerzo lógico de cada entrada bajo estas condiciones de carga.\\
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.5]{./OAI21_Cargas.png}
+    \includegraphics[scale=0.4]{./OAI21_Cargas.png}
     \rule{35em}{0.5pt}
-  \caption[IdealvsSim]{Compuerta \textit{OAI-21} con carga.}
+  \caption[IdealvsSim]{Compuerta \textit{OAI-21} con Carga.}
   \label{fig:OAI21_Cargas}
-\end{figure}\\
+\end{figure}
 
 
 \begin{equation}\label{eqn:esfuerzo_logico2}
@@ -208,15 +205,15 @@ D = NF^{\frac{1}{N}} + P = 2*(\frac{100}{3})^{\frac{1}{2}} + 5 = 16.54\tau
 
 El cálculo de los tiempos arroja como resultado que cada entrada de esta compuerta tendrá un delay de \textit{16.54$\tau$}.\\
 
-Con el valor de delay calculado se puede proceder a dimensionar los transistores que conforman la compuerta. En la fig.\ref{fig:Comp_Transistores} se muestra la compuerta compuesta a nivel de transistores, sin dimensionar.\\
+Con el valor de delay calculado se puede proceder a dimensionar los transistores que conforman la compuerta. En la \textit{Fig.\ref{fig:Comp_Transistores}} se muestra la compuerta compuesta a nivel de transistores, sin dimensionar.\\
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.5]{./Comp_Transistores.png}
+    \includegraphics[scale=0.45]{./Comp_Transistores.png}
     \rule{35em}{0.5pt}
-  \caption[IdealvsSim]{Compuerta \textit{OAI-21} con carga.}
+  \caption[IdealvsSim]{Esquemático de la Compuerta \textit{F=(A+B)(C+D)} a nivel de transistores sin dimensionar.}
   \label{fig:Comp_Transistores}
-\end{figure}\\
+\end{figure}
 
 Para dimensionar los transistores de cada entrada, se toma en cuenta el modelo RC del transistor. Sabiendo que la resitencia de la red \textit{PMOS} debe ser igual a la de la red \textit{NMOS}, y que cada entrada presenta como maximo 30$\lambda$ de ancho de transistor se obtiene que:\\
 
@@ -228,7 +225,7 @@ Para dimensionar los transistores de cada entrada, se toma en cuenta el modelo R
 k_p + k_n = 30\lambda
 \end{equation}\\
 
-Donde \textit{$k_{p}$} y \textit{$k_{n}$} son los anchos de los tansistores p y n de cada entrada. Con este sistema de ecuaciones se obtiene que:
+Donde \textit{$k_{p}$} y \textit{$k_{n}$} son los anchos de los tansistores \textit{p} y \textit{n} de cada entrada. Con este sistema de ecuaciones se obtiene que:
 
 \begin{equation}\label{eqn:R1}
 k_p = 2k_n
@@ -246,29 +243,216 @@ k_p + k_n = 30\lambda
 k_n = 10\lambda ; k_p = 20\lambda
 \end{equation}\\
 
-Utilizando la ec.\ref{eqn:k_Inv}, se puede encontrar la capacitancia de entrada del inversor, como se muestra a continuación:\\
+Utilizando la \textit{Ec.\ref{eqn:k_Inv}}, se puede encontrar la capacitancia de entrada del inversor, como se muestra a continuación:\\
 
 \begin{equation}\label{eqn:k_Inv}
-{C_{in}}_{i}= \frac{C_{out}_{i}*g_{i}}{F^{\frac{1}{N}}}
+C_{ini}= \frac{C_{outi}*g_{i}}{F^{\frac{1}{N}}}
+\end{equation}
+
+\begin{equation}\label{eqn:k_Inv2}
+{C_{in}}_{i}= \frac{500\lambda*1}{5.777} = 86.6\lambda = 87\lambda
 \end{equation}\\
 
+Sabiendo que la resistencia en la red de \textit{pull-up} es el doble que la de la red de \textit{pull-down} en el inversor de la salida, se puede encontrar las dimensiones de los anchos de los transistores en dicho inversor.\\
+
+\begin{equation}\label{eqn:k_Inv3}
+k_p=2k_n
+\end{equation}
+
+\begin{equation}\label{eqn:k_Inv4}
+3k_n=87\lambda
+\end{equation}
+
+\begin{equation}\label{eqn:k_Inv5}
+k_n=29\lambda ; k_p=58\lambda 
+\end{equation}\\
+
+En la \textit{Fig.\ref{fig:Comp_Transistores_Dim}} se muestra la compuerta a nivel de transistores, cada uno con su respectivo valor de ancho de canal correspondiente.\\
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.45]{./Comp_Transistores_Dim.png}
+    \rule{35em}{0.5pt}
+  \caption[Delay]{Esquemático de la Compuerta \textit{F=(A+B)(C+D)} a nivel de transistores con sus respectivas dimensiones, \textit{L=2$\lambda$}.}
+  \label{fig:Comp_Transistores_Dim}
+\end{figure}
 
 \subsubsection{Método de Aproximación de Elmore}
 
 Ahora se calcula el delay de propagación y el delay de contaminación de la compuerta \textit{F=(A+B)(C+D)} mediante el método de \textit{Aproximación de Elmore}, el cuál se hace valer del modelo RC del transistor, para calcular los delays de una compuerta. El modelo de delay de \textit{Elmore} estima el restraso desde una fuente conmutando a uno de los nodos hoja cambiantes como la suma sobre cada nodo \textit{i} de la capacitancia \textit{$C_{i}$} en el nodo, multiplicado por la resistencia efectiva \textit{$R_{is}$} en el camino compartido desde la fuente hasta el nodo y la hoja, dando como resultado la ec.\ref{eqn:Elmore}:
+
 
 \begin{equation}\label{eqn:Elmore}
 t_{pd} = \sum_{i} R_{is}C_{i}
 \end{equation}\\
 
 
-En la fig.\ref{fig:ModeloRC_Completo} se muestra el modelo RC completo de la compuerta,
-\subsubsection{Simulación retardos de propagación}
 
-A partir de la ecuación \ref{eqn:logica} y de las constantes calculadas y encontradas en el informe anterior para el dimensionamiento de los transistores para tiempos de retardo y levantamiento simétrico de los niveles lógicos encontramos que para una carga de entrada de $30\lambda$ y una carga de salida de $500\lambda$ se encontró que el ancho de canal de los transistores equivalentes son los mostrados el la tabla \ref{table:ancho canal} y el circuito es el mostrado en la figura \ref{fig:circuito_E}.
+En la \textit{Fig.\ref{fig:ModeloRC_Completo}} se muestra el modelo \textit{RC} completo de la compuerta, con sus capacitancias y resistencias, para la compuerta \textit{OAI-21} y para el inversor en la salida.\\
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.45]{./ModeloRC_Completo.png}
+    \rule{35em}{0.5pt}
+  \caption[IdealvsSim]{Modelo \textit{RC} completo de la Compuerta \textit{F=(A+B)(C+D)}.}
+  \label{fig:ModeloRC_Completo}
+\end{figure}
+
+Para este modelo se calculan el mejor y el peor caso para el delay, por lo que en las siguientes secciones se presentaran los cálculos y los circuitos \textit{RC} de cada caso.\\
+
+\subsubsection{Red de Pull-Up}
+
+Antes de calcular el mejor y el pesor caso de subida, primero se calcula el retraso provocado por el inversor a la salida, ya que este sera el mismo para el mejor y el peor caso de subida y de bajada. En la \textit{Fig.\ref{fig:RC_Inversor}} se muestra el modelo \textit{RC} del inversor de este problema.\\
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.3]{./RC_Inversor.png}
+    \rule{35em}{0.5pt}
+  \caption[IdealvsSim]{Modelo \textit{RC} del Inversor.}
+  \label{fig:RC_Inversor}
+\end{figure}
+
+Con este circuito se calcula el delay utilizando la \textit{Ec.\ref{eqn:Elmore_Inv}}, obteniendo como resultado que el delay del inversor para el caso de subida y bajada es:\\
+
+\begin{equation}\label{eqn:Elmore_Inv}
+t_{pd} = \frac{R}{29}(500 + 87)C = \frac{587RC}{29} = 20.24RC
+\end{equation}\\
+
+Con el delay del inversor calculado en la \textit{Ec.\ref{eqn:Elmore_Inv}}, se procede a realizar los calculos para el mejor y peor caso de delay de subida.\\
+
+En la \textit{Fig.\ref{fig:Mejor_caso_Rise_propagacion}} se observa que el mejor caso ocurre cuando todos los transistores de la red de \textit{pull-up} se encuentran encendidos, o dos transistores están encendidos en la red de \textit{pull-up}, A y B, y los dos transistores mas interiores de la red de \textit{pull-down}, A y B, están apagados, con lo que la red de \textit{pull-down} no contribuye al delay en ambos casos. En la \textit{Ec.\ref{eqn:Elmore_tpdr_Mejor}} se muestra el cálculo del delay para el mejor caso de levantamiento:\\
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.5]{./Mejor_caso_Rise_propagacion.png}
+    \rule{35em}{0.5pt}
+  \caption[IdealvsSim]{Mejor Caso de \textit{Rise} en el Delay de Propagación.}
+  \label{fig:Mejor_caso_Rise_propagacion}
+\end{figure}
+
+\begin{equation}\label{eqn:Elmore_tpdr_Mejor}
+t_{pdr} = \frac{20RC}{10} + \frac{147*2RC}{10} + t_{pdInv}= 31.4RC + 20.24RC = 51.64RC = 17.213\tau
+\end{equation}\\
+
+En la \textit{Fig.\ref{fig:Peor_caso_Rise_propagacion}} se observa que el peor caso ocurre cuando solo dos transistores se encendidos, C y D, y uno o los dos transistores mas interiores de la red de \textit{pull-down} están también encendidos, por lo que la red de \textit{pull-down} contribuye al delay. En la \textit{Ec.\ref{eqn:Elmore_tpdr_Peor}} se muestra el cálculo del delay para el peor caso de levantamiento:\\
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.45]{./Peor_caso_Rise_propagacion.png}
+    \rule{35em}{0.5pt}
+  \caption[IdealvsSim]{Peor Caso de \textit{Rise} en el Delay de Propagación.}
+  \label{fig:Peor_caso_Rise_propagacion}
+\end{figure}
+
+\begin{equation}\label{eqn:Elmore_tpdr_Peor}
+t_{pdr} = \frac{20RC}{10}+\frac{20RC}{5}+\frac{147RC}{5}+t_{pdInv}= 35.4RC + 20.24RC = 55.64RC = 18.546\tau
+\end{equation}\\
+
+\subsubsection{Red de Pull-Down}
+
+En la \textit{Fig.\ref{fig:Peor_caso_Fall_propagacion}} se observa el peor caso de caída en el cálculo del delay en la compuerta. En este caso se activan las entradas A y C, con un 1 lógico, en la red de \textit{pull-down}, y se activan las entradas B y D, con un 0 lógico, en la red de \textit{pull-up}, con lo que esta red contribuye con el delay, tal como se muestra en la \textit{Fig.\ref{fig:Peor_caso_Fall_propagacion}}. En la \textit{Ec.\ref{eqn:Delay_fall_Peor}} se muestra el cálculo del delay.\\
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.25]{./Peor_caso_Fall_propagacion.png}
+    \rule{35em}{0.3pt}
+  \caption[C_Carga]{Peor Caso de \textit{Fall} en el Delay de Propagación.}
+  \label{fig:Peor_caso_Fall_propagacion}
+\end{figure}
 
 
-\begin{table}\label{table:ancho canal}
+\begin{equation}\label{eqn:Delay_fall_Peor}
+t_{pdf} = \frac{20RC}{10}+\frac{147RC}{5}+\frac{40RC}{5}+t_{pdInv}=39.4RC+20.24RC=59.64RC=19.88\tau
+\end{equation}\\
+
+
+En la \textit{Fig.\ref{fig:Mejor_caso_Fall_propagacion}} se observa el mejor caso de caída en el cálculo del delay en la compuerta. En este caso se activan las entradas B y D, con un 1 lógico, en la red de \textit{pull-down}, y por ende se desactivan las entradas B y D en la red de \textit{pull-up}, con lo que esta red no contribuye con el delay, tal como se muestra en la \textit{Fig.\ref{fig:Mejor_caso_Fall_propagacion}}. En la \textit{Ec.\ref{eqn:Delay_fall_Mejor}} se muestra el cálculo del delay.\\
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.25]{./Mejor_caso_Fall_propagacion.png}
+    \rule{35em}{0.3pt}
+  \caption[C_Carga]{Mejor Caso de \textit{Fall} en el Delay de Propagación.}
+  \label{fig:Mejor_caso_Fall_propagacion}
+\end{figure}
+
+
+\begin{equation}\label{eqn:Delay_fall_Mejor}
+t_{pdf} = \frac{20RC}{10}+\frac{147RC}{5}+t_{pdInv}=31.4RC+20.24RC=51.64RC=17.21\tau
+\end{equation}\\
+
+
+\subsubsection{Delay de Contaminación.}
+
+El delay de contaminación, \textit{contamination delay}, indica que tán rapido puede conmutar la compuerta. Para este delay se procede a calcular el mejor y el peor caso de retraso de \textit{raise} y \textit{fall}.\\
+
+En la \textit{Fig.\ref{fig:Mejor_Caso_Rise_contam}} se muestra el mejor caso de delay de contaminación de levantamiento, que se da cuando todos los transistores de la red de \textit{pull-up} se encienden simultaneamente. En la \textit{Ec.\ref{eqn:DelayC_rise_Mejor}} se muestra el resultado de cacular el delay de contaminación para el mejor caso de levantamiento.\\
+
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.3]{./Mejor_Caso_Rise_contam.png}
+    \rule{35em}{0.3pt}
+  \caption[C_Carga]{Mejor Caso de \textit{Rise} en el Delay de Contaminación.}
+  \label{fig:Mejor_Caso_Rise_contam}
+\end{figure}
+
+\begin{equation}\label{eqn:DelayC_rise_Mejor}
+t_{cdr} = \frac{147RC}{10}+t_{pcdInv}=14.7RC+\frac{500RC}{29}=31.94RC=10.65\tau
+\end{equation}\\
+
+Para el peor caso de delay de contaminación de levantamiento, el peor caso ocurre cuando solo una rama de la red de \textit{pull-up} se encuentra encendida, como se muestra en la \textit{Fig.\ref{fig:Peor_Caso_Rise_contam}}. En la \textit{Ec.\ref{eqn:DelayC_rise_Peor}} se muestra el resultado del cálculo del delay de contaminación.\\
+
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.4]{./Peor_Caso_Rise_contam.png}
+    \rule{35em}{0.3pt}
+  \caption[C_Carga]{Peor Caso de \textit{Rise} en el Delay de Contaminación.}
+  \label{fig:Peor_Caso_Rise_contam}
+\end{figure}
+
+\begin{equation}\label{eqn:DelayC_rise_Peor}
+t_{cdr} = \frac{147RC}{5}+t_{pcdInv}=29.4RC+\frac{500RC}{29}=46.64RC=15.55\tau
+\end{equation}\\
+
+
+En el caso del delay de contaminacion de caída, el mejor caso corresponde cuando los transistores más externos están encendidos y se encienden los dos más internos. Así la capacitancia del nodo inferior está descargada y no contribuye al delay. El circuito \textit{RC} correspondiente a este caso se observa en la \textit{Fig.\ref{fig:Mejor_Caso_Fall_contam}}, donde ya se han hecho las reducciones de resistencias correspondientes, y en la \textit{Ec.\ref{eqn:DelayC_Fall_Mejor}} se muestran los resultados del cálculo.\\
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.25]{./Mejor_Caso_Fall_contam.png}
+    \rule{35em}{0.3pt}
+  \caption[C_Carga]{Mejor Caso de \textit{Fall} en el Delay de Contaminación.}
+  \label{fig:Mejor_Caso_Fall_contam}
+\end{figure}
+
+\begin{equation}\label{eqn:DelayC_Fall_Mejor}
+t_{cdf} = \frac{147RC}{10}+t_{pcdInv}=14.7RC+\frac{500RC}{29}=31.94RC=10.65\tau
+\end{equation}\\
+
+
+El peor caso para el delay de contaminación de caída, se muestra en la \textit{Fig.\ref{fig:Peor_Caso_Fall_contam}}, en donde solo dos transistores de la red de \textit{pull-down} permiten la descarga de la capacitancia de carga. En la \textit{Ec.\ref{eqn:DelayC_Fall_Peor}} se muestra el cálculo del delay de contaminación de caída en el peor caso.\\
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.25]{./Peor_Caso_Fall_contam.png}
+    \rule{35em}{0.3pt}
+  \caption[C_Carga]{Peor Caso de \textit{Fall} en el Delay de Contaminación.}
+  \label{fig:Peor_Caso_Fall_contam}
+\end{figure}
+
+\begin{equation}\label{eqn:DelayC_Fall_Peor}
+t_{cdf} = \frac{147RC}{5}+t_{pcdInv}=29.4RC+\frac{500RC}{29}=46.4RC=15.55\tau
+\end{equation}\\
+
+
+\subsubsection{Simulación de Retardos de Propagación}\\
+
+A partir de la \textit{Ec.\ref{eqn:logica}} y de las constantes calculadas y encontradas en el informe anterior para el dimensionamiento de los transistores para tiempos de retardo y levantamiento simétrico de los niveles lógicos encontramos que para una carga de entrada de $30\lambda$ y una carga de salida de $500\lambda$ se encontró que el ancho de canal de los transistores equivalentes son los mostrados el la Tabla \ref{table:ancho_canal} y el circuito es el mostrado en la \textit{Fig.\ref{fig:circuito_E}}.\\
+
+
+\begin{table}\label{table:ancho_canal}
 \begin{center}
 \begin{tabular}{c||c||c}
   & Ancho nmos ($\lambda$) & Ancho pmos ($\lambda$)\\
@@ -284,15 +468,15 @@ Inv & 32.22 & 58.17 \\
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.5]{./Circuito electric.png}
+    \includegraphics[scale=0.5]{./Cicuito_Electric.png}
     \rule{35em}{0.5pt}
-  \caption[IdealvsSim]{Compuerta \textit{Circuito simulado en el eléctric}
+  \caption[IdealvsSim]{Compuerta \textit{Circuito simulado en el eléctric}}
   \label{fig:circuito_E}
-\end{figure}\\
+\end{figure}
 
 \begin{figure}[htbp]
 \begin{center}
-    \includegraphics[scale=0.5]{./mejor caso red nmos.png}
+    \includegraphics[scale=0.5]{./Mejor_caso_red_nmos.png}
     \rule{35em}{0.5pt}
   \caption[Captura]{Gráfica para mejor caso del NMOS}
   \label{fig:CircuitoFO2}
@@ -301,7 +485,7 @@ Inv & 32.22 & 58.17 \\
 
 \begin{figure}[htbp]
 \begin{center}
-    \includegraphics[scale=0.5]{./peor caso red nmos.png}
+    \includegraphics[scale=0.5]{./Peor_caso_red_nmos.png}
     \rule{35em}{0.5pt}
   \caption[Captura]{Gráfica para peor caso del NMOS}
   \label{fig:CircuitoFO2}
@@ -310,7 +494,7 @@ Inv & 32.22 & 58.17 \\
 
 \begin{figure}[htbp]
 \begin{center}
-    \includegraphics[scale=0.5]{./mejor caso red pmos.png}
+    \includegraphics[scale=0.5]{./Mejor_caso_red_pmos.png}
     \rule{35em}{0.5pt}
   \caption[Captura]{Gráfica para mejor caso del PMOS}
   \label{fig:CircuitoFO2}
@@ -320,7 +504,7 @@ Inv & 32.22 & 58.17 \\
 
 \begin{figure}[htbp]
 \begin{center}
-    \includegraphics[scale=0.5]{./peor caso red nmos.png}
+    \includegraphics[scale=0.5]{./Peor_caso_red_pmos.png}
     \rule{35em}{0.5pt}
   \caption[Captura]{Gráfica para peor caso del PMOS}
   \label{fig:CircuitoFO2}
@@ -342,112 +526,13 @@ tf & 58.6 & 129.5 \\
 \end{table}
 
 
-\subsubsection{Método de Fanout}
-
-El método de Fanout plantea encontrar la resistencia equivalente de un transistor \textit{CMOS} con los valores de la capacitancia parásita en el gate y el diferencial de tiempos de caída y levantamiento que le toma al mismo pasar de un nivel lógico a otro, con 2 valores de \textit{fanout} distintos. Las ecuaciones para calcular las resistencias equivalentes para \textit{PMOS} y \textit{NMOS} son las \ref{eqn:Req_p} y \ref{eqn:Req_n} respectivamente.\\*
-\\*
-\begin{equation}\label{eqn:Req_p}
-R_{eqp}=(2/3)*( \Delta t_{r}/C_{g})
-\end{equation}
-
-\begin{equation}\label{eqn:Req_n}
-R_{eqn}= \Delta t_{f}/(3*C_{g})
-\end{equation}
-
-Se realizó la simulación del circuito propuesto encontrado en la referencia [1] sección 8.4.5. , para valores de \textit{h=2} (fig. \ref{fig:CircuitoFO2}) y \textit{h=3} (fig. \ref{fig:CircuitoFO3} con los cuales se encontraron las graficas de los retardos de la salida con respecto a la entrada (fig. \ref{fig:FO2} y fig. \ref{fig:FO3})\\*
-\\*
-\begin{figure}[htbp]
-\begin{center}
-    \includegraphics[scale=0.5]{./CircuitoFO2.png}
-    \rule{35em}{0.5pt}
-  \caption[Captura]{Circuito para calculo de $R_{eq}$ con h=2}
-  \label{fig:CircuitoFO2}
-  \end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-  \centering
-    \includegraphics[scale=0.4]{./FO2.png}
-    \rule{35em}{1pt}
-  \caption[Captura]{Gráfica tiempo $V_{in}$ vs $V_{out}$ h=2}
-  \label{fig:FO2}
-\end{figure}
-
-\begin{figure}[htbp]
-\begin{center}
-    \includegraphics[scale=0.5]{./CircuitoFO3.png}
-    \rule{35em}{0.5pt}
-  \caption[Captura]{Circuito para calculo de $R_{eq}$ con h=3}
-  \label{fig:CircuitoFO3}
-  
-\end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-  \begin{center}
-    \includegraphics[scale=0.4]{./FO3.png}
-    \rule{35em}{0.5pt}
-  \caption[Captura]{Gráfica tiempo $V_{in}$ vs $V_{out}$ h=3}
-  \label{fig:FO3}
-  \end{center}
-\end{figure}
-
-Luego de encontrar las gráficas (fig. \ref{fig:FO2} y fig. \ref{fig:FO3}), se realizó la medición de los tiempos ya mencionados anteriormente. Aunque en la referencia [] se habla que la medición debe hacerse entre los valores de $0.8V_{dd}$ a $0.2V_{dd}$, se encontró que las pendientes de ambas graficas son aproximadamente iguales y no se encontraría la variación de la resistencia equivalente entre los CMOS por lo que se decidió medir de $0.9V_{dd}$ a $0.1V_{dd}$. Se encontraron los valores mencionados en el cuadro \ref{table:tiempos}. \\*
-\\*
-\begin{table}\label{table:tiempos}
-\begin{center}
-\begin{tabular}{c||c||c}
-n & tr(ps) & tf(ps)\\
-\hline
-\hline
-2 & 97.36 & 101.29 \\
-3 & 117.84 & 125.055 \\
-$\Delta$ & 20.44 & 23.76\\
-\hline
-\end{tabular}
-\caption{Tiempos de levantamiento y caida de tensión para un inversor CMOS para diferentes Fanouts}
-\end{center}
-\end{table}
-
-
-Ya con los diferenciales de tiempos medidos, se sustituyen en \ref{eqn:Req_p} y \ref{eqn:Req_n} para encontrar la resistencia equivalente de cada transistor. Para $C_{g}=1.48 fF/\mu m$  dependiente del ancho de canal de gate, se encuentra que los valores de resistencia son los del cuadro (\ref{table:resistencias}). \\*
-\\*
-\begin{table}\label{table:resistencias}
-\begin{center}
-\begin{tabular}{c||c}
-Resistencia & k$\Omega$\\
-\hline
-\hline
-$R_{eqp}$ & 15.375 \\
-$R_{eqn}$ & 9.000 \\
-\hline
-\end{tabular}
-\caption{Resistencias equivalentes encontradas por Método de Fanout}
-\end{center}
-\end{table}
-
-
-
-
 \section{Análisis de datos y resultados.}
 
-Los resultados obtenidos en la sección \textit{3.1.2}, muestran el diseño del ancho del canal de un transistor \textit{PMOS}, para conseguir que los tiempos de propagación sean simétricos. Los resultados obtenidos de la Ec.\ref{eqn:Beta2}, muestra un valor de relación de tamaño de ancho de canal de los transistores en un inversor de \textit{1.3070}, lo que equivale a decir que el ancho del canal del tansistor \textit{PMOS} es de 5$\lambda$, pero a la hora de simular se ajusto este valor hasta conseguir que la relación sea \textit{1.5}, esto con el fin no solo de lograr que los valores de propagación de la señal fueran simétricos, si no también para conseguir una tensión de umbral del inversor cercana a \textit{1.65V}, como se observa en la fig.\ref{fig:DC_Comp}, siendo asi entonces que el nuevo tamaño del ancho de canal del transistor \textit{PMOS} es de 6$\lambda$.\\*
-\\*Uno de los resultados relevantes que pudimos encontrar del dimensionamiento del transistor \textit{PMOS} es en el hecho que las corrientes de corto circuito de la fig. \ref{fig:CC} son aproximadamente iguales, los cual nos dice que la potencia de los transistores en ambos procesos es igual. Podemos deducir que mediante un análisis dinámico para el dimensionamiento de los transistores es el método que deber usarse para el diseños de las compuertas, esto porque la símetría de las transiciones se puede obviar con respecto a tener un mínimo del tiempo de retardo para las mismas, dando como resultado, que los circuitos puedan conmutar a una mejor velocidad con la misma potencia que si se hiciese de forma simétrica las compuertas.\\*
-\\*En la sección 3.2 se procede a calcular el valor de las resistencias de canal para un trasistror \textit{PMOS} y un transistor \textit{NMOS}, mediante dos métodos diferentes. \\
-
-En la sección 3.2.1 se calculó la resistencia de canal por un método grafico, simulando la carga y descarga de un capacitor y obteniendo la curva de comportamiento de la corriente de \textit{drain} de un transistor \textit{PMOS} y \textit{NMOS}, respectivamente, y con esto obteniendo los valores de resistencia que se muestran en la Ec.\ref{eqn:R_PMOS} y Ec.\ref{eqn:R_NMOS}. Se considera que este método no es muy preciso al tratarse del cálculo de un valor a partir de una aproximación, que dependerá de la cantidad de valores muestrados y de la precisión de dichos valores, lo que dio como resultado obteniendo por ende un valor promedio de resistencia.\\*
-
-En cambio, para la sección 3.2.2, encontramos que los valores de las resistencias equivalentes son mas precisos, por el método que se emplea y que no realiza tantas aproximaciones y suposiciones para encontrar el valor de los mismos.
 
 
 \section{Conclusiones.}
 \begin{itemize}
-\item La ecuaciones de Shockley no da un comportamiento real de los transistores PMOS y NMOS, si no un comportamiento muy aproximado.
-\item El uso de diversas herramientas de simulación nos permiten encontrar proporciones de diseño bastante precisas
-\item El diseño de un inversor apropiado debe de procurar un balance entre el mejoramiento de los tiempos de propagación, asi como la obtención de una tension de umbral lo más cercana a $\textit{V}_\textit{DD}/2$.
-\item El análisis de tiempos de propagación provee un mejor punto de arranque para la obtención del tamaño de un transistor \textit{PMOS}, permitiendo realizar ajustes en simulación que permitan llegar a un valor concreto de manera más rapida.
-\item El método grafico para la obtención de los valores de resistencia de canal no es el mas apropiado, aunque provee una forma rapida de encontrar un valor de resistencia aproximado aceptable.
-\item Se recomienda para encontrar la resistencia equivalente de los transistores el método de Fanout
+
 \end{itemize}
 
 %----------------------------------------------------------------------------------------
