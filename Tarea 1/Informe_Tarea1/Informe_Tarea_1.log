@@ -1,7 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.17)  25 SEP 2015 01:21
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.17)  12 OCT 2015 10:46
 entering extended mode
 **Informe_Tarea_1.tex
-(C:\Users\Francis\Documents\GitHub\VLSI\Informe_Tarea1\Informe_Tarea_1.tex
+
+("C:\Users\Francis\Documents\GitHub\VLSI\Tarea 1\Informe_Tarea1\Informe_Tarea_1
+.tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -479,7 +481,8 @@ LaTeX Info: Redefining \cite on input line 694.
 \f@ncyO@olf=\skip66
 \f@ncyO@orf=\skip67
 )
-(C:\Users\Francis\Documents\GitHub\VLSI\Informe_Tarea1\Informe_Tarea_1.aux
+("C:\Users\Francis\Documents\GitHub\VLSI\Tarea 1\Informe_Tarea1\Informe_Tarea_1
+.aux"
 
 Package natbib Warning: Citation `Wey1999' multiply defined.
 
@@ -591,7 +594,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
 
-[2 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/Inv_16lam.png>]
+[2 <C:/Users/Francis/Documents/GitHub/VLSI/Tarea 1/Informe_Tarea1/Inv_16lam.png
+>]
 Underfull \hbox (badness 10000) in paragraph at lines 186--187
 
  []
@@ -617,8 +621,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 208--209
 
  []
 
-[3 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/Inv_63lam.png>]
-<./tLH_tHL.png, id=23, 1367.1075pt x 649.42625pt>
+[3 <C:/Users/Francis/Documents/GitHub/VLSI/Tarea 1/Informe_Tarea1/Inv_63lam.png
+>] <./tLH_tHL.png, id=23, 1367.1075pt x 649.42625pt>
 File: ./tLH_tHL.png Graphic file (type png)
  <use ./tLH_tHL.png>
 Package pdftex.def Info: ./tLH_tHL.png used on input line 212.
@@ -653,9 +657,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 244--245
 
  []
 
-[4 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/Inversor_estatico_1b.
-png (PNG copy)>] [5 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/tLH_
-tHL.png> <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/DC_1a_1b.png>]
+[4 <C:/Users/Francis/Documents/GitHub/VLSI/Tarea 1/Informe_Tarea1/Inversor_esta
+tico_1b.png (PNG copy)>] [5 <C:/Users/Francis/Documents/GitHub/VLSI/Tarea 1/Inf
+orme_Tarea1/tLH_tHL.png> <C:/Users/Francis/Documents/GitHub/VLSI/Tarea 1/Inform
+e_Tarea1/DC_1a_1b.png>]
 <./Comp_Corriente_ICC.png, id=31, 1371.2028pt x 706.8006pt>
 File: ./Comp_Corriente_ICC.png Graphic file (type png)
 
@@ -682,8 +687,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 263--264
 
  []
 
-[6 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/Comp_Corriente_ICC.pn
-g>]
+[6 <C:/Users/Francis/Documents/GitHub/VLSI/Tarea 1/Informe_Tarea1/Comp_Corrient
+e_ICC.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 269--270
 
  []
@@ -718,18 +723,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 315--317
 
  []
 
-[7 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/R_PMOS.png (PNG copy)
->] [8 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/R_NMOS.png (PNG co
-py)> <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/Grafica_R_PMOS.png>
-] <./CircuitoFO2.png, id=46, 669.50125pt x 443.6575pt>
+[7 <C:/Users/Francis/Documents/GitHub/VLSI/Tarea 1/Informe_Tarea1/R_PMOS.png (P
+NG copy)>] [8 <C:/Users/Francis/Documents/GitHub/VLSI/Tarea 1/Informe_Tarea1/R_
+NMOS.png (PNG copy)> <C:/Users/Francis/Documents/GitHub/VLSI/Tarea 1/Informe_Ta
+rea1/Grafica_R_PMOS.png>] <./CircuitoFO2.png, id=46, 669.50125pt x 443.6575pt>
 File: ./CircuitoFO2.png Graphic file (type png)
- <use ./CircuitoFO2.png>
+
+<use ./CircuitoFO2.png>
 Package pdftex.def Info: ./CircuitoFO2.png used on input line 329.
 (pdftex.def)             Requested size: 334.7498pt x 221.8282pt.
-
-<./FO2.png, id=48, 1347.0325pt x 259.97125pt>
+ <./FO2.png, id=48, 1347.0325pt x 259.97125pt>
 File: ./FO2.png Graphic file (type png)
- <use ./FO2.png>
+
+<use ./FO2.png>
 Package pdftex.def Info: ./FO2.png used on input line 338.
 (pdftex.def)             Requested size: 538.80347pt x 103.98665pt.
 
@@ -753,11 +759,12 @@ Overfull \hbox (15.27292pt too wide) in paragraph at lines 356--358
  [] 
  []
 
-[9 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/Grafica_R_NMOS.png>]
-[10 <C:/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/CircuitoFO2.png> <C:
-/Users/Francis/Documents/GitHub/VLSI/Informe_Tarea1/FO2.png>] [11 <C:/Users/Fra
-ncis/Documents/GitHub/VLSI/Informe_Tarea1/CircuitoFO3.png> <C:/Users/Francis/Do
-cuments/GitHub/VLSI/Informe_Tarea1/FO3.png>]
+[9 <C:/Users/Francis/Documents/GitHub/VLSI/Tarea 1/Informe_Tarea1/Grafica_R_NMO
+S.png>] [10 <C:/Users/Francis/Documents/GitHub/VLSI/Tarea 1/Informe_Tarea1/Circ
+uitoFO2.png> <C:/Users/Francis/Documents/GitHub/VLSI/Tarea 1/Informe_Tarea1/FO2
+.png>] [11 <C:/Users/Francis/Documents/GitHub/VLSI/Tarea 1/Informe_Tarea1/Circu
+itoFO3.png> <C:/Users/Francis/Documents/GitHub/VLSI/Tarea 1/Informe_Tarea1/FO3.
+png>]
 Underfull \hbox (badness 10000) in paragraph at lines 402--405
 
  []
@@ -773,7 +780,9 @@ AED: lastpage setting LastPage
 
 Package natbib Warning: There were multiply defined citations.
 
-(C:\Users\Francis\Documents\GitHub\VLSI\Informe_Tarea1\Informe_Tarea_1.aux
+
+("C:\Users\Francis\Documents\GitHub\VLSI\Tarea 1\Informe_Tarea1\Informe_Tarea_1
+.aux"
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
@@ -781,7 +790,7 @@ Package natbib Warning: Citation(s) may have changed.
 ) ) 
 Here is how much of TeX's memory you used:
  4769 strings out of 493921
- 60545 string characters out of 3147276
+ 60601 string characters out of 3147276
  145611 words of memory out of 3000000
  7969 multiletter control sequences out of 15000+200000
  10851 words of font info for 40 fonts, out of 3000000 for 9000
@@ -796,7 +805,7 @@ onts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 msfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
 cm/cmti12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8
 .pfb>
-Output written on Informe_Tarea_1.pdf (13 pages, 586667 bytes).
+Output written on Informe_Tarea_1.pdf (13 pages, 586671 bytes).
 PDF statistics:
  100 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
