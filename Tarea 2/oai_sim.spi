@@ -1,0 +1,28 @@
+*** SPICE deck for cell oai_sim{lay} from library Tarea_2_VLSI
+*** Created on lun oct 12, 2015 18:44:06
+*** Last revised on lun oct 12, 2015 23:59:29
+*** Written on mar oct 13, 2015 00:00:15 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+
+*** SUBCIRCUIT Tarea_2_VLSI__Or-Or-And-Inv FROM CELL Or-Or-And-Inv{lay}
+.SUBCKT Tarea_2_VLSI__Or-Or-And-Inv A B C D gnd vdd _F
+Mnmos@0 net@1 D gnd gnd NMOS L=0.6U W=6.666U AS=26.899P AD=11.749P PS=29.166U PD=13.524U
+Mnmos@1 gnd C net@1 gnd NMOS L=0.6U W=6.666U AS=11.749P AD=26.899P PS=13.524U PD=29.166U
+Mnmos@2 net@1 B _F gnd NMOS L=0.6U W=6.666U AS=12.289P AD=11.749P PS=11.757U PD=13.524U
+Mnmos@3 _F A net@1 gnd NMOS L=0.6U W=6.666U AS=11.749P AD=12.289P PS=13.524U PD=11.757U
+Mpmos@0 vdd D net@59 vdd PMOS L=0.6U W=11.328U AS=8.496P AD=33.914P PS=12.828U PD=41.856U
+Mpmos@1 net@59 C _F vdd PMOS L=0.6U W=11.328U AS=12.289P AD=8.496P PS=11.757U PD=12.828U
+Mpmos@2 net@62 A vdd vdd PMOS L=0.6U W=11.328U AS=33.914P AD=9.346P PS=41.856U PD=12.978U
+Mpmos@6 _F B net@62 vdd PMOS L=0.6U W=11.328U AS=9.346P AD=12.289P PS=12.978U PD=11.757U
+.ENDS Tarea_2_VLSI__Or-Or-And-Inv
+
+*** TOP LEVEL CELL: oai_sim{lay}
+XOr-Or-An@0 A A vdd vdd gnd vdd _F Tarea_2_VLSI__Or-Or-And-Inv
+
+* Spice Code nodes in cell cell 'oai_sim{lay}'
+Vdd vdd 0 DC 3.3
+Vin A 0 PULSE(0 3.3 0 0 0 1n 2n 2)
+.tran 1n 4n
+.include C:\Users\Francis\Desktop\Electric (VLSI)\Mosis_5.txt
+.END

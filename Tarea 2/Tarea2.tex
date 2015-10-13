@@ -545,7 +545,36 @@ tf & 58.6 & 129.5 \\
 
 \subsection{Diseño del layout}
 
-En la figura  se puede observar el diseño del layout de la compuerta de la ecuación \ref{eqn:logica_inversa} en la cual se basó en la figura de palitos de la figura \ref{fig:pal}. En esta se ha usado un "pitch" de $12\lambda$ ya que calza perfectamente con las conexiones para las salidas y entradas así con las conexiones de los metales.
+En la figura \ref{fig:layout} se puede observar el diseño del layout de la compuerta de la ecuación \ref{eqn:logica_inversa} en la cual se basó en la figura de palitos de la figura \ref{fig:pal}. En esta se ha usado un "pitch" de $12\lambda$ ya que calza perfectamente con las conexiones para las salidas y entradas así con las conexiones de los metales entre transistores.
+
+También se realizó una simulación del mismo con la rutina que se muestra en la figura \ref{fig:layout_sim} en la cual se simulará el mejor caso para la red de NMOS. El resultado se encuentra en la figura \ref{fig:layout_graf}.
+
+\begin{figure}[htbp]
+\begin{center}
+    \includegraphics[scale=0.5]{./layout.png}
+    \rule{35em}{0.5pt}
+  \caption[Captura]{Layout del la $OAI-22$}
+  \label{fig:layout}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+    \includegraphics[scale=0.5]{./layout_sim.png}
+    \rule{35em}{0.5pt}
+  \caption[Captura]{Circuito para simulación en Ltpice del layout del circuito}
+  \label{fig:layout_sim}
+  \end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+    \includegraphics[scale=0.5]{./layout_mejor_graf.png}
+    \rule{35em}{0.5pt}
+  \caption[Captura]{Gráfica para mejor caso del NMOS en layout}
+  \label{fig:layout_graf}
+  \end{center}
+\end{figure}
 
 \section{Análisis de datos y resultados.}
 
@@ -553,11 +582,20 @@ El la Tabla \ref{table:TablaAnalitica} se muestran los valores del cálculo anal
 
 A partir de esta tabla se puede observar que los cálculos del delay por medio del método de Elmore y por medio del metodo de esfuerzo logico son bastante cercanos, siendo el método de Elmore más complejo, pero permite un mejor análisis de los diferentes casos, necesario para un mejor diseño.\\
 
+Conforme a los datos simulados experimentalmente, los tiempos de propagación de subida y bajada de los niveles lógicos sob aproximadamente cercanos pero no lo suficiente para ser simétricos. En comparación con la teoría de esfuerzo lógico, vemos que los valores son bastante aproximados.\\
+
+Por último. Con la creación del layout fue bastante útil utilizar las técnicas del los caminos de Euler y el diagrama de palitos para crear el mismo. Vemos que al simular el layout, la gráfica muestra un mejor comportamiento a como se simuló en el esquemático.
+
+
+
 
 \section{Conclusiones.}
 \begin{itemize}
 \item Los retardos de fall son mas lentos que los de rise, debido a la movilidad de los portadores presentes en cada red.
 \item En el diseño de una compuerta, el método de esfuerzo lógico es necesario para poder dimensionar los transistores, mientras que el método de Elmore permite el análisis de los casos de delay de la compuerta.
+\item La teoría del esfuerzo lógico y sus cálculos nos dán una buena aproximación para determinar una buena aproximación con los tiempos de retardo
+\item Las técnicas de los caminos de Euler y el diseño del diagrama de palitos llega a ser muy útil para la creación de los layouts.
+
 \end{itemize}
 
 %----------------------------------------------------------------------------------------
