@@ -77,33 +77,34 @@
 %----------------------------------------------------------------------------------------
 
 
-\section{Resumen} 
+\section{Resumen.} 
 
-En este documento se presentan los cálculos de los tiempos de propagación y contaminación de la compuerta compuesta \textit{$F=(A+B)(C+D)$}, obteniendo estos tiempos de manera analítica, mediante la teoría de esfuerzo lógico y la aproximación de Elmore, así como mediante simulación, utilizando los software \textit{Electric} y \textit{LTSpice}, y por último contrastando los resultados de ambos métodos. Tambien se muestra el diseño de un trazado que usa una única tira de difusión en ambos pozos, construyendo los \textit{caminos de Euler}, y dibujando el diagrama de palitos que muestra el orden de entradas, poly, las difusiones \textit{n} y \textit{p}, el pozo y las líneas de metal.\\*
+En este documento se presentan los cálculos de los tiempos de propagación y contaminación de la compuerta compuesta
+\textit{F=(A+B)(C+D)}, obteniendo estos tiempos de manera analítica, mediante la teoría de esfuerzo lógico y la aproximación de Elmore, así como mediante simulación, utilizando los software \textit{Electric} y \textit{LTSpice}, y por último contrastando los resultados de ambos métodos. Tambien se muestra el diseño de un trazado que usa una única tira de difusión en ambos pozos, construyendo los \textit{caminos de Euler}, y dibujando el diagrama de palitos que muestra el orden de entradas, poly, las difusiones \textit{n} y \textit{p}, el pozo y las líneas de metal.\\
 
-\section{Introducción} 
+\section{Introducción.} 
 
-Para el diseño de una compuerta de lógica CMOS o un conjunto de las mismas, es necesario tomar varias consideraciones para los anchos de canal de los transistores, ya sean para una optimización en potencia o para una rápida conmutación entre los niveles lógicos. En estos se debe incluir la carga que debe soportar  para que los tiempos de retardo no afecten el comportamiento ideal del circuito.\\*
+Para el diseño de una compuerta de lógica CMOS o un conjunto de las mismas, es necesario tomar varias consideraciones para los anchos de canal de los transistores, ya sean para una optimización en potencia o para una rápida conmutación entre los niveles lógicos. En estos se debe incluir la carga que debe soportar  para que los tiempos de retardo no afecten el comportamiento ideal del circuito.\\
 
-Para la demostración de los pasos de diseno de una función lógica, se nos ha pedido diseñar el esquemático y el layout de la función lógica del problema 9.4 de [1] que es \textit{$F=(A+B)(C+D)$}. El esquemático deberá realizarse con lógica CMOS estática.
+Para la demostración de los pasos de diseño de una función lógica, se nos ha pedido diseñar el esquemático y el layout de la función lógica del problema 9.4 de [1] que es \textit{F=(A+B)(C+D)}. El esquemático deberá realizarse con lógica CMOS estática.\\
 
-Luego se procederá a calcular el retardo de propagación y contaminación que presenta la función, tanto de manera analítica con la aproximación de Elmore como con la teoría de esfuerzo lógico, que se evaluará con una simulación en los software \textit{Electric} y \textit{LTSpice} para saber si con este método se puede llegar a una aproximación bastante certera de los tiempos de retardo.
+Luego se procederá a calcular el retardo de propagación y contaminación que presenta la función, tanto de manera analítica con la aproximación de Elmore como con la teoría de esfuerzo lógico, que se evaluará con una simulación en los software \textit{Electric} y \textit{LTSpice} para saber si con este método se puede llegar a una aproximación bastante certera de los tiempos de retardo.\\
 
-Por último, se realizada el layout del circuito y se volverá a realizar la simulación para definir los \textit{pitch} que se usarán en la proxima tarea.
+Por último, se realizada el layout del circuito y se volverá a realizar la simulación para definir los \textit{pitch} que se usarán en la proxima tarea.\\
 
 \section{Resultados Experimentales.}
 
 
-\subsection{Diseno del Trazado de una Compuerta y Diagrama de Palitos.}
+\subsection{Diseño del Trazado de una Compuerta y Diagrama de Palitos.}
 
 
-La función logica a la que se le realizara el trazado y el Diagrama de Palitos es la mostrada en la Ec.\ref{eqn:logica}. Esta función lógica es conocida como $OAI-22 + INV.$ Para el diseno de la compuerta se utilizó algebra booleana y se obtuvo la Ec.\ref{eqn:logica_inversa}.
+La función lógica a la que se le realizara el trazado y el \texti{Diagrama de Palitos} es la mostrada en la \textit{Ec.\ref{eqn:logica}}. Esta función lógica es conocida como OAI-22 + INV. Para el diseño de la compuerta se utilizó algebra booleana y se obtuvo la \textit{Ec.\ref{eqn:logica inversa}}.\\
 
 \begin{equation}\label{eqn:logica}
 F=(A+B)*(C+D)
 \end{equation}
 
-\begin{equation}\label{eqn:logica_inversa}
+\begin{equation}\label{eqn:logica inversa}
 \overline{F}=\overline{(A+B)}+\overline{(C+D)}
 \end{equation}\\
 
@@ -446,7 +447,7 @@ t_{cdf} = \frac{147RC}{5}+t_{pcdInv}=29.4RC+\frac{500RC}{29}=46.4RC=15.55\tau
 \end{equation}\\
 
 
-\subsubsection{Simulación de Retardos de Propagación}
+\subsubsection{Simulación de Retardos de Propagación}\\
 
 A partir de la \textit{Ec.\ref{eqn:logica}} y de las constantes calculadas y encontradas en el informe anterior para el dimensionamiento de los transistores para tiempos de retardo y levantamiento simétrico de los niveles lógicos encontramos que para una carga de entrada de $30\lambda$ y una carga de salida de $500\lambda$ se encontró que el ancho de canal de los transistores equivalentes son los mostrados el la Tabla \ref{table:ancho_canal} y el circuito es el mostrado en la \textit{Fig.\ref{fig:circuito_E}}.\\
 
@@ -478,7 +479,7 @@ Inv & 32.22 & 58.17 \\
     \includegraphics[scale=0.5]{./Mejor_caso_red_nmos.png}
     \rule{35em}{0.5pt}
   \caption[Captura]{Gráfica para mejor caso del NMOS}
-  \label{fig:m_nmos}
+  \label{fig:CircuitoFO2}
   \end{center}
 \end{figure}
 
@@ -487,7 +488,7 @@ Inv & 32.22 & 58.17 \\
     \includegraphics[scale=0.5]{./Peor_caso_red_nmos.png}
     \rule{35em}{0.5pt}
   \caption[Captura]{Gráfica para peor caso del NMOS}
-  \label{fig:p_nmos}
+  \label{fig:CircuitoFO2}
   \end{center}
 \end{figure}
 
@@ -496,7 +497,7 @@ Inv & 32.22 & 58.17 \\
     \includegraphics[scale=0.5]{./Mejor_caso_red_pmos.png}
     \rule{35em}{0.5pt}
   \caption[Captura]{Gráfica para mejor caso del PMOS}
-  \label{fig:m_pmos}
+  \label{fig:CircuitoFO2}
   \end{center}
 \end{figure}
 
@@ -506,14 +507,14 @@ Inv & 32.22 & 58.17 \\
     \includegraphics[scale=0.5]{./Peor_caso_red_pmos.png}
     \rule{35em}{0.5pt}
   \caption[Captura]{Gráfica para peor caso del PMOS}
-  \label{fig:p_pmos}
+  \label{fig:CircuitoFO2}
   \end{center}
 \end{figure}
 
-\begin{table}\label{table:Tabla_propagacion}
+\begin{table}\label{table:Tabla_propagación}
 \begin{center}
 \begin{tabular}{c||c||c}
-Tiempo  & Mejor tiempo (ps) & Peor tiempo (ps)\\
+  & Mejor tiempo (ps) & Peor tiempo (ps)\\
 \hline
 \hline
 tr & 79.4 & 147.4 \\
@@ -530,24 +531,26 @@ tf & 58.6 & 129.5 \\
 
 
 \section{Conclusiones.}
+\begin{itemize}
 
+\end{itemize}
 
 %----------------------------------------------------------------------------------------
 \begin{thebibliography}{3}
 
 \bibliographystyle{unsrtnat} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
 
-\bibitem[Wey(1999)]{A}
+\bibitem[Wey(1999)]{Wey1999}
 [1] N. Weste, D. Harris. 
 \newblock {CMOS VLSI Design: A Circuits and Systems Perspective , 4 edition.}.
 \newblock \emph{Boston: Addison-Wesley}, 2010.
 
-\bibitem[Wey(1999)]{B}
+\bibitem[Wey(1999)]{Wey1999}
 [2] J. Rabaey, A. Chandrakasan y B. Nikolic. 
 \newblock { Digital Integrated Circuits: A Design Perspective.}.
 \newblock \emph{Prentice Hall}, 2005.
 
-\bibitem[Wey(1999)]{C}
+\bibitem[Wey(1999)]{Wey1999}
 [3]Test Data .On SemiconductorC5.Mosis. Recompilado de:
 \newblock \emph{http://www.ie.itcr.ac.cr/achacon/ \\* Intro$\_$Diseno$\_$CI/Modelos$\_$Spice$\_$MOSIS/v03m-params.txt}, el 07/09/2015
 

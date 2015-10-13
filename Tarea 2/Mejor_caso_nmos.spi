@@ -1,7 +1,7 @@
 *** SPICE deck for cell Mejor_caso_nmos{sch} from library Tarea_2_VLSI
 *** Created on lun oct 05, 2015 14:06:41
 *** Last revised on dom oct 11, 2015 10:41:41
-*** Written on lun oct 12, 2015 19:15:18 by Electric VLSI Design System, version 9.06
+*** Written on dom oct 11, 2015 10:42:00 by Electric VLSI Design System, version 9.06
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 
