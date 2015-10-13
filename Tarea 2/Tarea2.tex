@@ -447,6 +447,26 @@ t_{cdf} = \frac{147RC}{5}+t_{pcdInv}=29.4RC+\frac{500RC}{29}=46.4RC=15.55\tau
 \end{equation}\\
 
 
+\begin{table}\label{table:Tabla_propagación_Analítica}
+\begin{center}
+\begin{tabular}{c||c||c}
+  & Mejor Caso ($\tau$) & Peor Caso ($\tau$)\\
+\hline
+\hline
+tpdr & 17.213 & 18.546 \\
+tpdf & 17.21 & 19.88 \\
+tcdr & 10.65 & 15.55\\
+tcdf & 10.65 & 15.55\\
+Esf. Lógico & 16.54\\
+
+
+\hline
+\end{tabular}
+\caption{Tiempos de Retardo de Propagación y de Contaminación Analíticos.}
+\end{center}
+\end{table}
+
+
 \subsubsection{Simulación de Retardos de Propagación}\\
 
 A partir de la \textit{Ec.\ref{eqn:logica}} y de las constantes calculadas y encontradas en el informe anterior para el dimensionamiento de los transistores para tiempos de retardo y levantamiento simétrico de los niveles lógicos encontramos que para una carga de entrada de $30\lambda$ y una carga de salida de $500\lambda$ se encontró que el ancho de canal de los transistores equivalentes son los mostrados el la Tabla \ref{table:ancho_canal} y el circuito es el mostrado en la \textit{Fig.\ref{fig:circuito_E}}.\\
@@ -528,11 +548,15 @@ tf & 58.6 & 129.5 \\
 
 \section{Análisis de datos y resultados.}
 
+El la Tabla \ref{table:Tabla_propagación_Analítica} se muestran los valores del cálculo analítico de los delay de la compuerta para el mejor y peor caso de propagación de fall y raise, el mejor y peor caso para el delay de contaminación de raise y fall, estos por el método del delay de Elmore, así como el calculo del delay mediante el método del esfuerzo lógico.\\
+
+A partir de esta tabla se puede observar que los cálculos del delay por medio del método de Elmore y por medio del metodo de esfuerzo logico son bastante cercanos, siendo el método de Elmore más complejo, pero permite un mejor análisis de los diferentes casos, necesario para un mejor diseño.\\
 
 
 \section{Conclusiones.}
 \begin{itemize}
-
+\item Los retardos de fall son mas lentos que los de rise, debido a la movilidad de los portadores presentes en cada red.
+\item En el diseño de una compuerta, el método de esfuerzo lógico es necesario para poder dimensionar los transistores, mientras que el método de Elmore permite el análisis de los casos de delay de la compuerta.
 \end{itemize}
 
 %----------------------------------------------------------------------------------------

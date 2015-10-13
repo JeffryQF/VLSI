@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.12)  11 OCT 2015 17:50
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.12)  12 OCT 2015 21:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -474,25 +474,10 @@ LaTeX Info: Redefining \cite on input line 694.
 \f@ncyO@olf=\skip66
 \f@ncyO@orf=\skip67
 ) (./Tarea2.aux
-
-LaTeX Warning: Label `fig:CircuitoFO2' multiply defined.
-
-
-LaTeX Warning: Label `fig:CircuitoFO2' multiply defined.
-
-
-LaTeX Warning: Label `fig:CircuitoFO2' multiply defined.
-
-
-Package natbib Warning: Citation `Wey1999' multiply defined.
-
-
-Package natbib Warning: Citation `Wey1999' multiply defined.
-
 ! Missing \endcsname inserted.
 <to be read again> 
                    \unhbox 
-l.95 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{15}}
+l.80 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.6}{13}}
                                                   
 The control sequence marked <to be read again> should
 not appear between \csname and \endcsname.
@@ -503,7 +488,7 @@ LaTeX Warning: Label `table:Tabla_propagaci\IeC {\'o}n' multiply defined.
 ! Missing \endcsname inserted.
 <to be read again> 
                    \unhbox 
-l.95 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{15}}
+l.80 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.6}{13}}
                                                   
 The control sequence marked <to be read again> should
 not appear between \csname and \endcsname.
@@ -515,7 +500,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.95 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{15}}
+l.80 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.6}{13}}
                                                   
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -523,7 +508,7 @@ If that doesn't work, type  X <return>  to quit.
 ! Missing number, treated as zero.
 <to be read again> 
                    \accent@spacefactor 
-l.95 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{15}}
+l.80 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.6}{13}}
                                                   
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
@@ -532,27 +517,95 @@ look up `weird error' in the index to The TeXbook.)
 ! Bad space factor (0).
 <to be read again> 
                    \accent@spacefactor 
-l.95 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{15}}
+l.80 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.6}{13}}
                                                   
 I allow only values in the range 1..32767 here.
 
 ! Extra \endcsname.
 \@namedef ...xpandafter \def \csname #1\endcsname 
                                                   
-l.95 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{15}}
+l.80 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.6}{13}}
                                                   
 I'm ignoring this, since I wasn't doing a \csname.
 
 ! Extra }, or forgotten \endgroup.
 \@newl@bel ...ined}}\global \@namedef {#1@#2}{#3}}
                                                   
-l.95 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{15}}
+l.80 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.6}{13}}
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
 you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
+
+
+LaTeX Warning: Label `fig:CircuitoFO2' multiply defined.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \unhbox 
+l.91 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{14}}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+
+LaTeX Warning: Label `table:Tabla_propagaci\IeC {\'o}n' multiply defined.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \unhbox 
+l.91 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{14}}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   \accent@spacefactor 
+l.91 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{14}}
+                                                  
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Bad space factor (0).
+<to be read again> 
+                   \accent@spacefactor 
+l.91 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{14}}
+                                                  
+I allow only values in the range 1..32767 here.
+
+! Extra \endcsname.
+\@namedef ...xpandafter \def \csname #1\endcsname 
+                                                  
+l.91 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{14}}
+                                                  
+I'm ignoring this, since I wasn't doing a \csname.
+
+! Extra }, or forgotten \endgroup.
+\@newl@bel ...ined}}\global \@namedef {#1@#2}{#3}}
+                                                  
+l.91 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{14}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+Package natbib Warning: Citation `Wey1999' multiply defined.
+
+
+Package natbib Warning: Citation `Wey1999' multiply defined.
+
+
+LaTeX Warning: Label `fig:CircuitoFO2' multiply defined.
+
+
+LaTeX Warning: Label `fig:CircuitoFO2' multiply defined.
 
 )
 \openout1 = `Tarea2.aux'.
@@ -1036,14 +1089,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.451 
+l.471 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 452--453
+Underfull \hbox (badness 10000) in paragraph at lines 472--473
 
  []
 
@@ -1051,37 +1104,43 @@ Underfull \hbox (badness 10000) in paragraph at lines 452--453
 File: ./Cicuito_Electric.png Graphic file (type png)
 
 <use ./Cicuito_Electric.png>
-Package pdftex.def Info: ./Cicuito_Electric.png used on input line 471.
+Package pdftex.def Info: ./Cicuito_Electric.png used on input line 491.
 (pdftex.def)             Requested size: 276.28151pt x 172.01723pt.
 
 <./Mejor_caso_red_nmos.png, id=68, 1005.7575pt x 198.7425pt>
 File: ./Mejor_caso_red_nmos.png Graphic file (type png)
 
 <use ./Mejor_caso_red_nmos.png>
-Package pdftex.def Info: ./Mejor_caso_red_nmos.png used on input line 479.
+Package pdftex.def Info: ./Mejor_caso_red_nmos.png used on input line 499.
 (pdftex.def)             Requested size: 502.87752pt x 99.371pt.
 
 <./Peor_caso_red_nmos.png, id=69, 1008.76875pt x 195.73125pt>
 File: ./Peor_caso_red_nmos.png Graphic file (type png)
 
 <use ./Peor_caso_red_nmos.png>
-Package pdftex.def Info: ./Peor_caso_red_nmos.png used on input line 488.
+Package pdftex.def Info: ./Peor_caso_red_nmos.png used on input line 508.
 (pdftex.def)             Requested size: 504.38315pt x 97.86537pt.
 
 <./Mejor_caso_red_pmos.png, id=70, 1015.54407pt x 197.23688pt>
 File: ./Mejor_caso_red_pmos.png Graphic file (type png)
 
 <use ./Mejor_caso_red_pmos.png>
-Package pdftex.def Info: ./Mejor_caso_red_pmos.png used on input line 497.
+Package pdftex.def Info: ./Mejor_caso_red_pmos.png used on input line 517.
 (pdftex.def)             Requested size: 507.7708pt x 98.61818pt.
 
 <./Peor_caso_red_pmos.png, id=71, 1013.28563pt x 197.23688pt>
 File: ./Peor_caso_red_pmos.png Graphic file (type png)
 
 <use ./Peor_caso_red_pmos.png>
-Package pdftex.def Info: ./Peor_caso_red_pmos.png used on input line 507.
+Package pdftex.def Info: ./Peor_caso_red_pmos.png used on input line 527.
 (pdftex.def)             Requested size: 506.64159pt x 98.61818pt.
 
+Underfull \hbox (badness 10000) in paragraph at lines 551--552
+
+ []
+
+[13 <./Peor_Caso_Fall_contam.png>] [14 <./Cicuito_Electric.png> <./Mejor_caso_r
+ed_nmos.png> <./Peor_caso_red_nmos.png>]
 
 ! LaTeX Error: Something's wrong--perhaps a missing \item.
 
@@ -1089,31 +1148,37 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.536 \end{itemize}
+l.559 \end{itemize}
                    
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[13 <./Peor_Caso_Fall_contam.png> <./Cicuito_Electric.png>] [14 <./Mejor_caso_r
-ed_nmos.png> <./Peor_caso_red_nmos.png> <./Mejor_caso_red_pmos.png> <./Peor_cas
-o_red_pmos.png>] 
+
 AED: lastpage setting LastPage
-[15]
+[15 <./Mejor_caso_red_pmos.png> <./Peor_caso_red_pmos.png>]
 
 Package natbib Warning: There were multiply defined citations.
 
 (./Tarea2.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
+! Missing \endcsname inserted.
+<to be read again> 
+                   \unhbox 
+l.78 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.6}{13}}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \unhbox 
-l.95 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{15}}
+l.90 ...e:Tabla_propagaci\IeC {\'o}n}{{3.2.7}{14}}
                                                   
 The control sequence marked <to be read again> should
 not appear between \csname and \endcsname.
+
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
 
 )
 
@@ -1123,11 +1188,11 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  4643 strings out of 494985
  62186 string characters out of 6180356
- 138901 words of memory out of 5000000
+ 140911 words of memory out of 5000000
  7739 multiletter control sequences out of 15000+600000
  10851 words of font info for 40 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 38i,19n,47p,761b,416s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,19n,43p,761b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texl
@@ -1138,7 +1203,7 @@ type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmti12.pfb>
-Output written on Tarea2.pdf (15 pages, 304767 bytes).
+Output written on Tarea2.pdf (15 pages, 305648 bytes).
 PDF statistics:
  120 PDF objects out of 1000 (max. 8388607)
  66 compressed objects within 1 object stream
