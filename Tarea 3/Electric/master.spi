@@ -1,0 +1,19 @@
+*** SPICE deck for cell master{sch} from library Tarea_3_VLSI
+*** Created on jue oct 22, 2015 15:59:06
+*** Last revised on lun oct 26, 2015 16:36:11
+*** Written on lun oct 26, 2015 16:45:06 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+
+.global gnd vdd
+
+*** TOP LEVEL CELL: master{sch}
+Mnmos@0 net@10 D gnd gnd N L=0.6U W=3U
+Mnmos@1 net@22 B gnd gnd NMOS L=0.6U W=3U
+Mnmos@2 net@10 _CLK A gnd N L=0.6U W=3U
+Mnmos@3 net@22 CLK A gnd N L=0.6U W=3U
+Mpmos@0 vdd D net@10 vdd PMOS L=0.6U W=6U
+Mpmos@1 vdd B net@22 vdd PMOS L=0.6U W=6U
+Mpmos@2 A CLK net@10 vdd PMOS L=0.6U W=6U
+Mpmos@3 A _CLK net@22 vdd PMOS L=0.6U W=6U
+.END
