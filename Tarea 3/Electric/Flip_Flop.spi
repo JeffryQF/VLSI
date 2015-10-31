@@ -1,0 +1,57 @@
+*** SPICE deck for cell Flip_Flop{lay} from library Tarea_3_VLSI
+*** Created on lun oct 26, 2015 16:08:03
+*** Last revised on sáb oct 31, 2015 01:08:35
+*** Written on sáb oct 31, 2015 01:08:58 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+
+*** SUBCIRCUIT Tarea_3_VLSI__FO4 FROM CELL FO4{lay}
+.SUBCKT Tarea_3_VLSI__FO4 gnd IN OUT vdd
+Mnmos@0 gnd IN OUT gnd NMOS L=0.6U W=3U AS=7.425P AD=14.85P PS=12.3U PD=25.5U
+Mpmos@0 vdd IN OUT vdd PMOS L=0.6U W=6U AS=7.425P AD=21.78P PS=12.3U PD=32.1U
+.ENDS Tarea_3_VLSI__FO4
+
+*** SUBCIRCUIT Tarea_3_VLSI__inv FROM CELL inv{lay}
+.SUBCKT Tarea_3_VLSI__inv gnd IN OUT vdd
+Mnmos@0 gnd IN OUT gnd NMOS L=0.6U W=3U AS=7.425P AD=14.85P PS=12.3U PD=25.5U
+Mpmos@0 vdd IN OUT vdd PMOS L=0.6U W=6U AS=7.425P AD=21.78P PS=12.3U PD=32.1U
+.ENDS Tarea_3_VLSI__inv
+
+*** SUBCIRCUIT Tarea_3_VLSI__master FROM CELL master{lay}
+.SUBCKT Tarea_3_VLSI__master A B CLK D gnd vdd _CLK
+Mnmos@0 gnd D net@98 gnd NMOS L=0.6U W=3U AS=4.05P AD=14.175P PS=6.3U PD=22.95U
+Mnmos@1 net@98 _CLK A gnd NMOS L=0.6U W=3U AS=4.05P AD=4.05P PS=6.3U PD=6.3U
+Mnmos@2 A CLK net@102 gnd NMOS L=0.6U W=3U AS=4.05P AD=4.05P PS=6.3U PD=6.3U
+Mnmos@3 net@102 B gnd gnd NMOS L=0.6U W=3U AS=14.175P AD=4.05P PS=22.95U PD=6.3U
+Mpmos@0 vdd D net@98 vdd PMOS L=0.6U W=6U AS=4.05P AD=20.7P PS=6.3U PD=29.1U
+Mpmos@1 net@98 CLK A vdd PMOS L=0.6U W=6U AS=4.05P AD=4.05P PS=6.3U PD=6.3U
+Mpmos@2 A _CLK net@102 vdd PMOS L=0.6U W=6U AS=4.05P AD=4.05P PS=6.3U PD=6.3U
+Mpmos@3 net@102 B vdd vdd PMOS L=0.6U W=6U AS=20.7P AD=4.05P PS=29.1U PD=6.3U
+.ENDS Tarea_3_VLSI__master
+
+*** SUBCIRCUIT Tarea_3_VLSI__slave FROM CELL slave{lay}
+.SUBCKT Tarea_3_VLSI__slave A B CLK D gnd vdd _CLK
+Mnmos@0 gnd D net@98 gnd NMOS L=0.6U W=3U AS=4.05P AD=14.175P PS=6.3U PD=22.95U
+Mnmos@1 net@98 CLK A gnd NMOS L=0.6U W=3U AS=4.05P AD=4.05P PS=6.3U PD=6.3U
+Mnmos@2 A _CLK net@102 gnd NMOS L=0.6U W=3U AS=4.05P AD=4.05P PS=6.3U PD=6.3U
+Mnmos@3 net@102 B gnd gnd NMOS L=0.6U W=3U AS=14.175P AD=4.05P PS=22.95U PD=6.3U
+Mpmos@0 vdd D net@98 vdd PMOS L=0.6U W=6U AS=4.05P AD=20.7P PS=6.3U PD=29.1U
+Mpmos@1 net@98 _CLK A vdd PMOS L=0.6U W=6U AS=4.05P AD=4.05P PS=6.3U PD=6.3U
+Mpmos@2 A CLK net@102 vdd PMOS L=0.6U W=6U AS=4.05P AD=4.05P PS=6.3U PD=6.3U
+Mpmos@3 net@102 B vdd vdd PMOS L=0.6U W=6U AS=20.7P AD=4.05P PS=29.1U PD=6.3U
+.ENDS Tarea_3_VLSI__slave
+
+*** TOP LEVEL CELL: Flip_Flop{lay}
+XFO4@0 gnd net@13 OUT vdd Tarea_3_VLSI__FO4
+Xinv@0 gnd net@10 net@4 vdd Tarea_3_VLSI__inv
+Xmaster@0 net@10 net@4 clk D gnd vdd clk_n Tarea_3_VLSI__master
+Xslave@0 net@13 OUT clk net@4 gnd vdd clk_n Tarea_3_VLSI__slave
+
+* Spice Code nodes in cell cell 'Flip_Flop{lay}'
+Vdd vdd 0 DC 3.3
+Vin clk 0 PULSE(0 3.3 20n 0 0 20n 40n 2)
+Vin2 clk_n 0 PULSE(3.3 0 20n 0 0 20n 40n 2)
+Vin3 D 0 DC 3.3
+.tran 1n 80n
+.include C:\Users\Francis\Desktop\Electric (VLSI)\Mosis_5.txt
+.END
