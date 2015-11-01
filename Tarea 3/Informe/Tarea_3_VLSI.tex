@@ -60,9 +60,9 @@
 %----------------------------------------------------------------------------------------
 
 \fancyhead[L]{\begin{tabular}{l r | l r} % The header is a table with 4 columns
-\textbf{Proyecto} & Diseño función lógica CMOS & \textbf{Página} & \thepage/\pageref{LastPage} \\ % Project name and page count
-\textbf{Trabajo} & Proceso de diseño & \textbf{Actualizado en:} & 08/10/2015 \\ % Job number and last updated date
-\textbf{Curso} & VLSI & \textbf{Revisado en:} & 09/10/2015 \\ % Version and reviewed date
+\textbf{Proyecto} & Diseño flip-flop CMOS & \textbf{Página} & \thepage/\pageref{LastPage} \\ % Project name and page count
+\textbf{Trabajo} & Proceso de diseño & \textbf{Actualizado en:} & 31/10/2015 \\ % Job number and last updated date
+\textbf{Curso} & VLSI & \textbf{Revisado en:} & 2/11/2015 \\ % Version and reviewed date
 \textbf{Diseñador} & López F. - Quirós.J.& \textbf{Revisado por:} & Alfonso Chacón Rodríguez \\ % Designer and reviewer
 \end{tabular}}
 
@@ -81,22 +81,40 @@
 
 \section{Resumen} 
 
-En este documento se presentan los cálculos de los tiempos de propagación y contaminación de la compuerta compuesta \textit{$F=(A+B)(C+D)$}, obteniendo estos tiempos de manera analítica, mediante la teoría de esfuerzo lógico y la aproximación de Elmore, así como mediante simulación, utilizando los software \textit{Electric} y \textit{LTSpice}, y por último contrastando los resultados de ambos métodos. Tambien se muestra el diseño de un trazado que usa una única tira de difusión en ambos pozos, construyendo los \textit{caminos de Euler}, y dibujando el diagrama de palitos que muestra el orden de entradas, poly, las difusiones \textit{n} y \textit{p}, el pozo y las líneas de metal.
+En este documento se presentan los resultados del diseño de un registro flip-flop en una tecnología ON Semiconductor 0.5 $\mu$m, el cual se caracterizó y se midieron sus valores de tiempo mas importantes. Tambien se presenta las respuesta a las preguntas de teoriía sobre los valores de tiempo en un registro flip-flop y sobre las diferencias entre los flip-flop estáticos y dinámicos.
 
 \section{Introducción} 
 
-Para el diseño de una compuerta de lógica CMOS o un conjunto de las mismas, es necesario tomar varias consideraciones para los anchos de canal de los transistores, ya sean para una optimización en potencia o para una rápida conmutación entre los niveles lógicos. En estos se debe incluir la carga que debe soportar  para que los tiempos de retardo no afecten el comportamiento ideal del circuito.
+El flip-flop es un tipo de circuito secuencial, capaz almacenar un valor lógico a partir de su entrada en un flanco de señal de reloj. Esta señal perdura durante el periodo de la señal de reloj hasta el proximo flanco de subida o de bajada, dependiendo de su fabricación. Idealmente, el tiempo requerido para el almacenamiento de información es cero, pero a como veremos a continuación, dependerá de la tecnología con la que se ha constrido el flip-flop que habrán tiempos que se deberán respetar para que su funcionamiento sea el esperado.
 
-Para la demostración de los pasos de diseno de una función lógica, se nos ha pedido diseñar el esquemático y el layout de la función lógica del problema 9.4 de [1] que es \textit{$F=(A+B)(C+D)$}. El esquemático deberá realizarse con lógica CMOS estática.
+Para este documento se iniciará dando una breve explicación acerca de lo que son los tiempos que estarán definidos para el diseño del flip-flop incluidos los tiempos de propagación de la señales. Luego se explicarán acerca de lo que son los registros estáticos y dinamico, asi como las ventajas y desventajas que poseen cada uno, esto con el fin de observar el potencial que poseen cada uno en diversas aplicaciones.
 
-Luego se procederá a calcular el retardo de propagación y contaminación que presenta la función, tanto de manera analítica con la aproximación de Elmore como con la teoría de esfuerzo lógico, que se evaluará con una simulación en los software \textit{Electric} y \textit{LTSpice} para saber si con este método se puede llegar a una aproximación bastante certera de los tiempos de retardo.
+También se mostrará en este documento, el diseño en layout de un flip-flop master-slave para 1 bit en tecnología ON-semiconductor 0.5 $\mu$m. asi como las consideraciones que se tomaron para el mismo.
 
-Por último, se realizada el layout del circuito y se volverá a realizar la simulación para definir los \textit{pitch} que se usarán en la proxima tarea.
+Por último se mostrará las simulaciones que se realizaron para la caracterización del flip-flop y medición de los valores de tiempos del mismo.
 
-\section{Resultados Experimentales.}
+\section{Definición de conceptos}
 
+\begin{itemize}
+\item Set-up time: Es el tiempo mínimo el cual debe tener la entrada D antes del flanco de reloj, para que sea un valor válido de entrada y pueda ser cargado en el flip-flop. 
+Para el circuito propuesto, esta propagación es medible por los tiempos de propagación que requiere los transistores del bloque Master, esto antes del flanco de reloj y que se empiece a propagar la entrada en el bloque Slave. De no ser así los valores de los buffers de salida del bloque no se traslapen y den un valor incorrecto. 
+El valor de set-up en un flip-flop master salve es el mostrado en la ecuación (), esta viene de que la entrada debe propagarse en 3 inversores y en 1 buffer de paso:
+ $3 *tpd_inv + tpd_tx$
 
-\subsection{Diseño del Trazado de una Compuerta y Diagrama de Palitos.}
+\item Hold time: Es el tiempo mínimo el cual se debe mantener el valor de entrada D, luego del flanco de reloj, para que sea un válido que se pueda cargar en el flip-flop.
+Para el circuito propuesto, este valor es cero. Esto porque al haberse dado el flanco de reloj, el transistor de paso en la entrada en el bloque Master se cierra por lo que el valor de entrada a partir de ese momento no afectará en lo absoluto a la salida. 
+
+\item Tiempo de propagación: Es el tiempo que le toma al flip-flop en el peor caso, para tener un valor válido de salida igual al valor cargado leído en la entrada.
+En el Flip-Flop Master-Slave, este tiempo es el cual le tomará la salida del bloque master propagarse en el bloque Slave. Para ello solo le tomará el tiempo de propagación de un inversor y de un buffer de paso, ya que se consideró en el setup-time el tiempo para el transistor de entrada del bloque.
+Este valor se puede calcular con la ecuación (): 
+
+$tpd_tx + tpd_inv.$
+
+\item Tiempo de contaminación: Es el menor tiempo que le toma al flip-flop para tener un valor de salida igual al valor de la entrada que se había leído anteriormente.
+
+\end{itemize}
+
+\section{Flip-Flops estáticos y dinámicos}
 
 
 La función logica a la que se le realizara el trazado y el Diagrama de Palitos es la mostrada en la Ec.\ref{eqn:logica}. Esta función lógica es conocida como $OAI-22 + INV.$ Para el diseno de la compuerta se utilizó algebra booleana y se obtuvo la Ec.\ref{eqn:logica_inversa}.
@@ -120,13 +138,13 @@ Para lo cual se hizo el esquemático mostrado en la \textit{Fig.\ref{fig:Comp_Tr
   \label{fig:pal}
 \end{figure}
 
-\subsection{Delay de Propagación y de Contaminación.}
+\section{Diseño del layout}
 
-\subsubsection{Método Analítico}
+\subsection{Bloque Master}
 
 El cálculo de los tiempos de propagación y de contaminación se realiza haciendo uso de dos métodos: la teoría del esfuerzo lógico, \textit{logical effort}, y por el método de la aproximación de Elmore, \textit{Elmore Delay}.\\
 
-\subsubsection{Método de Esfuerzo Lógico}
+\subsection{Inversor en el Master}
 
 El esfuerzo lógico se define como \textit{"la razón de la capacitancia del gate a la capacitancia de entrada de un inversor que puede entregar la misma corriente de salida."}, e indica que tan mala es una compuerta produciendo una corriente de salida comparada con un inversor.\\
 
@@ -277,7 +295,7 @@ En la \textit{Fig.\ref{fig:Comp_Transistores_Dim}} se muestra la compuerta a niv
   \label{fig:Comp_Transistores_Dim}
 \end{figure}
 
-\subsubsection{Método de Aproximación de Elmore}
+\subsection{Bloque slave}
 
 Ahora se calcula el delay de propagación y el delay de contaminación de la compuerta \textit{F=(A+B)(C+D)} mediante el método de \textit{Aproximación de Elmore}, el cuál se hace valer del modelo RC del transistor, para calcular los delays de una compuerta. El modelo de delay de \textit{Elmore} estima el restraso desde una fuente conmutando a uno de los nodos hoja cambiantes como la suma sobre cada nodo \textit{i} de la capacitancia \textit{$C_{i}$} en el nodo, multiplicado por la resistencia efectiva \textit{$R_{is}$} en el camino compartido desde la fuente hasta el nodo y la hoja, dando como resultado la ec.\ref{eqn:Elmore}:
 
@@ -300,7 +318,7 @@ En la \textit{Fig.\ref{fig:ModeloRC_Completo}} se muestra el modelo \textit{RC} 
 
 Para este modelo se calculan el mejor y el peor caso para el delay, por lo que en las siguientes secciones se presentaran los cálculos y los circuitos \textit{RC} de cada caso.\\
 
-\subsubsection{Red de Pull-Up}
+\subsection{Buffer inversor de salida}
 
 Antes de calcular el mejor y el pesor caso de subida, primero se calcula el retraso provocado por el inversor a la salida, ya que este sera el mismo para el mejor y el peor caso de subida y de bajada. En la \textit{Fig.\ref{fig:RC_Inversor}} se muestra el modelo \textit{RC} del inversor de este problema.\\
 
@@ -348,7 +366,7 @@ En la \textit{Fig.\ref{fig:Peor_caso_Rise_propagacion}} se observa que el peor c
 t_{pdr} = \frac{20RC}{10}+\frac{20RC}{5}+\frac{147RC}{5}+t_{pdInv}= 35.4RC + 20.24RC = 55.64RC = 18.546\tau
 \end{equation}\\
 
-\subsubsection{Red de Pull-Down}
+\subsection{Circuito completo}
 
 En la \textit{Fig.\ref{fig:Peor_caso_Fall_propagacion}} se observa el peor caso de caída en el cálculo del delay en la compuerta. En este caso se activan las entradas A y C, con un 1 lógico, en la red de \textit{pull-down}, y se activan las entradas B y D, con un 0 lógico, en la red de \textit{pull-up}, con lo que esta red contribuye con el delay, tal como se muestra en la \textit{Fig.\ref{fig:Peor_caso_Fall_propagacion}}. En la \textit{Ec.\ref{eqn:Delay_fall_Peor}} se muestra el cálculo del delay.\\
 
@@ -382,168 +400,9 @@ t_{pdf} = \frac{20RC}{10}+\frac{147RC}{5}+t_{pdInv}=31.4RC+20.24RC=51.64RC=17.21
 \end{equation}\\
 
 
-\subsubsection{Delay de Contaminación.}
-
-El delay de contaminación, \textit{contamination delay}, indica que tán rapido puede conmutar la compuerta. Para este delay se procede a calcular el mejor y el peor caso de retraso de \textit{raise} y \textit{fall}.\\
-
-En la \textit{Fig.\ref{fig:Mejor_Caso_Rise_contam}} se muestra el mejor caso de delay de contaminación de levantamiento, que se da cuando todos los transistores de la red de \textit{pull-up} se encienden simultaneamente. En la \textit{Ec.\ref{eqn:DelayC_rise_Mejor}} se muestra el resultado de cacular el delay de contaminación para el mejor caso de levantamiento.\\
 
 
-\begin{figure}[htbp]
-  \centering
-    \includegraphics[scale=0.3]{./Mejor_Caso_Rise_contam.png}
-    \rule{35em}{0.3pt}
-  \caption[C_Carga]{Mejor Caso de \textit{Rise} en el Delay de Contaminación.}
-  \label{fig:Mejor_Caso_Rise_contam}
-\end{figure}
-
-\begin{equation}\label{eqn:DelayC_rise_Mejor}
-t_{cdr} = \frac{147RC}{10}+t_{pcdInv}=14.7RC+\frac{500RC}{29}=31.94RC=10.65\tau
-\end{equation}\\
-
-Para el peor caso de delay de contaminación de levantamiento, el peor caso ocurre cuando solo una rama de la red de \textit{pull-up} se encuentra encendida, como se muestra en la \textit{Fig.\ref{fig:Peor_Caso_Rise_contam}}. En la \textit{Ec.\ref{eqn:DelayC_rise_Peor}} se muestra el resultado del cálculo del delay de contaminación.\\
-
-
-\begin{figure}[htbp]
-  \centering
-    \includegraphics[scale=0.4]{./Peor_Caso_Rise_contam.png}
-    \rule{35em}{0.3pt}
-  \caption[C_Carga]{Peor Caso de \textit{Rise} en el Delay de Contaminación.}
-  \label{fig:Peor_Caso_Rise_contam}
-\end{figure}
-
-\begin{equation}\label{eqn:DelayC_rise_Peor}
-t_{cdr} = \frac{147RC}{5}+t_{pcdInv}=29.4RC+\frac{500RC}{29}=46.64RC=15.55\tau
-\end{equation}\\
-
-
-En el caso del delay de contaminacion de caída, el mejor caso corresponde cuando los transistores más externos están encendidos y se encienden los dos más internos. Así la capacitancia del nodo inferior está descargada y no contribuye al delay. El circuito \textit{RC} correspondiente a este caso se observa en la \textit{Fig.\ref{fig:Mejor_Caso_Fall_contam}}, donde ya se han hecho las reducciones de resistencias correspondientes, y en la \textit{Ec.\ref{eqn:DelayC_Fall_Mejor}} se muestran los resultados del cálculo.\\
-
-\begin{figure}[htbp]
-  \centering
-    \includegraphics[scale=0.25]{./Mejor_Caso_Fall_contam.png}
-    \rule{35em}{0.3pt}
-  \caption[C_Carga]{Mejor Caso de \textit{Fall} en el Delay de Contaminación.}
-  \label{fig:Mejor_Caso_Fall_contam}
-\end{figure}
-
-\begin{equation}\label{eqn:DelayC_Fall_Mejor}
-t_{cdf} = \frac{147RC}{10}+t_{pcdInv}=14.7RC+\frac{500RC}{29}=31.94RC=10.65\tau
-\end{equation}\\
-
-
-El peor caso para el delay de contaminación de caída, se muestra en la \textit{Fig.\ref{fig:Peor_Caso_Fall_contam}}, en donde solo dos transistores de la red de \textit{pull-down} permiten la descarga de la capacitancia de carga. En la \textit{Ec.\ref{eqn:DelayC_Fall_Peor}} se muestra el cálculo del delay de contaminación de caída en el peor caso.\\
-
-\begin{figure}[htbp]
-  \centering
-    \includegraphics[scale=0.25]{./Peor_Caso_Fall_contam.png}
-    \rule{35em}{0.3pt}
-  \caption[C_Carga]{Peor Caso de \textit{Fall} en el Delay de Contaminación.}
-  \label{fig:Peor_Caso_Fall_contam}
-\end{figure}
-
-\begin{equation}\label{eqn:DelayC_Fall_Peor}
-t_{cdf} = \frac{147RC}{5}+t_{pcdInv}=29.4RC+\frac{500RC}{29}=46.4RC=15.55\tau
-\end{equation}\\
-
-
-\begin{table}\label{table:TablaAnalitica}
-\begin{center}
-\begin{tabular}{c||c||c}
-Tiempo  & Mejor Caso ($\tau$) & Peor Caso ($\tau$)\\
-\hline
-\hline
-tpdr & 17.213 & 18.546 \\
-tpdf & 17.21 & 19.88 \\
-tcdr & 10.65 & 15.55\\
-tcdf & 10.65 & 15.55\\
-Esf. Lógico & 16.54\\
-\hline
-\end{tabular}
-\caption{Tiempos de Retardo de Propagación y de Contaminación Analíticos.}
-\end{center}
-\end{table}
-
-
-\subsubsection{Simulación de Retardos de Propagación}
-
-A partir de la \textit{Ec.\ref{eqn:logica}} y de las constantes calculadas y encontradas en el informe anterior para el dimensionamiento de los transistores para tiempos de retardo y levantamiento simétrico de los niveles lógicos encontramos que para una carga de entrada de $30\lambda$ y una carga de salida de $500\lambda$ se encontró que el ancho de canal de los transistores equivalentes son los mostrados el la Tabla \ref{table:ancho_canal} y el circuito es el mostrado en la \textit{Fig.\ref{fig:circuito_E}}.\\
-
-
-\begin{table}\label{table:ancho_canal}
-\begin{center}
-\begin{tabular}{c||c||c}
-Compuerta  & Ancho nmos ($\lambda$) & Ancho pmos ($\lambda$)\\
-\hline
-\hline
-OAI22 & 11.11 & 18.88 \\
-Inv & 32.22 & 58.17 \\
-\hline
-\end{tabular}
-\caption{Anchos de canal dimensionados para el $OAI22+inv$}
-\end{center}
-\end{table}
-
-\begin{figure}[htbp]
-  \centering
-    \includegraphics[scale=0.5]{./Cicuito_Electric.png}
-    \rule{35em}{0.5pt}
-  \caption[IdealvsSim]{Compuerta \textit{Circuito simulado en el eléctric}}
-  \label{fig:circuito_E}
-\end{figure}
-
-\begin{figure}[htbp]
-\begin{center}
-    \includegraphics[scale=0.5]{./Mejor_caso_red_nmos.png}
-    \rule{35em}{0.5pt}
-  \caption[Captura]{Gráfica para mejor caso del NMOS}
-  \label{fig:M_nmos}
-  \end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-\begin{center}
-    \includegraphics[scale=0.5]{./Peor_caso_red_nmos.png}
-    \rule{35em}{0.5pt}
-  \caption[Captura]{Gráfica para peor caso del NMOS}
-  \label{fig:P_nmos}
-  \end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-\begin{center}
-    \includegraphics[scale=0.5]{./Mejor_caso_red_pmos.png}
-    \rule{35em}{0.5pt}
-  \caption[Captura]{Gráfica para mejor caso del PMOS}
-  \label{fig:M_pmos}
-  \end{center}
-\end{figure}
-
-
-\begin{figure}[htbp]
-\begin{center}
-    \includegraphics[scale=0.5]{./Peor_caso_red_pmos.png}
-    \rule{35em}{0.5pt}
-  \caption[Captura]{Gráfica para peor caso del PMOS}
-  \label{fig:P_pmos}
-  \end{center}
-\end{figure}
-
-\begin{table}\label{table:Tabla_propagacion}
-\begin{center}
-\begin{tabular}{c||c||c}
-Tiempo  & Mejor tiempo (ps) & Peor tiempo (ps)\\
-\hline
-\hline
-tr & 79.4 & 147.4 \\
-tf & 58.6 & 129.5 \\
-\hline
-\end{tabular}
-\caption{Tiempos de retardo de propagación simulados en Electric}
-\end{center}
-\end{table}
-
-\subsection{Diseño del layout}
+\section{Simulación para caracterización del Flip-Flop}
 
 En la figura \ref{fig:layout} se puede observar el diseño del layout de la compuerta de la ecuación \ref{eqn:logica_inversa} en la cual se basó en la figura de palitos de la figura \ref{fig:pal}. En esta se ha usado un "pitch" de $12\lambda$ ya que calza perfectamente con las conexiones para las salidas y entradas así con las conexiones de los metales entre transistores.
 
@@ -598,6 +457,7 @@ Por último. Con la creación del layout fue bastante útil utilizar las técnic
 
 \end{itemize}
 
+\section{Bibliografía}
 %----------------------------------------------------------------------------------------
 \begin{thebibliography}{3}
 
