@@ -99,7 +99,10 @@ Por último se mostrará las simulaciones que se realizaron para la caracterizac
 \item Set-up time: Es el tiempo mínimo el cual debe tener la entrada D antes del flanco de reloj, para que sea un valor válido de entrada y pueda ser cargado en el flip-flop. 
 Para el circuito propuesto, esta propagación es medible por los tiempos de propagación que requiere los transistores del bloque Master, esto antes del flanco de reloj y que se empiece a propagar la entrada en el bloque Slave. De no ser así los valores de los buffers de salida del bloque no se traslapen y den un valor incorrecto. 
 El valor de set-up en un flip-flop master salve es el mostrado en la ecuación (), esta viene de que la entrada debe propagarse en 3 inversores y en 1 buffer de paso:
- $3 *tpd_inv + tpd_tx$
+
+\begin{equation}\label{eqn:set_up}
+F=3 *tpd _{inv} + tpd _{tx}
+\end{equation}
 
 \item Hold time: Es el tiempo mínimo el cual se debe mantener el valor de entrada D, luego del flanco de reloj, para que sea un válido que se pueda cargar en el flip-flop.
 Para el circuito propuesto, este valor es cero. Esto porque al haberse dado el flanco de reloj, el transistor de paso en la entrada en el bloque Master se cierra por lo que el valor de entrada a partir de ese momento no afectará en lo absoluto a la salida. 
@@ -108,7 +111,9 @@ Para el circuito propuesto, este valor es cero. Esto porque al haberse dado el f
 En el Flip-Flop Master-Slave, este tiempo es el cual le tomará la salida del bloque master propagarse en el bloque Slave. Para ello solo le tomará el tiempo de propagación de un inversor y de un buffer de paso, ya que se consideró en el setup-time el tiempo para el transistor de entrada del bloque.
 Este valor se puede calcular con la ecuación (): 
 
-$tpd_tx + tpd_inv.$
+\begin{equation}\label{eqn:propagacion}
+F=tpd_{tx} + tpd_{inv}
+\end{equation}
 
 \item Tiempo de contaminación: Es el menor tiempo que le toma al flip-flop para tener un valor de salida igual al valor de la entrada que se había leído anteriormente.
 
@@ -117,26 +122,11 @@ $tpd_tx + tpd_inv.$
 \section{Flip-Flops estáticos y dinámicos}
 
 
-La función logica a la que se le realizara el trazado y el Diagrama de Palitos es la mostrada en la Ec.\ref{eqn:logica}. Esta función lógica es conocida como $OAI-22 + INV.$ Para el diseno de la compuerta se utilizó algebra booleana y se obtuvo la Ec.\ref{eqn:logica_inversa}.
+Los registros estáticos son aquellos que pueden mantener su salida mientras haya alimentación en el circuito. Estos son retroalimentados entre la salida y la entrada del registro para mantener constante la tensión en la salida y que no haya fluctuaciones.  
+Estos registros se usan en componentes que no requieren rápidos cambios en su valor almacenado o que necesitan un almacenamiento por largo periodo de tiempo. Ejemplo de ello son registros que se les deben cargar la configuración del funcionamiento del circuito.
 
-\begin{equation}\label{eqn:logica}
-F=(A+B)*(C+D)
-\end{equation}
+Los registros dinámicos son el complemento de los estáticos. La duración de su valor almacenado es de poca duración ya que el valor es cargado en las capacitancias parásitas del registro y este se irá disipando con respecto al tiempo. Este registro es de alta velocidad y baja disipación de potencia por lo que es muy usado en registro de pipeline y de transmisión de datos donde se requiere que haya una rápida carga de los datos.
 
-\begin{equation}\label{eqn:logica_inversa}
-\overline{F}=\overline{(A+B)}+\overline{(C+D)}
-\end{equation}\\
-
-
-Para lo cual se hizo el esquemático mostrado en la \textit{Fig.\ref{fig:Comp_Transistores}} y se hizo el \textit{Diagrama de Palitos} mostrado en la \textit{Fig.\ref{fig:inv_est}}. En este diagrama se dibujaron tanto la compuerta \textit{OAI22} como el \textit{Inversor} para cambiar el nivel lógico a la salida, por lo que se observa mas de una tira de difusión en la parte inferior, resultado de la inclusión del \textit{Inversor} en el diagrama.\\
-
-\begin{figure}[htbp]
-  \centering
-    \includegraphics[scale=0.4]{./Palitos.png}
-    \rule{35em}{0.5pt}
-  \caption[IdealvsSim]{Diagrama de palitos de la función OAI22 + INV}
-  \label{fig:pal}
-\end{figure}
 
 \section{Diseño del layout}
 

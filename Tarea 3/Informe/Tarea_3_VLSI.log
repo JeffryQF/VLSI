@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.17)  31 OCT 2015 17:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.17)  1 NOV 2015 14:03
 entering extended mode
 **Tarea_3_VLSI.tex
 ("C:\Users\Francis\Documents\GitHub\VLSI\Tarea 3\Informe\Tarea_3_VLSI.tex"
@@ -565,20 +565,20 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 128--129
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
 
  []
 
 
-LaTeX Warning: Reference `fig:inv_est' on page 2 undefined on input line 131.
+LaTeX Warning: Reference `fig:inv_est' on page 2 undefined on input line 136.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 131--132
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
 
  []
 
 
-LaTeX Warning: File `./Palitos.png' not found on input line 135.
+LaTeX Warning: File `./Palitos.png' not found on input line 140.
 
 
 ! Package pdftex.def Error: File `./Palitos.png' not found.
@@ -587,39 +587,39 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.135 ...includegraphics[scale=0.4]{./Palitos.png}
+l.140 ...includegraphics[scale=0.4]{./Palitos.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 177--178
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--180
+Underfull \hbox (badness 10000) in paragraph at lines 184--185
 
  []
 
 
-LaTeX Warning: File `./OAI21.png' not found on input line 183.
+LaTeX Warning: File `./OAI21.png' not found on input line 188.
 
 
 ! Package pdftex.def Error: File `./OAI21.png' not found.
@@ -628,19 +628,19 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.183     \includegraphics[scale=0.5]{./OAI21.png}
+l.188     \includegraphics[scale=0.5]{./OAI21.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
+Underfull \hbox (badness 10000) in paragraph at lines 194--195
 
  []
 
 
-LaTeX Warning: File `./OAI21_Cargas.png' not found on input line 193.
+LaTeX Warning: File `./OAI21_Cargas.png' not found on input line 198.
 
 
 ! Package pdftex.def Error: File `./OAI21_Cargas.png' not found.
@@ -649,29 +649,29 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.193 ...degraphics[scale=0.4]{./OAI21_Cargas.png}
+l.198 ...degraphics[scale=0.4]{./OAI21_Cargas.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 222--223
+Underfull \hbox (badness 10000) in paragraph at lines 227--228
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--225
+Underfull \hbox (badness 10000) in paragraph at lines 229--230
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 226--227
+Underfull \hbox (badness 10000) in paragraph at lines 231--232
 
  []
 
 
-LaTeX Warning: File `./Comp_Transistores.png' not found on input line 230.
+LaTeX Warning: File `./Comp_Transistores.png' not found on input line 235.
 
 
 ! Package pdftex.def Error: File `./Comp_Transistores.png' not found.
@@ -680,54 +680,54 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.230 ...hics[scale=0.45]{./Comp_Transistores.png}
+l.235 ...hics[scale=0.45]{./Comp_Transistores.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 236--237
+Underfull \hbox (badness 10000) in paragraph at lines 241--242
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 244--245
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 262--263
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 264--265
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 272--273
+Underfull \hbox (badness 10000) in paragraph at lines 269--270
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 274--275
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 286--287
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 288--289
+Underfull \hbox (badness 10000) in paragraph at lines 291--292
 
  []
 
 
-LaTeX Warning: File `./Comp_Transistores_Dim.png' not found on input line 292.
+Underfull \hbox (badness 10000) in paragraph at lines 293--294
+
+ []
+
+
+LaTeX Warning: File `./Comp_Transistores_Dim.png' not found on input line 297.
 
 
 ! Package pdftex.def Error: File `./Comp_Transistores_Dim.png' not found.
@@ -736,25 +736,24 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.292 ...[scale=0.45]{./Comp_Transistores_Dim.png}
+l.297 ...[scale=0.45]{./Comp_Transistores_Dim.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 309--310
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
 
  []
 
 [5]
+Underfull \hbox (badness 10000) in paragraph at lines 314--315
 
-LaTeX Warning: File `./ModeloRC_Completo.png' not found on input line 313.
+ []
+
+
+LaTeX Warning: File `./ModeloRC_Completo.png' not found on input line 318.
 
 
 ! Package pdftex.def Error: File `./ModeloRC_Completo.png' not found.
@@ -763,24 +762,24 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.313 ...hics[scale=0.45]{./ModeloRC_Completo.png}
+l.318 ...hics[scale=0.45]{./ModeloRC_Completo.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--320
+Underfull \hbox (badness 10000) in paragraph at lines 324--325
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 323--324
+Underfull \hbox (badness 10000) in paragraph at lines 328--329
 
  []
 
 
-LaTeX Warning: File `./RC_Inversor.png' not found on input line 327.
+LaTeX Warning: File `./RC_Inversor.png' not found on input line 332.
 
 
 ! Package pdftex.def Error: File `./RC_Inversor.png' not found.
@@ -789,35 +788,35 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.327 ...udegraphics[scale=0.3]{./RC_Inversor.png}
+l.332 ...udegraphics[scale=0.3]{./RC_Inversor.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 333--334
+Underfull \hbox (badness 10000) in paragraph at lines 338--339
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 337--338
+Underfull \hbox (badness 10000) in paragraph at lines 342--343
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 339--340
+Underfull \hbox (badness 10000) in paragraph at lines 344--345
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 341--342
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
 
  []
 
 
 LaTeX Warning: File `./Mejor_caso_Rise_propagacion.png' not found on input line
- 345.
+ 350.
 
 
 ! Package pdftex.def Error: File `./Mejor_caso_Rise_propagacion.png' not found.
@@ -827,26 +826,25 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.345 ...e=0.5]{./Mejor_caso_Rise_propagacion.png}
+l.350 ...e=0.5]{./Mejor_caso_Rise_propagacion.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 353--354
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 355--356
+Underfull \hbox (badness 10000) in paragraph at lines 358--359
 
  []
 
 [6]
+Underfull \hbox (badness 10000) in paragraph at lines 360--361
+
+ []
+
 
 LaTeX Warning: File `./Peor_caso_Rise_propagacion.png' not found on input line 
-359.
+364.
 
 
 ! Package pdftex.def Error: File `./Peor_caso_Rise_propagacion.png' not found.
@@ -855,25 +853,25 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.359 ...e=0.45]{./Peor_caso_Rise_propagacion.png}
+l.364 ...e=0.45]{./Peor_caso_Rise_propagacion.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 367--368
+Underfull \hbox (badness 10000) in paragraph at lines 372--373
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 371--372
+Underfull \hbox (badness 10000) in paragraph at lines 376--377
 
  []
 
 
 LaTeX Warning: File `./Peor_caso_Fall_propagacion.png' not found on input line 
-375.
+380.
 
 
 ! Package pdftex.def Error: File `./Peor_caso_Fall_propagacion.png' not found.
@@ -882,25 +880,25 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.375 ...e=0.25]{./Peor_caso_Fall_propagacion.png}
+l.380 ...e=0.25]{./Peor_caso_Fall_propagacion.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 384--385
+Underfull \hbox (badness 10000) in paragraph at lines 389--390
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 387--388
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
 
  []
 
 
 LaTeX Warning: File `./Mejor_caso_Fall_propagacion.png' not found on input line
- 391.
+ 396.
 
 
 ! Package pdftex.def Error: File `./Mejor_caso_Fall_propagacion.png' not found.
@@ -910,20 +908,20 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.391 ...=0.25]{./Mejor_caso_Fall_propagacion.png}
+l.396 ...=0.25]{./Mejor_caso_Fall_propagacion.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 400--401
+Underfull \hbox (badness 10000) in paragraph at lines 405--406
 
  []
 
 [7]
 
-LaTeX Warning: File `./layout.png' not found on input line 413.
+LaTeX Warning: File `./layout.png' not found on input line 418.
 
 
 ! Package pdftex.def Error: File `./layout.png' not found.
@@ -932,14 +930,14 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.413 ...\includegraphics[scale=0.5]{./layout.png}
+l.418 ...\includegraphics[scale=0.5]{./layout.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: File `./layout_sim.png' not found on input line 422.
+LaTeX Warning: File `./layout_sim.png' not found on input line 427.
 
 
 ! Package pdftex.def Error: File `./layout_sim.png' not found.
@@ -948,14 +946,14 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.422 ...ludegraphics[scale=0.5]{./layout_sim.png}
+l.427 ...ludegraphics[scale=0.5]{./layout_sim.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: File `./layout_mejor_graf.png' not found on input line 431.
+LaTeX Warning: File `./layout_mejor_graf.png' not found on input line 436.
 
 
 ! Package pdftex.def Error: File `./layout_mejor_graf.png' not found.
@@ -964,7 +962,7 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.431 ...phics[scale=0.5]{./layout_mejor_graf.png}
+l.436 ...phics[scale=0.5]{./layout_mejor_graf.png}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
@@ -972,20 +970,20 @@ If that doesn't work, type  X <return>  to quit.
 
 
 LaTeX Warning: Reference `table:TablaAnalitica' on page 8 undefined on input li
-ne 440.
+ne 445.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 440--441
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 442--443
+Underfull \hbox (badness 10000) in paragraph at lines 445--446
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 444--445
+Underfull \hbox (badness 10000) in paragraph at lines 447--448
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 449--450
 
  []
 
@@ -1004,15 +1002,18 @@ Package natbib Warning: Citation(s) may have changed.
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 4736 strings out of 493921
- 59908 string characters out of 3147276
+ 4738 strings out of 493921
+ 59937 string characters out of 3147276
  142655 words of memory out of 3000000
- 7935 multiletter control sequences out of 15000+200000
+ 7937 multiletter control sequences out of 15000+200000
  11020 words of font info for 41 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 37i,19n,43p,767b,399s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,19n,43p,767b,401s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKT
@@ -1023,7 +1024,7 @@ msfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.p
 fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/P
 rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Tarea_3_VLSI.pdf (9 pages, 161541 bytes).
+Output written on Tarea_3_VLSI.pdf (9 pages, 161632 bytes).
 PDF statistics:
  76 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
