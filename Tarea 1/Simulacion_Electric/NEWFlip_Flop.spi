@@ -1,0 +1,59 @@
+*** SPICE deck for cell NEWFlip_Flop{lay} from library Tarea_3_VLSI
+*** Created on lun oct 26, 2015 16:08:03
+*** Last revised on dom nov 01, 2015 16:03:22
+*** Written on dom nov 01, 2015 16:03:30 by Electric VLSI Design System, version 9.06
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+
+*** SUBCIRCUIT Tarea_3_VLSI__FO4 FROM CELL FO4{lay}
+.SUBCKT Tarea_3_VLSI__FO4 gnd IN OUT vdd
+Mnmos@0 gnd IN OUT gnd NMOS L=0.6U W=3U AS=7.425P AD=12.825P PS=12.3U PD=21.3U
+Mnmos@1 gnd IN OUT gnd NMOS L=0.6U W=3U AS=7.425P AD=12.825P PS=12.3U PD=21.3U
+Mpmos@0 vdd IN OUT vdd PMOS L=0.6U W=6U AS=7.425P AD=19.35P PS=12.3U PD=27.6U
+Mpmos@1 vdd IN OUT vdd PMOS L=0.6U W=6U AS=7.425P AD=19.35P PS=12.3U PD=27.6U
+.ENDS Tarea_3_VLSI__FO4
+
+*** SUBCIRCUIT Tarea_3_VLSI__NEWinv FROM CELL NEWinv{lay}
+.SUBCKT Tarea_3_VLSI__NEWinv gnd IN OUT vdd
+Mnmos@0 gnd IN OUT gnd NMOS L=0.6U W=3U AS=6.188P AD=14.85P PS=10.8U PD=25.5U
+Mpmos@0 vdd IN OUT vdd PMOS L=0.6U W=4.5U AS=6.188P AD=19.305P PS=10.8U PD=29.1U
+.ENDS Tarea_3_VLSI__NEWinv
+
+*** SUBCIRCUIT Tarea_3_VLSI__NEWmaster FROM CELL NEWmaster{lay}
+.SUBCKT Tarea_3_VLSI__NEWmaster A B CLK D gnd vdd _CLK
+Mnmos@0 gnd D net@98 gnd NMOS L=0.6U W=3U AS=3.375P AD=14.175P PS=5.55U PD=22.95U
+Mnmos@1 net@98 _CLK A gnd NMOS L=0.6U W=3U AS=3.375P AD=3.375P PS=5.55U PD=5.55U
+Mnmos@2 A CLK net@102 gnd NMOS L=0.6U W=3U AS=3.375P AD=3.375P PS=5.55U PD=5.55U
+Mnmos@3 net@102 B gnd gnd NMOS L=0.6U W=3U AS=14.175P AD=3.375P PS=22.95U PD=5.55U
+Mpmos@0 vdd D net@98 vdd PMOS L=0.6U W=4.5U AS=3.375P AD=18.225P PS=5.55U PD=26.1U
+Mpmos@1 net@98 CLK A vdd PMOS L=0.6U W=4.5U AS=3.375P AD=3.375P PS=5.55U PD=5.55U
+Mpmos@2 A _CLK net@102 vdd PMOS L=0.6U W=4.5U AS=3.375P AD=3.375P PS=5.55U PD=5.55U
+Mpmos@3 net@102 B vdd vdd PMOS L=0.6U W=4.5U AS=18.225P AD=3.375P PS=26.1U PD=5.55U
+.ENDS Tarea_3_VLSI__NEWmaster
+
+*** SUBCIRCUIT Tarea_3_VLSI__NEWslave FROM CELL NEWslave{lay}
+.SUBCKT Tarea_3_VLSI__NEWslave A B CLK D gnd vdd _CLK
+Mnmos@0 gnd D net@98 gnd NMOS L=0.6U W=3.6U AS=3.645P AD=15.21P PS=5.85U PD=24.15U
+Mnmos@1 net@98 CLK A gnd NMOS L=0.6U W=3.6U AS=3.645P AD=3.645P PS=5.85U PD=5.85U
+Mnmos@2 A _CLK net@102 gnd NMOS L=0.6U W=3.6U AS=3.645P AD=3.645P PS=5.85U PD=5.85U
+Mnmos@3 net@102 B gnd gnd NMOS L=0.6U W=3.6U AS=15.21P AD=3.645P PS=24.15U PD=5.85U
+Mpmos@0 vdd D net@98 vdd PMOS L=0.6U W=4.5U AS=3.645P AD=18.225P PS=5.85U PD=26.1U
+Mpmos@1 net@98 _CLK A vdd PMOS L=0.6U W=4.5U AS=3.645P AD=3.645P PS=5.85U PD=5.85U
+Mpmos@2 A CLK net@102 vdd PMOS L=0.6U W=4.5U AS=3.645P AD=3.645P PS=5.85U PD=5.85U
+Mpmos@3 net@102 B vdd vdd PMOS L=0.6U W=4.5U AS=18.225P AD=3.645P PS=26.1U PD=5.85U
+.ENDS Tarea_3_VLSI__NEWslave
+
+*** TOP LEVEL CELL: NEWFlip_Flop{lay}
+XFO4@1 gnd net@127 OUT vdd Tarea_3_VLSI__FO4
+XNEWinv@0 gnd net@114 net@116 vdd Tarea_3_VLSI__NEWinv
+XNEWmaste@0 net@114 net@116 clk D gnd vdd clk_n Tarea_3_VLSI__NEWmaster
+XNEWslave@0 net@127 OUT clk net@116 gnd vdd clk_n Tarea_3_VLSI__NEWslave
+
+* Spice Code nodes in cell cell 'NEWFlip_Flop{lay}'
+Vdd vdd 0 DC 3.3
+Vin clk 0 PULSE(0 3.3 20n 0 0 20n 40n 2)
+Vin2 clk_n 0 PULSE(3.3 0 20n 0 0 20n 40n 2)
+Vin3 D 0 DC 3.3
+.tran 1n 80n
+.include C:\Users\Francis\Desktop\Electric (VLSI)\Mosis_5.txt
+.END
