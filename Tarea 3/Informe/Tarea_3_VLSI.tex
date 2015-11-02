@@ -130,310 +130,113 @@ Los registros dinámicos son el complemento de los estáticos. La duración de s
 
 \section{Diseño del layout}
 
+En esta sección se presentará y explicará el diseño en layout de un flip-flop Master-Slave para 1 bit el cual deberá soportar una carga de FO4. Se explicará cada módulo creado en la herramienta Electric y se mostrará el circuito completo.
+
+Para los bloques Master, Slave y el inversor conectado entre ellos se hizo la dimensión de los transistores a partir de los valores medidos en la Tarea 1, mientras que el último inversor se dimensionó con respecto a la carga que debe soportar el flip-flop. El pitch usado es el que se encontró en la Tarea 2. 
+
 \subsection{Bloque Master}
 
-El cálculo de los tiempos de propagación y de contaminación se realiza haciendo uso de dos métodos: la teoría del esfuerzo lógico, \textit{logical effort}, y por el método de la aproximación de Elmore, \textit{Elmore Delay}.\\
+Es el segmento de entrada delflip-flop. El esquematico es el mostrado en la figura \ref{fig:Master_s} y el layout es el mostrado en la figura \ref{fig:Master_l}. Fue posible reducir bastante su largo creándolo de esta forma y separando el inversor de salida en un módulo aparte. 
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.45]{./Master_s.png}
+    \rule{35em}{0.5pt}
+  \caption[Master]{Esquemático del segmento del Bloque Master}
+  \label{fig:Master_s}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./Master_l.png}
+    \rule{35em}{0.5pt}
+  \caption[Master]{Layout del segmento del Bloque Master}
+  \label{fig:Master_l}
+\end{figure}
 
 \subsection{Inversor en el Master}
 
-El esfuerzo lógico se define como \textit{"la razón de la capacitancia del gate a la capacitancia de entrada de un inversor que puede entregar la misma corriente de salida."}, e indica que tan mala es una compuerta produciendo una corriente de salida comparada con un inversor.\\
-
-Para el cálculo del delay por medio de la teoría de esfuerzo lógico, se utilizan las formulas del cálculo del delay en redes lógicas con multiples etapas, \textit{Multistage Logical Network}, que utiliza las siguientes formulas para el cálculo del delay:\\
-
-\begin{equation}\label{eqn:esfuerzo_logico}
-G= \prod g_{i}
-\end{equation}
-
-\begin{equation}\label{eqn:esfuerzo_electrico}
-H= \frac{C_{out-path}}{C_{in-path}}
-\end{equation}
-
-\begin{equation}\label{eqn:esfuerzo_enramado}
-B= \prod b_{i}
-\end{equation}
-
-\begin{equation}\label{eqn:esfuerzo}
-F = GBH
-\end{equation}
-
-\begin{equation}\label{eqn:delay_parasitico}
-P = \sum p_{i}
-\end{equation}
-
-\begin{equation}\label{eqn:delay}
-D = NF^{\frac{1}{N}} + P
-\end{equation}
-
-En donde \textit{G} es el esfuerzo lógico, \textit{H} es el esfuerzo eléctrico, \textit{B} el esfuerzo de enramado, \textit{F} es el esfuerzo total, \textit{P} es el delay parasítico del camino, \textit{N} es la cantidad de estapas del camino y \textit{D} es el delay total del camino.\\
-
-La función \textit{F=(A+B)(C+D)} se puede representar a nivel de compuerta como se muestra en la \textit{Fig.\ref{fig:OAI21}} , donde se observa que la compuerta es del tipo OR-OR-AND-INV + INVERSOR, \textit{OAI-21 + inverter}, y a partir de aqui se calcula el esfuerzo lógico de camino.\\
+Este módulo es solamente un inversor de transistores de tamaño mínimo, que viene incluido en el módulo Master. Su esquemático es el mostrado en la figura \ref{fig:Inv_s} y su layout es el de la figura \ref{fig:Inv_l}.
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.5]{./OAI21.png}
+    \includegraphics[scale=0.45]{./Inv_s.png}
     \rule{35em}{0.5pt}
-  \caption[IdealvsSim]{Compuerta \textit{OAI-21}.}
-  \label{fig:OAI21}
+  \caption[Inv]{Esquemático del inversor de salida del bloque Master}
+  \label{fig:Inv_s}
 \end{figure}
 
-Para realizar los cálculos del esfuerzo de camino de esta función, se debe tomar en cuenta que cada entrada presenta como maximo 30$\lambda$ de ancho de transistor, y que la salida debe de manejar una carga equivalente de 500$\lambda$ de ancho de transistor, como se muestra en la \textit{Fig.\ref{fig:OAI21_Cargas}}. Se puede observar que en este caso el número de etapas, \textit{N}, es igual a 2, por lo que haciendo uso de las ecuaciones \textit{\ref{eqn:esfuerzo_logico}, \ref{eqn:esfuerzo_electrico}, \ref{eqn:esfuerzo_enramado}, \ref{eqn:esfuerzo}, \ref{eqn:delay_parasitico}, \ref{eqn:delay}}, se puede encontrar el delay mediante la teoría de esfuerzo lógico de cada entrada bajo estas condiciones de carga.\\
-
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.4]{./OAI21_Cargas.png}
+    \includegraphics[scale=0.6]{./Inv_l.png}
     \rule{35em}{0.5pt}
-  \caption[IdealvsSim]{Compuerta \textit{OAI-21} con Carga.}
-  \label{fig:OAI21_Cargas}
-\end{figure}
-
-
-\begin{equation}\label{eqn:esfuerzo_logico2}
-G= \prod g_{i}= \frac{6}{3} * 1 = \frac{6}{3}
-\end{equation}
-
-\begin{equation}\label{eqn:esfuerzo_electrico2}
-H= \frac{C_{out-path}}{C_{in-path}} = \frac{500\lambda}{30\lambda} = \frac{50}{3}
-\end{equation}
-
-\begin{equation}\label{eqn:esfuerzo_enramado2}
-B= \prod b_{i} = 1
-\end{equation}
-
-\begin{equation}\label{eqn:esfuerzo2}
-F = GBH = \frac{6}{3}*1*\frac{50}{3} = \frac{100}{3}
-\end{equation}
-
-\begin{equation}\label{eqn:delay_parasitico2}
-P = \sum p_{i} = \frac{12}{3} + 1 = \frac{15}{3} = 5
-\end{equation}
-
-\begin{equation}\label{eqn:delay2}
-D = NF^{\frac{1}{N}} + P = 2*(\frac{100}{3})^{\frac{1}{2}} + 5 = 16.54\tau
-\end{equation}\\
-
-El cálculo de los tiempos arroja como resultado que cada entrada de esta compuerta tendrá un delay de \textit{16.54$\tau$}.\\
-
-Con el valor de delay calculado se puede proceder a dimensionar los transistores que conforman la compuerta. En la \textit{Fig.\ref{fig:Comp_Transistores}} se muestra la compuerta compuesta a nivel de transistores, sin dimensionar.\\
-
-\begin{figure}[htbp]
-  \centering
-    \includegraphics[scale=0.45]{./Comp_Transistores.png}
-    \rule{35em}{0.5pt}
-  \caption[IdealvsSim]{Esquemático de la Compuerta \textit{F=(A+B)(C+D)} a nivel de transistores sin dimensionar.}
-  \label{fig:Comp_Transistores}
-\end{figure}
-
-Para dimensionar los transistores de cada entrada, se toma en cuenta el modelo RC del transistor. Sabiendo que la resitencia de la red \textit{PMOS} debe ser igual a la de la red \textit{NMOS}, y que cada entrada presenta como maximo 30$\lambda$ de ancho de transistor se obtiene que:\\
-
-\begin{equation}\label{eqn:R}
-\frac{2R}{k_p} = \frac{R}{k_n}
-\end{equation}
-
-\begin{equation}\label{eqn:k}
-k_p + k_n = 30\lambda
-\end{equation}\\
-
-Donde \textit{$k_{p}$} y \textit{$k_{n}$} son los anchos de los tansistores \textit{p} y \textit{n} de cada entrada. Con este sistema de ecuaciones se obtiene que:
-
-\begin{equation}\label{eqn:R1}
-k_p = 2k_n
-\end{equation}
-
-\begin{equation}\label{eqn:k1}
-k_p + k_n = 30\lambda
-\end{equation}
-
-\begin{equation}\label{eqn:k2}
-3k_n = 30\lambda
-\end{equation}
-
-\begin{equation}\label{eqn:k3}
-k_n = 10\lambda ; k_p = 20\lambda
-\end{equation}\\
-
-Utilizando la \textit{Ec.\ref{eqn:k_Inv}}, se puede encontrar la capacitancia de entrada del inversor, como se muestra a continuación:\\
-
-\begin{equation}\label{eqn:k_Inv}
-C_{ini}= \frac{C_{outi}*g_{i}}{F^{\frac{1}{N}}}
-\end{equation}
-
-\begin{equation}\label{eqn:k_Inv2}
-{C_{in}}_{i}= \frac{500\lambda*1}{5.777} = 86.6\lambda = 87\lambda
-\end{equation}\\
-
-Sabiendo que la resistencia en la red de \textit{pull-up} es el doble que la de la red de \textit{pull-down} en el inversor de la salida, se puede encontrar las dimensiones de los anchos de los transistores en dicho inversor.\\
-
-\begin{equation}\label{eqn:k_Inv3}
-k_p=2k_n
-\end{equation}
-
-\begin{equation}\label{eqn:k_Inv4}
-3k_n=87\lambda
-\end{equation}
-
-\begin{equation}\label{eqn:k_Inv5}
-k_n=29\lambda ; k_p=58\lambda 
-\end{equation}\\
-
-En la \textit{Fig.\ref{fig:Comp_Transistores_Dim}} se muestra la compuerta a nivel de transistores, cada uno con su respectivo valor de ancho de canal correspondiente.\\
-
-\begin{figure}[htbp]
-  \centering
-    \includegraphics[scale=0.45]{./Comp_Transistores_Dim.png}
-    \rule{35em}{0.5pt}
-  \caption[Delay]{Esquemático de la Compuerta \textit{F=(A+B)(C+D)} a nivel de transistores con sus respectivas dimensiones, \textit{L=2$\lambda$}.}
-  \label{fig:Comp_Transistores_Dim}
+  \caption[Inv]{Layout del inversor de salida del bloque Master}
+  \label{fig:Inv_l}
 \end{figure}
 
 \subsection{Bloque slave}
 
-Ahora se calcula el delay de propagación y el delay de contaminación de la compuerta \textit{F=(A+B)(C+D)} mediante el método de \textit{Aproximación de Elmore}, el cuál se hace valer del modelo RC del transistor, para calcular los delays de una compuerta. El modelo de delay de \textit{Elmore} estima el restraso desde una fuente conmutando a uno de los nodos hoja cambiantes como la suma sobre cada nodo \textit{i} de la capacitancia \textit{$C_{i}$} en el nodo, multiplicado por la resistencia efectiva \textit{$R_{is}$} en el camino compartido desde la fuente hasta el nodo y la hoja, dando como resultado la ec.\ref{eqn:Elmore}:
-
-
-\begin{equation}\label{eqn:Elmore}
-t_{pd} = \sum_{i} R_{is}C_{i}
-\end{equation}\\
-
-
-
-En la \textit{Fig.\ref{fig:ModeloRC_Completo}} se muestra el modelo \textit{RC} completo de la compuerta, con sus capacitancias y resistencias, para la compuerta \textit{OAI-21} y para el inversor en la salida.\\
+El tercer módulo del circuito presenta mucha similitud con el módulo Master, como se presenta en las figuras de esquemático (figura \ref{fig:Slave_s}) y de layout (figura \ref{fig:Slave_l}) con la diferencia del cambio de las señales de control de los relojes y el posicionamiento de los conectores para usar menos metal 2.
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.45]{./ModeloRC_Completo.png}
+    \includegraphics[scale=0.45]{./Slave_s.png}
     \rule{35em}{0.5pt}
-  \caption[IdealvsSim]{Modelo \textit{RC} completo de la Compuerta \textit{F=(A+B)(C+D)}.}
-  \label{fig:ModeloRC_Completo}
+  \caption[Slave]{Esquemático del segmento del Bloque Slave}
+  \label{fig:Slave_s}
 \end{figure}
 
-Para este modelo se calculan el mejor y el peor caso para el delay, por lo que en las siguientes secciones se presentaran los cálculos y los circuitos \textit{RC} de cada caso.\\
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[scale=0.6]{./Slave_l.png}
+    \rule{35em}{0.5pt}
+  \caption[Slave]{Layout del segmento del Bloque Slave}
+  \label{fig:Slave_l}
+\end{figure}
 
 \subsection{Buffer inversor de salida}
 
-Antes de calcular el mejor y el pesor caso de subida, primero se calcula el retraso provocado por el inversor a la salida, ya que este sera el mismo para el mejor y el peor caso de subida y de bajada. En la \textit{Fig.\ref{fig:RC_Inversor}} se muestra el modelo \textit{RC} del inversor de este problema.\\
+Este inversor de salida se hizo a partir de los calculos empleados para un dimensioamiento de ancho para soportar una carga de FO4. Se tiene como resultado que el ancho para el transistor PMOS es de 60$\lambda$ mientras que para el NMOS es de 40$\lambda$.
+Por cuestiones de dimensionamiento en el layout, este módulo es muy ancho para ajustarse a los demás, por lo que se optó por crear diversos inversores de menor tamaño, pero que puedan soportar la misma carga y tengan un funcionamiento similar al diseñado anteriormente. De esta forma se obtiene como resultado el módulo mostrado en las figuras \ref{fig:FO4_s} de esquemático y \ref{fig:FO4_l} de layout.
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.3]{./RC_Inversor.png}
+    \includegraphics[scale=0.45]{./FO4_s.png}
     \rule{35em}{0.5pt}
-  \caption[IdealvsSim]{Modelo \textit{RC} del Inversor.}
-  \label{fig:RC_Inversor}
+  \caption[FO4]{Esquemático del inversor de salida del bloque Slave}
+  \label{fig:FO4_s}
 \end{figure}
-
-Con este circuito se calcula el delay utilizando la \textit{Ec.\ref{eqn:Elmore_Inv}}, obteniendo como resultado que el delay del inversor para el caso de subida y bajada es:\\
-
-\begin{equation}\label{eqn:Elmore_Inv}
-t_{pd} = \frac{R}{29}(500 + 87)C = \frac{587RC}{29} = 20.24RC
-\end{equation}\\
-
-Con el delay del inversor calculado en la \textit{Ec.\ref{eqn:Elmore_Inv}}, se procede a realizar los calculos para el mejor y peor caso de delay de subida.\\
-
-En la \textit{Fig.\ref{fig:Mejor_caso_Rise_propagacion}} se observa que el mejor caso ocurre cuando todos los transistores de la red de \textit{pull-up} se encuentran encendidos, o dos transistores están encendidos en la red de \textit{pull-up}, A y B, y los dos transistores mas interiores de la red de \textit{pull-down}, A y B, están apagados, con lo que la red de \textit{pull-down} no contribuye al delay en ambos casos. En la \textit{Ec.\ref{eqn:Elmore_tpdr_Mejor}} se muestra el cálculo del delay para el mejor caso de levantamiento:\\
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.5]{./Mejor_caso_Rise_propagacion.png}
+    \includegraphics[scale=0.6]{./FO4_l.png}
     \rule{35em}{0.5pt}
-  \caption[IdealvsSim]{Mejor Caso de \textit{Rise} en el Delay de Propagación.}
-  \label{fig:Mejor_caso_Rise_propagacion}
+  \caption[FO4]{Layout del inversor de salida del bloque Slave}
+  \label{fig:FO4_l}
 \end{figure}
-
-\begin{equation}\label{eqn:Elmore_tpdr_Mejor}
-t_{pdr} = \frac{20RC}{10} + \frac{147*2RC}{10} + t_{pdInv}= 31.4RC + 20.24RC = 51.64RC = 17.213\tau
-\end{equation}\\
-
-En la \textit{Fig.\ref{fig:Peor_caso_Rise_propagacion}} se observa que el peor caso ocurre cuando solo dos transistores se encendidos, C y D, y uno o los dos transistores mas interiores de la red de \textit{pull-down} están también encendidos, por lo que la red de \textit{pull-down} contribuye al delay. En la \textit{Ec.\ref{eqn:Elmore_tpdr_Peor}} se muestra el cálculo del delay para el peor caso de levantamiento:\\
-
-\begin{figure}[htbp]
-  \centering
-    \includegraphics[scale=0.45]{./Peor_caso_Rise_propagacion.png}
-    \rule{35em}{0.5pt}
-  \caption[IdealvsSim]{Peor Caso de \textit{Rise} en el Delay de Propagación.}
-  \label{fig:Peor_caso_Rise_propagacion}
-\end{figure}
-
-\begin{equation}\label{eqn:Elmore_tpdr_Peor}
-t_{pdr} = \frac{20RC}{10}+\frac{20RC}{5}+\frac{147RC}{5}+t_{pdInv}= 35.4RC + 20.24RC = 55.64RC = 18.546\tau
-\end{equation}\\
 
 \subsection{Circuito completo}
 
-En la \textit{Fig.\ref{fig:Peor_caso_Fall_propagacion}} se observa el peor caso de caída en el cálculo del delay en la compuerta. En este caso se activan las entradas A y C, con un 1 lógico, en la red de \textit{pull-down}, y se activan las entradas B y D, con un 0 lógico, en la red de \textit{pull-up}, con lo que esta red contribuye con el delay, tal como se muestra en la \textit{Fig.\ref{fig:Peor_caso_Fall_propagacion}}. En la \textit{Ec.\ref{eqn:Delay_fall_Peor}} se muestra el cálculo del delay.\\
+Las conexiones de los módulos mencionados en secciones anteriores y que en conjunto forman el flip-flop Master-Slave para 1 bit es el mostrado en la figura \ref{fig:Completo}. Se puede observar que para las conexiones se utilizó únicamente Metal 2
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=0.25]{./Peor_caso_Fall_propagacion.png}
+    \includegraphics[scale=0.6]{./Completo.png}
     \rule{35em}{0.3pt}
-  \caption[C_Carga]{Peor Caso de \textit{Fall} en el Delay de Propagación.}
-  \label{fig:Peor_caso_Fall_propagacion}
+  \caption[Completo]{Layout del circuito completo del Flip-Flop para 1 bit}
+  \label{fig:Completo}
 \end{figure}
-
-
-\begin{equation}\label{eqn:Delay_fall_Peor}
-t_{pdf} = \frac{20RC}{10}+\frac{147RC}{5}+\frac{40RC}{5}+t_{pdInv}=39.4RC+20.24RC=59.64RC=19.88\tau
-\end{equation}\\
-
-
-En la \textit{Fig.\ref{fig:Mejor_caso_Fall_propagacion}} se observa el mejor caso de caída en el cálculo del delay en la compuerta. En este caso se activan las entradas B y D, con un 1 lógico, en la red de \textit{pull-down}, y por ende se desactivan las entradas B y D en la red de \textit{pull-up}, con lo que esta red no contribuye con el delay, tal como se muestra en la \textit{Fig.\ref{fig:Mejor_caso_Fall_propagacion}}. En la \textit{Ec.\ref{eqn:Delay_fall_Mejor}} se muestra el cálculo del delay.\\
-
-\begin{figure}[htbp]
-  \centering
-    \includegraphics[scale=0.25]{./Mejor_caso_Fall_propagacion.png}
-    \rule{35em}{0.3pt}
-  \caption[C_Carga]{Mejor Caso de \textit{Fall} en el Delay de Propagación.}
-  \label{fig:Mejor_caso_Fall_propagacion}
-\end{figure}
-
-
-\begin{equation}\label{eqn:Delay_fall_Mejor}
-t_{pdf} = \frac{20RC}{10}+\frac{147RC}{5}+t_{pdInv}=31.4RC+20.24RC=51.64RC=17.21\tau
-\end{equation}\\
 
 
 
 
 \section{Simulación para caracterización del Flip-Flop}
 
-En la figura \ref{fig:layout} se puede observar el diseño del layout de la compuerta de la ecuación \ref{eqn:logica_inversa} en la cual se basó en la figura de palitos de la figura \ref{fig:pal}. En esta se ha usado un "pitch" de $12\lambda$ ya que calza perfectamente con las conexiones para las salidas y entradas así con las conexiones de los metales entre transistores.
 
-También se realizó una simulación del mismo con la rutina que se muestra en la figura \ref{fig:layout_sim} en la cual se simulará el mejor caso para la red de NMOS. El resultado se encuentra en la figura \ref{fig:layout_graf}.
-
-\begin{figure}[htbp]
-\begin{center}
-    \includegraphics[scale=0.5]{./layout.png}
-    \rule{35em}{0.5pt}
-  \caption[Captura]{Layout del la $OAI-22$}
-  \label{fig:layout}
-  \end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-\begin{center}
-    \includegraphics[scale=0.5]{./layout_sim.png}
-    \rule{35em}{0.5pt}
-  \caption[Captura]{Circuito para simulación en Ltpice del layout del circuito}
-  \label{fig:layout_sim}
-  \end{center}
-\end{figure}
-
-\begin{figure}[htbp]
-\begin{center}
-    \includegraphics[scale=0.5]{./layout_mejor_graf.png}
-    \rule{35em}{0.5pt}
-  \caption[Captura]{Gráfica para mejor caso del NMOS en layout}
-  \label{fig:layout_graf}
-  \end{center}
-\end{figure}
 
 \section{Análisis de datos y resultados.}
 
-El la Tabla \ref{table:TablaAnalitica} se muestran los valores del cálculo analítico de los delay de la compuerta para el mejor y peor caso de propagación de fall y raise, el mejor y peor caso para el delay de contaminación de raise y fall, estos por el método del delay de Elmore, así como el calculo del delay mediante el método del esfuerzo lógico.\\
 
-A partir de esta tabla se puede observar que los cálculos del delay por medio del método de Elmore y por medio del metodo de esfuerzo logico son bastante cercanos, siendo el método de Elmore más complejo, pero permite un mejor análisis de los diferentes casos, necesario para un mejor diseño.\\
-
-Conforme a los datos simulados experimentalmente, los tiempos de propagación de subida y bajada de los niveles lógicos sob aproximadamente cercanos pero no lo suficiente para ser simétricos. En comparación con la teoría de esfuerzo lógico, vemos que los valores son bastante aproximados.\\
-
-Por último. Con la creación del layout fue bastante útil utilizar las técnicas del los caminos de Euler y el diagrama de palitos para crear el mismo. Vemos que al simular el layout, la gráfica muestra un mejor comportamiento a como se simuló en el esquemático.
 
 
 
